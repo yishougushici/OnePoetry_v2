@@ -5,4 +5,9 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
+    <package name="gushici.action.SearchAction" namespace="/" extends="struts-default">
+        <action name="searchResult" class="gushici.action.SearchAction" method="result">
+            <result>WEB-INF/content/searchResult.jsp</result>
+        </action>
+    </package>
 </struts>
