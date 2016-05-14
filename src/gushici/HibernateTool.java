@@ -3,12 +3,10 @@ package gushici;
 import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
-import java.io.Serializable;
 import java.lang.reflect.Type;
 import java.util.List;
 
@@ -38,13 +36,6 @@ public class HibernateTool {
 		if(id instanceof String)
 			return session.get(type, (String)id);
 		throw new Exception("Unknown type of id");
-	}
-
-	public Serializable save(Object obj) {
-		Transaction transaction = session.beginTransaction();
-		Serializable result = session.save(obj);
-		transaction.commit();
-		return  result;
 	}
 
 	@Override
