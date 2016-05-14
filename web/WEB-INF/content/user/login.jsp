@@ -2,7 +2,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutHead.jsp" />
-<%=request.getAttribute("error_message")%><!--TODO:这里被我改了-->
+<%=request.getAttribute("error_message")%><!--TODO:这里被我改了,仅为调试-->
 <div class="row">
   <div class="col-xs-10 col-lg-10 col-md-10 col-sm-10 col-lg-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-offset-1">
     <form action="loginCheck.action"><!--TODO:这里被我改了-->
@@ -25,13 +25,13 @@
 <p />
 <div class="row">
   <div class="col-xs-10 col-xs-offset-1">
-    <a href="/feedback.jsp"><button class="btn btn-block btn-primary">反馈建议</button></a>
+    <a href="${pageContext.request.contextPath}/feedback/index.action"><button class="btn btn-block btn-primary">反馈建议</button></a>
   </div>
 </div>
 <br>
 <div class="row">
   <div class="col-xs-offset-8">
-    <a href="/register.jsp">新用户?点击注册</a>
+    <a href="register.action">新用户?点击注册</a>
   </div>
 </div>
 
