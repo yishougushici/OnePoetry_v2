@@ -4,6 +4,9 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import gushici.HibernateTool;
 import gushici.domain.User;
+import org.apache.struts2.ServletActionContext;
+
+import java.io.IOException;
 
 /**
  * 主页
@@ -11,6 +14,7 @@ import gushici.domain.User;
 public class UserAction extends ActionSupport {
 	private String suser_name;
 	private String suser_password;
+	private String suser_email;
 
 	public String getSuser_name() {
 		return suser_name;
@@ -28,8 +32,17 @@ public class UserAction extends ActionSupport {
 		this.suser_password = suser_password;
 	}
 
+	public String getSuser_email() {
+		return suser_email;
+	}
+
+	public void setSuser_email(String suser_email) {
+		this.suser_email = suser_email;
+	}
+
 	public String login(){
 		ActionContext actionContext = ActionContext.getContext();
+		actionContext.getSession().clear();
 		actionContext.put("pageTitle", "用户登录");
 		return SUCCESS;
 	}
@@ -37,12 +50,12 @@ public class UserAction extends ActionSupport {
 	public String loginCheck() throws Exception {
 		ActionContext actionContext = ActionContext.getContext();
 
-		if(getSuser_name() == null) {
+		if(getSuser_name() == null || getSuser_name().isEmpty()) {
 			actionContext.put("error_message", "请输入用户名");
 			return ERROR;
 		}
 
-		if(getSuser_password() == null) {
+		if(getSuser_password() == null || getSuser_password().isEmpty()) {
 			actionContext.put("error_message", "请输入密码");
 			return ERROR;
 		}
@@ -69,5 +82,60 @@ public class UserAction extends ActionSupport {
 		ActionContext actionContext = ActionContext.getContext();
 		actionContext.put("pageTitle", "功能首页");
 		return SUCCESS;
+	}
+
+	public String register(){
+		return SUCCESS;
+	}
+
+	public String registerCheck(){
+		ActionContext actionContext = ActionContext.getContext();
+
+		if(getSuser_name() == null || getSuser_name().isEmpty()) {
+			actionContext.put("error_message", "请输入用户名");
+			return ERROR;
+		}
+
+		if(getSuser_password() == null || getSuser_password().isEmpty()) {
+			actionContext.put("error_message", "请输入密码");
+			return ERROR;
+		}
+
+		if(getSuser_email() == null || getSuser_email().isEmpty()) {
+			actionContext.put("error_message", "请输入邮箱");
+			return ERROR;
+		}
+
+		if(getSuser_name().contains("'") || getSuser_password().contains("'") || getSuser_email().contains("'")) {
+			actionContext.put("error_message", "SQL注入死全家");
+			return ERROR;
+		}
+
+		HibernateTool hibernateTool = new HibernateTool();
+		User newUser = new User();
+		newUser.setSuesr_name(getSuser_name());
+		newUser.setSuser_password(getSuser_password());
+		newUser.setSuser_email(getSuser_email());
+		hibernateTool.save(newUser);
+		return SUCCESS;
+	}
+
+	public String usernameCheck() throws Exception {
+		ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
+		if(getSuser_name().contains("'")) {
+			ServletActionContext.getResponse().getWriter().write("SQL注入死全家");
+			return null;
+		}
+		if(getSuser_name() == null || getSuser_name().isEmpty()) {
+			ServletActionContext.getResponse().getWriter().write("请输入用户名");
+			return null;
+		}
+		HibernateTool hibernateTool = new HibernateTool();
+		if(hibernateTool.get(User.class, getSuser_name()) == null){
+			ServletActionContext.getResponse().getWriter().write("用户名可用");
+			return null;
+		}
+		ServletActionContext.getResponse().getWriter().write("用户名已被注册");
+		return null;
 	}
 }

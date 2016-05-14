@@ -17,6 +17,16 @@
         <action name="home" class="gushici.action.UserAction" method="home">
             <result>/WEB-INF/content/user/home.jsp</result>
         </action>
+        <action name="register" class="gushici.action.UserAction" method="register">
+            <result>/WEB-INF/content/user/register.jsp</result>
+        </action>
+        <action name="registerCheck" class="gushici.action.UserAction" method="registerCheck">
+            <result name="success" type="redirectAction">login</result>
+            <result name="error" type="chain">register</result>
+        </action>
+        <action name="usernameCheck" class="gushici.action.UserAction" method="usernameCheck">
+            <result/><!-- 已经直接通过Servlet返回字符串 -->
+        </action>
     </package>
     <package name="gushici.action.SearchAction" extends="struts-default" namespace="/search">
         <default-action-ref name="index"/>
@@ -25,6 +35,12 @@
         </action>
         <action name="result" class="gushici.action.SearchAction" method="result">
             <result>/WEB-INF/content/search/result.jsp</result>
+        </action>
+    </package>
+    <package name="gushici.action.FeedbackAction" extends="struts-default" namespace="/feedback">
+        <default-action-ref name="index"/>
+        <action name="index" class="gushici.action.SearchAction" method="execute">
+            <result>/WEB-INF/content/feedback/feedback.jsp</result>
         </action>
     </package>
 </struts>
