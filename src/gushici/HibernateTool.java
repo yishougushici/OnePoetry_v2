@@ -30,6 +30,14 @@ public class HibernateTool {
 		return sqlQuery.list();
 	}
 
+	public Object get(Class type, Object id) throws Exception {
+		if(id instanceof Integer)
+			return session.get(type, (Integer)id);
+		if(id instanceof String)
+			return session.get(type, (String)id);
+		throw new Exception("Unknown type of id");
+	}
+
 	@Override
 	protected void finalize() throws Throwable {
 		super.finalize();

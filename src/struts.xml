@@ -5,9 +5,26 @@
         "http://struts.apache.org/dtds/struts-2.3.dtd">
 
 <struts>
-    <package name="gushici.action.SearchAction" namespace="/" extends="struts-default">
-        <action name="searchResult" class="gushici.action.SearchAction" method="result">
-            <result>WEB-INF/content/searchResult.jsp</result>
+    <package name="gushici.action.UserAction" extends="struts-default" namespace="/">
+        <default-action-ref name="login"/>
+        <action name="login" class="gushici.action.UserAction" method="login">
+            <result>/WEB-INF/content/user/login.jsp</result>
+        </action>
+        <action name="loginCheck" class="gushici.action.UserAction" method="loginCheck">
+            <result name="success" type="redirectAction">home</result>
+            <result name="error" type="chain">login</result>
+        </action>
+        <action name="home" class="gushici.action.UserAction" method="home">
+            <result>/WEB-INF/content/user/home.jsp</result>
+        </action>
+    </package>
+    <package name="gushici.action.SearchAction" extends="struts-default" namespace="/search">
+        <default-action-ref name="index"/>
+        <action name="index" class="gushici.action.SearchAction" method="execute">
+            <result>/WEB-INF/content/search/search.jsp</result>
+        </action>
+        <action name="result" class="gushici.action.SearchAction" method="result">
+            <result>/WEB-INF/content/search/result.jsp</result>
         </action>
     </package>
 </struts>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="dataSourceStorageLocal">
+    <data-source name="hibernate.cfg.xml/Hibernate" uuid="2b8ea6dd-c1fd-4960-a05b-2ee589b6cd34">
+      <secret-storage>master_key</secret-storage>
+      <user-name>shici</user-name>
+      <schema-pattern>shici.*</schema-pattern>
+      <default-schemas>shici.*</default-schemas>
+    </data-source>
+  </component>
+</project>

@@ -1,0 +1,91 @@
+body{
+	font-size: 62.5%;
+}
+
+.head-block{
+	position: relative;
+	padding: 0;
+	margin: 0;
+	top: 0;
+	background-color: #daca96;
+	background-repeat: no-repeat;
+	background-position-x: 100%;
+	background-position-y: 0;
+	height: 12rem;
+	margin-bottom: 10px;
+}
+
+.title{
+	font-family:  "华文隶书","微软雅黑",'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 4rem;
+	line-height: 12rem; 
+}
+input[type="radio"]{
+	margin-top: 4px;
+	padding: 0;
+}
+
+.sc-title{
+	font-family: '微软雅黑', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 3em;
+}
+
+h1{
+	font-family: "华文隶书","微软雅黑",'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	margin: 1em;
+}
+.sc-author{
+	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 1.5em; 
+}
+
+.sc-body{
+	font-family: '微软雅黑', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+	font-size: 2.6em;
+}
+
+.sc-num{
+	font-family: "Broadway"; 
+	font-size: 6em;
+	float: left;
+}
+
+.panelfooter{
+	padding: 0 0;
+	margin: 0 0;
+	font-size: 1em;
+	text-align: right;
+}
+
+.btn-user{
+	width: 60px;
+	background-color: #dff0d8;
+}
+
+
+
+.btn-user:focus {
+	background-color: #dff0d8;
+}
+
+.footer{
+	margin-top: 10px;
+}
+
+#sc-search-bar{
+	background-color: #dff0d8;
+	padding:0px;
+}
+
+#sc-search-bar :hover{
+	cursor: pointer;
+	background-color: #ddeed6;
+}
+
+.sc-search-btn{
+	height:100%;
+}
+
+#sc-styles{
+	text-align: center;
+}

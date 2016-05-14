@@ -1,0 +1,113 @@
+body{
+    background-color: #706f73 ;
+    background-image: url("/support/image/bg-full.jpg");
+    background-repeat:no-repeat;
+    background-size: cover;
+}
+
+.sc-content{
+    background-color: rgb(211,219,156);
+    height: 100%;
+    box-shadow: #fff 0px 0px 10px 5px;
+}
+
+.sc-username{
+    display: inline;
+    left:3px;
+    top:1px;
+}
+
+.sc-score{
+    right:3px;
+    top:1px;
+    display: inline;
+    text-align: right;
+}
+
+.sc-logo{
+    text-align: center;
+    margin-top: 20px;
+    /*margin-bottom: 10px;*/
+}
+
+.sc-logo img{
+    height:150px;
+    width: 150px;
+}
+
+.sc-title{
+    text-align: center;
+    font-family: "微软雅黑","YaHei Consolas Hybrid";
+}
+
+.sc-back{
+    position: fixed;
+    bottom:14px;
+    margin: 10px 0;
+}
+
+.sc-back img{
+    height: 50px;
+    width:50px;
+}
+
+.sc-footer{
+    clear: both;
+    display: block;
+    text-align: center;
+    margin: 0px auto;
+    position: absolute;
+    bottom: 4px;
+    width: 100%;
+}
+
+.sc-copyright{
+    position: relative;
+    text-align: center;
+}
+
+.btn{
+    font-size: large;
+}
+
+.sc-inline{
+    display: inline;
+    padding:0;
+}
+
+#feedback_about{
+    display: inline;
+    line-height:100%;
+}
+
+#feedback_about :hover{
+    cursor: hand;
+}
+
+.weui_textarea{
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+
+.weui_textarea :focus{
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+
+/*整个项目的a标签样式*/
+a{
+    font-family: "微软雅黑", "YaHei Consolas Hybrid";
+    font-size:24px;
+}
+
+
+a:hover{
+    text-decoration: none;
+}

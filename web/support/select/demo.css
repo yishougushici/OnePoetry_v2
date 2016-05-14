@@ -1,0 +1,48 @@
+fieldset {
+    border: 0;
+    padding-bottom: 9px;
+}
+label {
+    display: block;
+    cursor: pointer;
+    line-height: 20px;
+    padding-bottom: 9px;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+}
+.checkboxes {
+    border-bottom: 1px solid #0064cd;
+}
+.radios {
+    padding-top: 18px;
+}
+.label_check input,
+.label_radio input {
+    margin-right: 5px;
+}
+
+.has-js .label_check,
+.has-js .label_radio {
+    padding-left: 20px;
+}
+
+.has-js .label_radio,
+.has-js .label_check{
+    background: url(checkbox-radio-bg.png) no-repeat;
+}
+.has-js .label_radio {
+    background-position: 0 0;
+}
+.has-js .label_check {
+    background-position: 0 -100px
+}
+.has-js label.c_on {
+    background-position: 0 -150px;
+}
+.has-js label.r_on {
+    background-position: 0 -50px;
+}
+.has-js .label_check input,
+.has-js .label_radio input {
+    position: absolute;
+    left: -9999px;
+}
