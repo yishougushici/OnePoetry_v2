@@ -9,7 +9,7 @@
 	}
 </style>
 
-<form action="FeedBack">
+<form>
 
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1 sc-inline">
@@ -39,7 +39,7 @@
 	<p></p>
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1">
-			<input type="submit" class="btn btn-primary btn-block" value="提交" id="fbsubmit">
+			<input type="button" class="btn btn-primary btn-block" value="提交" id="fbsubmit">
 		</div>
 	</div>
 </form>

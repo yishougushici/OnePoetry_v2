@@ -85,6 +85,8 @@ public class UserAction extends ActionSupport {
 	}
 
 	public String register(){
+		ActionContext actionContext = ActionContext.getContext();
+		actionContext.put("pageTitle", "用户注册");
 		return SUCCESS;
 	}
 
@@ -122,12 +124,12 @@ public class UserAction extends ActionSupport {
 
 	public String usernameCheck() throws Exception {
 		ServletActionContext.getResponse().setContentType("text/html;charset=UTF-8");
-		if(getSuser_name().contains("'")) {
-			ServletActionContext.getResponse().getWriter().write("SQL注入死全家");
-			return null;
-		}
 		if(getSuser_name() == null || getSuser_name().isEmpty()) {
 			ServletActionContext.getResponse().getWriter().write("请输入用户名");
+			return null;
+		}
+		if(getSuser_name().contains("'")) {
+			ServletActionContext.getResponse().getWriter().write("SQL注入死全家");
 			return null;
 		}
 		HibernateTool hibernateTool = new HibernateTool();

@@ -1,8 +1,8 @@
 package gushici.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
@@ -12,8 +12,11 @@ import java.sql.Date;
 @Table(name = "shici_feedback")
 public class Feedback {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private Integer sfb_id;
 	private String sfb_user;
+	@Type(type = "org.hibernate.type.TrueFalseType")
+	private Boolean sfb_public;
 	private String sfb_content;
 	private Date sfb_date;
 
@@ -31,6 +34,14 @@ public class Feedback {
 
 	public void setSfb_user(String sfb_user) {
 		this.sfb_user = sfb_user;
+	}
+
+	public Boolean getSfb_public() {
+		return sfb_public;
+	}
+
+	public void setSfb_public(Boolean sfb_public) {
+		this.sfb_public = sfb_public;
 	}
 
 	public String getSfb_content() {

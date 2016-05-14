@@ -39,8 +39,11 @@
     </package>
     <package name="gushici.action.FeedbackAction" extends="struts-default" namespace="/feedback">
         <default-action-ref name="index"/>
-        <action name="index" class="gushici.action.SearchAction" method="execute">
+        <action name="index" class="gushici.action.FeedbackAction" method="execute">
             <result>/WEB-INF/content/feedback/feedback.jsp</result>
+        </action>
+        <action name="add" class="gushici.action.FeedbackAction" method="add">
+            <result/>
         </action>
     </package>
 </struts>
