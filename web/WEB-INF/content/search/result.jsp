@@ -10,7 +10,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <%
-	if(request.getAttribute("error") != null){
+	if(request.getAttribute("error_message") != null){
 %>
 <div>
 	<i class="weui_icon_msg weui_icon_warn"></i>

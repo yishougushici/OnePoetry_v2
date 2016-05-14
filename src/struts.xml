@@ -46,4 +46,17 @@
             <result/>
         </action>
     </package>
+    <package name="gushici.action.RecommendAction" extends="struts-default" namespace="/recommend">
+        <default-action-ref name="index"/>
+        <action name="index" class="gushici.action.RecommendAction" method="execute">
+            <result name="success">/WEB-INF/content/recommend/recommend.jsp</result>
+            <result name="login" type="redirectAction">
+                <param name="namespace">/</param>
+                <param name="actionName">login</param>
+            </result>
+        </action>
+        <action name="add" class="gushici.action.RecommendAction" method="add">
+            <result/>
+        </action>
+    </package>
 </struts>

@@ -45,7 +45,7 @@ public class SearchAction extends ActionSupport {
 		ActionContext actionContext = ActionContext.getContext();
 
 		HibernateTool hibernateTool = new HibernateTool();
-		if(getS_data() == null || getS_type() == null)
+		if(getS_data() == null || getS_type() == null || getS_data().isEmpty() || getS_type().isEmpty())
 		{
 			actionContext.put("error_message", "输入不能为空");
 			return SUCCESS;
