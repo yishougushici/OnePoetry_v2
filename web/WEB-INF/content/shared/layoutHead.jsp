@@ -16,7 +16,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="IE=dege">
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title><%=request.getAttribute("tagTitle")%></title>
+    <title><%=request.getAttribute("pageTitle")%></title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/layout.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/weui.min.css">
@@ -32,13 +32,13 @@
         <div class="sc-content col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3">
             <div class="row">
                 <div class="sc-username">
-                    <span class="sc-info-icon glyphicon glyphicon-user"><%=request.getAttribute("username")%></span>
+                    <span class="sc-info-icon glyphicon glyphicon-user"><%=session.getAttribute("username")%></span>
                 </div>
                 <%
                     if(true){//如果已经进入游戏状态
                 %>
                     <div class="sc-score col-lg-offset-10 col-md-offset-10 col-sm-offset-10 col-xs-offset-10">
-                        <span class="glyphicon glyphicon-heart"><%=request.getAttribute("score")%></span>
+                        <span class="glyphicon glyphicon-heart"><%=session.getAttribute("score")%></span>
                     </div>
                 <%
                     }
