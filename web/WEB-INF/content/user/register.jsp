@@ -2,7 +2,16 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutHead.jsp" />
-<%=request.getAttribute("error_message")%><!--TODO:这里被我改了,仅为调试-->
+<%
+    if(request.getAttribute("error_message")!=null){
+%>
+<div class="error_message">
+    <%=request.getAttribute("error_message")%><!--TODO:这里被我改了,仅为调试-->
+</div>
+<%
+    }
+%>
+<%--<%=request.getAttribute("error_message")%><!--TODO:这里被我改了,仅为调试-->--%>
 <%--用户名作为主键, 唯一标识用户--%>
 <form action="registerCheck.action">
 	<div class="row">

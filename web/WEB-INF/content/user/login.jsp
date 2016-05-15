@@ -2,6 +2,15 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutHead.jsp" />
+<%
+  if(request.getAttribute("error_message")!=null){
+%>
+<div class="error_message">
+  <%=request.getAttribute("error_message")%><!--TODO:这里被我改了,仅为调试-->
+</div>
+<%
+  }
+%>
 <div class="row">
   <div class="col-xs-10 col-lg-10 col-md-10 col-sm-10 col-lg-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-offset-1">
     <form action="loginCheck.action"><!--TODO:这里被我改了-->

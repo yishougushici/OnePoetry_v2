@@ -54,12 +54,3 @@
                     <h1><%=request.getAttribute("pageTitle")%></h1>
                 </div>
             </div>
-<%
-  if(request.getAttribute("error_message")!=null){
-%>
-            <div class="error_message">
-                <%=request.getAttribute("error_message")%><!--TODO:这里被我改了,仅为调试-->
-            </div>
-<%
-    }
-%>
