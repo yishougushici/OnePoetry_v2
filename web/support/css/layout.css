@@ -117,3 +117,17 @@ a:hover{
     color: #44aabb;
     text-decoration: none;
 }
+
+/*验证样式*/
+
+/*自定义error*/
+.error_message{
+    text-align: center;
+    color: indianred;
+    font-weight:normal;
+}
+/*jqueryvalid error*/
+.error{
+    color: indianred;
+    font-weight: lighter;
+}
