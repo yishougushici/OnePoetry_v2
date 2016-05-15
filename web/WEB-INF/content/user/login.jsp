@@ -53,11 +53,19 @@
     },
     rules: {
       suser_name: {
-        required: true,
+        required: true
       },
       suser_password: {
-        required: true,
+        required: true
+      }
+   },
+    messages: {
+      suser_name: {
+          required: "请输入用户名"
       },
+      suser_password: {
+          required: "请输入密码"
+      }
     }
   });
 </script>

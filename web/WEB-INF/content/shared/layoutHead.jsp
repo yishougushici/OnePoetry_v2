@@ -24,7 +24,7 @@
     <script src="${pageContext.request.contextPath}/support/js/jquery-2.2.3.js"></script>
     <script src="${pageContext.request.contextPath}/support/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/support/js/jquery.validate.min.js"></script>
-    <script src="${pageContext.request.contextPath}/support/js/messages_zh.js"></script>
+    <%--<script src="${pageContext.request.contextPath}/support/js/messages_zh.js"></script>--%>
 </head>
 <body>
 <div class="container">

@@ -1,6 +1,6 @@
 body{
     background-image: url("/support/image/bg-full.jpg");
-    background-repeat:no-repeat;
+    background-repeat:repeat-y;
 }
 
 .container{
@@ -10,12 +10,10 @@ body{
 img { max-width: 100%;}
 
 .sc-content{
-    background-color: rgb(211,219,156);
+    background-color: rgba(211,219,156,.67);
     border-bottom: white .1em;
     min-height: 100%;
 }
-
-.sc-content
 
 .sc-username{
     display: inline;

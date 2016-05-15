@@ -38,16 +38,8 @@
             <label for="sc_all" class="label_radio">
                 <input id="sc_all" type="radio" name="sctype" value="all" checked="checked">模糊查询
             </label>
-
         </fieldset>
-
-
-
-
-
-
         </div><br><br>
-
         <div id="loadingToast" class="weui_loading_toast" style="display:none;">
             <div class="weui_mask_transparent"></div>
             <div class="weui_toast">

@@ -53,32 +53,73 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
 
 <script>
- $("form").validate({
-    errorElement: "span",
-    errorPlacement: function (error, element) {
-        $( element )
-                .closest( "form" )
-                .find( "span[for='" + element.attr( "id" ) + "']" )
-                .append( error );
-    },
-    rules:{
-        suser_name:{
-            required:true,
-            maxlength:8,
-            remote:"usernameCheck",
-        },
-        suser_password:{
-            required:true,
-            maxlength:15,
-            minlength:4,
-        },
-        check_password:{
-            equalTo: "suser_password",
-        },
-        suser_email:{
-            required:true,
-            email:true,
-        }
-    }
- });
+    $(function(){
+        $("input[name=suser_name]").blur(function(){
+            var username=$("input[name=suser_name]").val();
+            $.ajax({
+                url:"usernameCheck",
+                data:{"suser_name":username},
+                type:"post",
+                success: function(data){
+                    var message = $("<span class=error></span>")
+                    message.append(data);
+                    $( "span[for='suser_name']" ).children().remove();
+                    $( "span[for='suser_name']" ).append(message);
+                },
+                error: function(msg){
+                    $(".errormessage").append(msg);
+                }
+            })
+        });
+
+       $("form").validate({
+            errorElement: "span",
+            errorPlacement: function (error, element) {
+                $( element )
+                        .closest( "form" )
+                        .find( "span[for='" + element.attr( "id" ) + "']")
+                        .children().remove();
+                $( element )
+                        .closest( "form" )
+                        .find( "span[for='" + element.attr( "id" ) + "']")
+                        .append( error );
+            },
+            rules:{
+                suser_name:{
+                    required:true,
+                    maxlength:8,
+                },
+                suser_password:{
+                    required:true,
+                    maxlength:15,
+                    minlength:4,
+                },
+                check_password:{
+                    equalTo: "#suser_password"
+                },
+                suser_email:{
+                    required:true,
+                    email:true,
+                }
+            },
+            messages:{
+                suser_name:{
+                    required:"请输入用户名",
+                    maxlength:"用户名最长不超过{0}位"
+                },
+                suser_password:{
+                    required:"请输入密码",
+                    maxlength:"用户名最长不超过{0}位",
+                    minlength:"用户名最少{0}位"
+                },
+                check_password:{
+                    equalTo: "两次输入的密码不匹配",
+                },
+                suser_email:{
+                    required:"请输入邮件地址",
+                    email:"请输入正确的邮件地址",
+                }
+            }
+        });
+    });
 </script>

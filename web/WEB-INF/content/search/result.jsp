@@ -12,14 +12,13 @@
 <%
 	if(request.getAttribute("error_message") != null){
 %>
-<div>
+<div class="showicon">
 	<i class="weui_icon_msg weui_icon_warn"></i>
-	<br><%=request.getAttribute("error")%>
+	<br><%=request.getAttribute("error_message")%>
 <%
 		return;
 	}
 %>
-
 <%
 	List<PushRecord> resultList = (List<PushRecord>)request.getAttribute("resultList");
 %>
