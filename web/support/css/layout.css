@@ -50,23 +50,24 @@ img { max-width: 100%;}
     position: fixed;
     bottom:.2em;
     background-color: rgba(211,219,156,.7);
+    z-index: 2;
 }
 
 .sc-back img{
     height: 3em;
     width: 3em;
 }
-
-.sc-footer{
-    width: 100%;
+.sc-fbg{
     background-color: rgb(211,219,156);;
+}
+.sc-footer{
     clear: both;
-    display: block;
     text-align: center;
     margin: 0 auto;
 }
 
 .sc-copyright{
+    padding:1em;
     text-align: center;
 }
 

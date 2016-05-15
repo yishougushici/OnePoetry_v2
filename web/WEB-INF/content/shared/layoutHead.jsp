@@ -27,7 +27,7 @@
 <body>
 <div class="container">
     <div class="row">
-        <div class="sc-content col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3 col-sm-offset-0 col-xs-offset-0">
+        <div class="sc-content col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3">
             <div class="row">
                 <div class="sc-username">
                     <span class="sc-info-icon glyphicon glyphicon-user"><%=request.getAttribute("username")%></span>

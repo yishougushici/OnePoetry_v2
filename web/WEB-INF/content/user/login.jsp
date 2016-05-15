@@ -13,7 +13,7 @@
         </label>
       </span>
       <span class="input input--hoshi">
-        <input class="input__field input__field--hoshi" type="text" name="suser_password" id="suser_password" />
+        <input class="input__field input__field--hoshi" type="password" name="suser_password" id="suser_password" />
         <label class="input__label input__label--hoshi input__label--hoshi-color-2" for="suser_password">
           <span class="input__label-content input__label-content--hoshi">密码</span>
         </label>
@@ -28,7 +28,6 @@
     <a href="${pageContext.request.contextPath}/feedback/index.action"><button class="btn btn-block btn-primary">反馈建议</button></a>
   </div>
 </div>
-<br>
 <div class="row">
   <div class="col-xs-offset-8">
     <a href="register.action">新用户?点击注册</a>
