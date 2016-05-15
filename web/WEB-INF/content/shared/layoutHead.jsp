@@ -15,7 +15,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="IE=dege">
-    <meta name="viewport" content="width-device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title><%=request.getAttribute("tagTitle")%></title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/layout.css">
