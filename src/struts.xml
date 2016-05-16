@@ -73,4 +73,35 @@
             <result/>
         </action>
     </package>
+    <package name="gushici.action.GameAction" extends="struts-default" namespace="/game">
+        <default-action-ref name="index"/>
+        <action name="index" class="gushici.action.GameAction" method="execute">
+            <result name="success">/WEB-INF/content/game/game.jsp</result>
+            <result name="login" type="redirectAction">
+                <param name="namespace">/</param>
+                <param name="actionName">login</param>
+            </result>
+        </action>
+        <action name="answer" class="gushici.action.GameAction" method="answer">
+            <result name="success">/WEB-INF/content/game/answer.jsp</result>
+            <result name="login" type="redirectAction">
+                <param name="namespace">/</param>
+                <param name="actionName">login</param>
+            </result>
+        </action>
+        <action name="wrong" class="gushici.action.GameAction" method="wrong">
+            <result name="success">/WEB-INF/content/game/wrong.jsp</result>
+            <result name="login" type="redirectAction">
+                <param name="namespace">/</param>
+                <param name="actionName">login</param>
+            </result>
+        </action>
+        <action name="round" class="gushici.action.GameAction" method="round">
+            <result name="success">/WEB-INF/content/game/round.jsp</result>
+            <result name="login" type="redirectAction">
+                <param name="namespace">/</param>
+                <param name="actionName">login</param>
+            </result>
+        </action>
+    </package>
 </struts>
