@@ -82,6 +82,9 @@ public class UserAction extends ActionSupport {
 
 	public String home(){
 		ActionContext actionContext = ActionContext.getContext();
+		if(actionContext.getSession().get("user") == null){
+			return LOGIN;
+		}
 		actionContext.put("pageTitle", "功能首页");
 		return SUCCESS;
 	}

@@ -15,7 +15,8 @@
             <result name="error" type="chain">login</result>
         </action>
         <action name="home" class="gushici.action.UserAction" method="home">
-            <result>/WEB-INF/content/user/home.jsp</result>
+            <result name="success">/WEB-INF/content/user/home.jsp</result>
+            <result name="login" type="redirectAction">login</result>
         </action>
         <action name="register" class="gushici.action.UserAction" method="register">
             <result>/WEB-INF/content/user/register.jsp</result>
@@ -56,6 +57,19 @@
             </result>
         </action>
         <action name="add" class="gushici.action.RecommendAction" method="add">
+            <result/>
+        </action>
+    </package>
+    <package name="gushici.action.OriginalAction" extends="struts-default" namespace="/original">
+        <default-action-ref name="index"/>
+        <action name="index" class="gushici.action.OriginalAction" method="execute">
+            <result name="success">/WEB-INF/content/original/original.jsp</result>
+            <result name="login" type="redirectAction">
+                <param name="namespace">/</param>
+                <param name="actionName">login</param>
+            </result>
+        </action>
+        <action name="add" class="gushici.action.OriginalAction" method="add">
             <result/>
         </action>
     </package>

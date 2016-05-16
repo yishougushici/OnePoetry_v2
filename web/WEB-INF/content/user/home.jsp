@@ -8,7 +8,7 @@
         <a href="${pageContext.request.contextPath}/search/index.action"><button class="btn btn-success btn-block">诗词查询</button></a><br>
         <a href="/scgame.jsp"><button class="btn btn-success btn-block">诗词游戏</button></a><br>
         <a href="${pageContext.request.contextPath}/recommend/index.action"><button class="btn btn-success btn-block">诗词推荐</button></a><br>
-        <a href="/original.jsp"><button class="btn btn-success btn-block">原创投稿</button></a><br>
+        <a href="${pageContext.request.contextPath}/original/index.action"><button class="btn btn-success btn-block">原创投稿</button></a><br>
     </div>
 </div>
 
