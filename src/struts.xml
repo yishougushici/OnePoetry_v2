@@ -104,4 +104,42 @@
             </result>
         </action>
     </package>
+    <package name="gushici.action.AdminAction" extends="struts-default" namespace="/admin">
+        <default-action-ref name="index"/>
+        <action name="index" class="gushici.action.AdminAction" method="execute">
+            <result name="success">/WEB-INF/content/admin/admin.jsp</result>
+            <result name="login" type="redirectAction">
+                <param name="namespace">/</param>
+                <param name="actionName">login</param>
+            </result>
+        </action>
+        <action name="feedback" class="gushici.action.AdminAction" method="feedback">
+            <result name="success">/WEB-INF/content/admin/feedback.jsp</result>
+            <result name="login" type="redirectAction">
+                <param name="namespace">/</param>
+                <param name="actionName">login</param>
+            </result>
+        </action>
+        <action name="recommend" class="gushici.action.AdminAction" method="recommend">
+            <result name="success">/WEB-INF/content/admin/recommend.jsp</result>
+            <result name="login" type="redirectAction">
+                <param name="namespace">/</param>
+                <param name="actionName">login</param>
+            </result>
+        </action>
+        <action name="original" class="gushici.action.AdminAction" method="original">
+            <result name="success">/WEB-INF/content/admin/original.jsp</result>
+            <result name="login" type="redirectAction">
+                <param name="namespace">/</param>
+                <param name="actionName">login</param>
+            </result>
+        </action>
+        <action name="update" class="gushici.action.AdminAction" method="update">
+            <result name="success">/WEB-INF/content/admin/update.jsp</result>
+            <result name="login" type="redirectAction">
+                <param name="namespace">/</param>
+                <param name="actionName">login</param>
+            </result>
+        </action>
+    </package>
 </struts>
