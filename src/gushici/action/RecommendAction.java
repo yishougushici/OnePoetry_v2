@@ -53,10 +53,10 @@ public class RecommendAction  extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		ActionContext actionContext = ActionContext.getContext();
-		actionContext.put("pageTitle", "诗词推荐");
 		if(actionContext.getSession().get("user") == null){
 			return LOGIN;
 		}
+		actionContext.put("pageTitle", "诗词推荐");
 		return SUCCESS;
 	}
 
