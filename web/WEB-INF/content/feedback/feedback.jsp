@@ -10,7 +10,6 @@
 </style>
 
 <form>
-
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1 sc-inline">
 			<div class="input-group">
@@ -26,7 +25,7 @@
 	<div class="row">
 		<div class="col-xs-10 col-xs-offset-1">
 			允许公开:
-			<input type="radio" class="radio radio-inline" name="canPublic" value="true" >是
+			<input type="radio" class="radio radio-inline" name="canPublic" checked="checked" value="true" >是
 			<input type="radio" class="radio radio-inline" name="canPublic" value="false" >否
 		</div>
 	</div>
@@ -60,13 +59,33 @@
 		$("#dialog_info").hide();
 	}
 	$("#fbsubmit").click(function(){
-		$("#dailog_body").innerHTML = '反馈成功, 小编会及时处理您的反馈.<br>如果需要跟小编交流, 可以去微信公众号留言';
-		$("#dialog_info").show();
+		$.ajax({
+			url:"feedback",
+			type:"post",
+			data:{
+				"petName":$("input[name=petName]").val(),
+				"canPublic":$("input[name=canPublic]:checked").val(),
+				"feedback":$("textarea[name=feedback]").val()
+			},
+			success: function(message){
+				if(message == "反馈成功"){
+					$("#dailog_body").html("反馈成功, 小编会及时处理您的反馈.<br>如果需要跟小编交流, 可以去微信公众号留言");
+				}else {
+					$("#dailog_body").text(message);
+				}
+				$("#dialog_info").show();
+			},
+			error:function(msg){
+				$("#dailog_body").text("服务器错误..");
+				$("#dialog_info").show();
+				console.log(msg);
+			}
+		})
+
 	});
 	$("#feedback_about").click(function () {
-		$("#dailog_body").innerHTML = "您可以这这里提交反馈建议, 昵称只作为小编认人的一个标识, 您的建议奖不会得到回复, 但是小编一定会处理";
+		$("#dailog_body").html("您可以这这里提交反馈建议<br>昵称只作为小编认人的一个标识<br>您的建议将不会得到回复<br>但是小编一定会处理");
 		$("#dialog_info").show();
 	});
 </script>
-
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>

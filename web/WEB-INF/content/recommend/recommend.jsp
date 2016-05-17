@@ -8,15 +8,18 @@
         <div class="col-xs-10 col-xs-offset-1">
             <div class="input-group">
                 <span class="input-group-addon">题目:</span>
-                <input type="text" class="form-control" name="srec_title">
+                <input type="text" class="form-control" name="srec_title" id="srec_title">
             </div>
+            <span class="errinfo" for="srec_title"></span>
             <br>
             <div class="input-group">
                 <span class="input-group-addon">作者:</span>
-                <input type="text" class="form-control" name="srec_auth">
+                <input type="text" class="form-control" name="srec_auth" id="srec_auth">
             </div>
+            <span class="errinfo" for="srec_auth"></span>
             <br>
-            <textarea name="srec_content" placeholder="诗词正文" class="weui_textarea" rows="4"></textarea>
+            <textarea name="srec_content" id="srec_content" placeholder="诗词正文" class="weui_textarea" rows="4"></textarea>
+            <span class="errinfo" for="srec_content"></span>
             <br>
             <textarea name="srec_reson" placeholder="赏析" class="weui_textarea"></textarea>
             <br>
@@ -24,13 +27,14 @@
         </div>
     </form>
 </div>
-<div class="suggess-bg" hidden="hidden">
-    <div class="suggess">
-        <div class="suggess-header"><span class="glyphicon glyphicon-info-sign">提示</span><hr></div>
-        <div class="suggess-body">    $(".suggess-body").text("诗词推荐成功, 小编将选择合适的诗词推送!");</div>
+
+<div class="weui_dialog_alert" hidden="hidden" id="suggest-bg">
+    <div class="weui_mask"></div>
+    <div class="weui_dialog">
+        <div class="weui_dialog_hd"><strong class="weui_dialog_title" id="suggest-header">提示</strong></div>
+        <div class="weui_dialog_bd" id="suggest-body">弹窗内容，告知当前页面信息等</div>
     </div>
 </div>
-
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
 <script>
     function sendRecomend(){
@@ -49,32 +53,39 @@
             },
             success:function(data){
                 if(data == "成功"){
-                    $(".suggess-body").text("诗词推荐成功, 小编将选择合适的诗词推送!");
-                    $(".suggess-bg").show();
+                    $("#suggest-body").text("诗词推荐成功, 小编将选择合适的诗词推送!");
+                    $("#suggest-bg").show();
                     setTimeout(function () {
-                        $(".suggess-bg").hide();
+                        $("#suggest-bg").hide();
                     },3000);
                 }
                 else{
-                    $(".suggess-header").text("失败!")
-                    $(".suggess-body").text(data);
-                    $(".suggess-bg").show();
+                    $("#suggest-header").text("失败!")
+                    $("#suggest-body").text(data);
+                    $("#suggest-bg").show();
                     setTimeout(function () {
-                        $(".suggess-bg").hide();
+                        $("#suggest-bg").hide();
                     },3000);
                 }
             },
             error:function(msg){
-                $(".suggess-header").text("服务器错误!")
-                $(".suggess-body").text(msg);
-                $(".suggess-bg").show();
+                $("#suggest-header").text("服务器错误!")
+                $("#suggest-body").text(msg);
+                $("#suggest-bg").show();
                 setTimeout(function () {
-                    $(".suggess-bg").hide();
+                    $("#suggest-bg").hide();
                 },5000);
             },
         });
     }
     $("form").validate({
+        errorElement: "span",
+        errorPlacement:function(error,element){
+            $( element )
+                    .closest( "form" )
+                    .find( "span[for='" + element.attr( "id" ) + "']")
+                    .append( error );
+        },
        rules:{
            srec_title: {required: true},
            srec_auth: {required: true},
