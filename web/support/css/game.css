@@ -5,30 +5,47 @@
 }
 
 .ans-title{
-    text-align: left;
+    text-align: center;
     font-family: "微软雅黑", "YaHei Consolas Hybrid";
     font-size: 24px;
-    display:inline;
+    display:inline
 }
 /*诗词找错*/
-.err-elem{
+.err-elem-bg{
     background-image: url("../image/errbg.png");
     background-size: 100%;
+    height:3em;
+    width:3em;
+    margin:.2em;
+    display: inline-block;
+}
+.err-elem{
     height:3em;
     width:3em;
     text-align: center;
     line-height: 3em;
     font-size: 1em;
     font-family:"YaHei Consolas Hybrid";
-    display: inline-block;
-    margin:.2em;
-}
 
-.err-elem :hover{
-    cursor: pointer;
+
+}
+#err-elem-seleted{
+    background-image: url("../image/err-selected.png");
+    background-size: 70%;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index: 100;
+    border-radius: 3em;
     background-color: rgba(0,0,0,.5);
+}
+.err-elem:hover{
+    cursor: pointer;
 }
 
 .err-elem-container{
     text-align: center;
+}
+
+.game-start:hover{
+    cursor: pointer;
 }
