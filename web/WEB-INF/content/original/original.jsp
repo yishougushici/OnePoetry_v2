@@ -3,7 +3,7 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutHead.jsp" />
 
 <div class="row">
-    <form action="add">
+    <form action="javascript:addori();">
         <div class="col-xs-10 col-xs-offset-1">
             <div class="input-group">
                 <span class="input-group-addon">题目:</span>
@@ -24,19 +24,43 @@
         </div>
     </form>
 </div>
-<div class="weui_dialog_alert" id="suggest-bg">
-    <div class="weui_mask"></div>
-    <div class="weui_dialog">
-        <div class="weui_dialog_hd"><strong class="weui_dialog_title" id="suggest-header">提示</strong></div>
-        <div class="weui_dialog_bd" id="suggest-body">弹窗内容，告知当前页面信息等</div>
-        <div class="weui_dialog_ft">
-            3秒后弹窗消息
-        </div>
-    </div>
-</div>
+<%--提示框--%>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/dialogPage.jsp"/>
+<%--加载框--%>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadingPage.jsp"/>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
 <script>
-
+    function addori(){
+      $.ajax({
+          url:"add",
+          type:"post",
+          data:{
+              "sorin_title":$("input[name=sorin_title]").val(),
+              "sorin_auth":$("input[name=sorin_auth]").val(),
+              "sorin_content":$("textarea[name=sorin_content]").val()
+          },
+          beforeSend:function(){$("#loadingToast").show();},
+          complete:function(){$("#loadingToast").hide();},
+          success:function(data){
+              if(data=="成功"){
+                  data="提交成功,小编会不定期选择原创诗词进行推送!";
+              }
+              $("#suggest-body").html(data);
+              $("#suggest-bg").show();
+              setTimeout(function () {
+                  $("#suggest-bg").hide();
+              },3000);
+          },
+          error:function(msg){
+              $("#suggest-body").html("服务器崩了.......");
+              $("#suggest-bg").show();
+              setTimeout(function () {
+                  $("#suggest-bg").hide();
+              },3000);
+              console.log(msg);
+          }
+        });
+    }
 
     $("form").validate({
         errorElement: "span",

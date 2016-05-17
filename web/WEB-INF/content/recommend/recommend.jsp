@@ -27,21 +27,13 @@
         </div>
     </form>
 </div>
-
-<div class="weui_dialog_alert" hidden="hidden" id="suggest-bg">
-    <div class="weui_mask"></div>
-    <div class="weui_dialog">
-        <div class="weui_dialog_hd"><strong class="weui_dialog_title" id="suggest-header">提示</strong></div>
-        <div class="weui_dialog_bd" id="suggest-body">弹窗内容，告知当前页面信息等</div>
-    </div>
-</div>
+<%--提示框--%>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/dialogPage.jsp"/>
+<%--加载框--%>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadingPage.jsp"/>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
 <script>
     function sendRecomend(){
-//        console.log("srec_title"+$("input[name=srec_title]").val());
-//        console.log("srec_auth"+$("input[name=srec_auth]").val());
-//        console.log("srec_content"+$("input[name=srec_content]").val());
-//        console.log("srec_reson"+$("input[name=srec_reson]").val());
         $.ajax({
             url:"add.action",
             type:"post",
@@ -50,6 +42,12 @@
                 "srec_auth":$("input[name=srec_auth]").val(),
                 "srec_content":$("textarea[name=srec_content]").val(),
                 "srec_reson":$("textarea[name=srec_reson]").val()
+            },
+            beforeSend: function () {
+                $("#loadingToast").show();
+            },
+            complete:function(){
+                $("#loadingToast").hide();
             },
             success:function(data){
                 if(data == "成功"){

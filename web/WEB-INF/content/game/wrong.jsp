@@ -4,11 +4,7 @@
  <div class="row">
      <div class="col-xs-10 col-xs-offset-1">
          <div class="jumbotron">
-             <div class="ans-num">
-                 10
-             </div>
              <div class="err-elem-container">
- 
              </div>
          </div>
      </div>
@@ -21,6 +17,9 @@
          div.append(elem[i]);
          $(".err-elem-container").append(div);
      }
+     $(".err-elem").click(function(){
+//         修改样式代码
+     });
  </script>
 
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
