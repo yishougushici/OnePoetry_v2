@@ -53,6 +53,11 @@
 		</div>
 	</div>
 </div>
+<%--提示框--%>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/dialogPage.jsp"/>
+<%--加载框--%>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadingPage.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
 
 <script>
 	function dialog_hide(){
@@ -60,13 +65,15 @@
 	}
 	$("#fbsubmit").click(function(){
 		$.ajax({
-			url:"feedback",
+			url:"feedback/add",
 			type:"post",
 			data:{
 				"petName":$("input[name=petName]").val(),
 				"canPublic":$("input[name=canPublic]:checked").val(),
 				"feedback":$("textarea[name=feedback]").val()
 			},
+			beforeSend: function () {$("#loadingToast").show();},
+			complete:function(){$("#loadingToast").hide();},
 			success: function(message){
 				if(message == "反馈成功"){
 					$("#dailog_body").html("反馈成功, 小编会及时处理您的反馈.<br>如果需要跟小编交流, 可以去微信公众号留言");
@@ -88,4 +95,3 @@
 		$("#dialog_info").show();
 	});
 </script>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
