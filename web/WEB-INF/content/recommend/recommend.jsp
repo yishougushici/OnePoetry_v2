@@ -8,15 +8,18 @@
         <div class="col-xs-10 col-xs-offset-1">
             <div class="input-group">
                 <span class="input-group-addon">题目:</span>
-                <input type="text" class="form-control" name="srec_title">
+                <input type="text" class="form-control" name="srec_title" id="srec_title">
             </div>
+            <span class="errinfo" for="srec_title"></span>
             <br>
             <div class="input-group">
                 <span class="input-group-addon">作者:</span>
-                <input type="text" class="form-control" name="srec_auth">
+                <input type="text" class="form-control" name="srec_auth" id="srec_auth">
             </div>
+            <span class="errinfo" for="srec_auth"></span>
             <br>
-            <textarea name="srec_content" placeholder="诗词正文" class="weui_textarea" rows="4"></textarea>
+            <textarea name="srec_content" id="srec_content" placeholder="诗词正文" class="weui_textarea" rows="4"></textarea>
+            <span class="errinfo" for="srec_content"></span>
             <br>
             <textarea name="srec_reson" placeholder="赏析" class="weui_textarea"></textarea>
             <br>
@@ -24,20 +27,13 @@
         </div>
     </form>
 </div>
-<div class="suggess-bg" hidden="hidden">
-    <div class="suggess">
-        <div class="suggess-header"><span class="glyphicon glyphicon-info-sign">提示</span><hr></div>
-        <div class="suggess-body">    $(".suggess-body").text("诗词推荐成功, 小编将选择合适的诗词推送!");</div>
-    </div>
-</div>
-
+<%--提示框--%>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/dialogPage.jsp"/>
+<%--加载框--%>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadingPage.jsp"/>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
 <script>
     function sendRecomend(){
-//        console.log("srec_title"+$("input[name=srec_title]").val());
-//        console.log("srec_auth"+$("input[name=srec_auth]").val());
-//        console.log("srec_content"+$("input[name=srec_content]").val());
-//        console.log("srec_reson"+$("input[name=srec_reson]").val());
         $.ajax({
             url:"add.action",
             type:"post",
@@ -47,34 +43,47 @@
                 "srec_content":$("textarea[name=srec_content]").val(),
                 "srec_reson":$("textarea[name=srec_reson]").val()
             },
+            beforeSend: function () {
+                $("#loadingToast").show();
+            },
+            complete:function(){
+                $("#loadingToast").hide();
+            },
             success:function(data){
                 if(data == "成功"){
-                    $(".suggess-body").text("诗词推荐成功, 小编将选择合适的诗词推送!");
-                    $(".suggess-bg").show();
+                    $("#suggest-body").text("诗词推荐成功, 小编将选择合适的诗词推送!");
+                    $("#suggest-bg").show();
                     setTimeout(function () {
-                        $(".suggess-bg").hide();
+                        $("#suggest-bg").hide();
                     },3000);
                 }
                 else{
-                    $(".suggess-header").text("失败!")
-                    $(".suggess-body").text(data);
-                    $(".suggess-bg").show();
+                    $("#suggest-header").text("失败!")
+                    $("#suggest-body").text(data);
+                    $("#suggest-bg").show();
                     setTimeout(function () {
-                        $(".suggess-bg").hide();
+                        $("#suggest-bg").hide();
                     },3000);
                 }
             },
             error:function(msg){
-                $(".suggess-header").text("服务器错误!")
-                $(".suggess-body").text(msg);
-                $(".suggess-bg").show();
+                $("#suggest-header").text("服务器错误!")
+                $("#suggest-body").text(msg);
+                $("#suggest-bg").show();
                 setTimeout(function () {
-                    $(".suggess-bg").hide();
+                    $("#suggest-bg").hide();
                 },5000);
             },
         });
     }
     $("form").validate({
+        errorElement: "span",
+        errorPlacement:function(error,element){
+            $( element )
+                    .closest( "form" )
+                    .find( "span[for='" + element.attr( "id" ) + "']")
+                    .append( error );
+        },
        rules:{
            srec_title: {required: true},
            srec_auth: {required: true},
