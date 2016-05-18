@@ -30,20 +30,55 @@
         </div>
     </div>
 </div>
+<%--加载框--%>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadingPage.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
 
 <script>
-    $("#round_send").click(function(){SendMsg();});
+    //点击发送按钮
+    $("#round_send").click(function(){
+        CheckPoetry($("input[name=sa_tail]").val());
+    });
+    //点击聊天按钮
+    $("#chat-send").click(function(){
+        SendPoetry();
+    });
+
     $("input[name=sa_tail]").keyup(function(e){
-//        console.log(e.keyCode);
         if(e.keyCode==13){
-            SendMsg("mychat",$("input[name=sa_tail]").val());
+            //发送诗词验证, 如果验证成功, 发送出去
+            CheckPoetry($("input[name=sa_tail]").val());
+
         }
         if(e.keyCode == 38 ){
-            alert("hhh");
+            //绕过诗词验证, 直接发送
+            SendPoetry();
         }
     });
 
-    function SendMsg(role,message){
+    //验证诗句
+    function CheckPoetry(msg){
+        $.ajax({
+            url: "",
+            data:{"message":msg},
+            type:"post",
+//            beforeSend: function () {$("#loadingToast").show();},
+//            complete:function(){$("#loadingToast").hide();},
+            success:function(){
+                ShowMsg("mychat",$("input[name=sa_tail]").val());
+            },
+            error:function(data){
+                ShowMsg("autochat","服务器错误...");
+            }
+        });
+    }
+
+    //发送消息
+    function SendPoetry(){
+        ShowMsg("mychat",$("input[name=sa_tail]").val());
+    }
+
+    function ShowMsg(role,message){
         $("input[name=sa_tail]").val("");
         if(message.trim()==""){return;}
         var mychat = $("<li></li>")
@@ -54,5 +89,3 @@
         conv.scrollTop = conv.scrollHeight;
     }
 </script>
-
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
