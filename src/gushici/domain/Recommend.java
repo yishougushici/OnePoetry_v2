@@ -26,8 +26,8 @@ public class Recommend {
 	public String srec_reson;
 	public String srec_suser;
 	public Calendar srec_time;
-	@Type(type = "org.hibernate.type.TrueFalseType")
-	public Boolean srec_pass;
+	@Type(type = "org.hibernate.type.CharacterType")
+	public Character srec_pass;
 
 	public Integer getSrec_id() {
 		return srec_id;
@@ -85,11 +85,11 @@ public class Recommend {
 		this.srec_time = srec_time;
 	}
 
-	public Boolean getSrec_pass() {
+	public Character getSrec_pass() {
 		return srec_pass;
 	}
 
-	public void setSrec_pass(Boolean srec_pass) {
+	public void setSrec_pass(Character srec_pass) {
 		this.srec_pass = srec_pass;
 	}
 }

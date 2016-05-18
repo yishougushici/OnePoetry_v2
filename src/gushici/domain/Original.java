@@ -22,8 +22,8 @@ public class Original {
 	private String sorin_auth;
 	@Type(type="org.hibernate.type.TextType")
 	private String sorin_content;
-	@Type(type = "org.hibernate.type.TrueFalseType")
-	private Boolean sorin_pass;
+	@Type(type = "org.hibernate.type.CharacterType")
+	private Character sorin_pass;
 	private Calendar sorin_time;
 
 	public Integer getSorin_id() {
@@ -58,11 +58,11 @@ public class Original {
 		this.sorin_content = sorin_content;
 	}
 
-	public Boolean getSorin_pass() {
+	public Character getSorin_pass() {
 		return sorin_pass;
 	}
 
-	public void setSorin_pass(Boolean sorin_pass) {
+	public void setSorin_pass(Character sorin_pass) {
 		this.sorin_pass = sorin_pass;
 	}
 

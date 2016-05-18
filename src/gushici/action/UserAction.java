@@ -80,7 +80,6 @@ public class UserAction extends ActionSupport {
 
 		actionContext.getSession().put("user", user);
 		actionContext.getSession().put("username", user.getSuesr_name());
-		actionContext.getSession().put("score", user.getSuesr__serr_score() + "+" + user.getSuesr_sa_score() +  "+" + user.getSuesr_sround_score());
 
 		return SUCCESS;
 	}
