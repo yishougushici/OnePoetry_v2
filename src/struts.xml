@@ -13,6 +13,10 @@
         <action name="loginCheck" class="gushici.action.UserAction" method="loginCheck">
             <result name="success" type="redirectAction">home</result>
             <result name="error" type="chain">login</result>
+            <result name="admin" type="redirectAction">
+                <param name="namespace">/admin</param>
+                <param name="actionName">index</param>
+            </result>
         </action>
         <action name="home" class="gushici.action.UserAction" method="home">
             <result name="success">/WEB-INF/content/user/home.jsp</result>

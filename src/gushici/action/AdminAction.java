@@ -29,9 +29,7 @@ public class AdminAction  extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		ActionContext actionContext = ActionContext.getContext();
-		if("fang".equals(getAdmin()) && "fang".equals(getPassword()))
-			actionContext.getSession().put("admin", getAdmin());
-		else
+		if(actionContext.getSession().get("admin") == null)
 			return LOGIN;
 		actionContext.put("pageTitle", "管理员模式");
 		return SUCCESS;
