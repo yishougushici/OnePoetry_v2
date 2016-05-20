@@ -12,8 +12,7 @@
     <div class="col-xs-10 col-xs-offset-1">
         <div id="game-content">
             <div class="chat-thread" id="convo">
-                <li class="autochat chat">左键聊天, 右键接龙</li>
-                <li class="autochat">pc端回车接龙, ↑键聊天</li>
+                <li class="autochat">左键聊天, 右键接龙. PC端回车接龙, ↑键聊天</li>
             </div>
             <div class="input-group">
                 <span class="input-group-btn">
@@ -48,7 +47,7 @@
     });
     //点击聊天按钮
     $("#chat-send").click(function(){
-        SendPoetry();
+        SendPoetry("chat");
     });
 
     $("input[name=sa_tail]").keyup(function(e){
@@ -58,7 +57,7 @@
         }
         if(e.keyCode == 38 ){
             //绕过诗词验证, 直接发送
-            SendPoetry();
+            SendPoetry("chat");
         }
     });
 
@@ -71,7 +70,7 @@
 //            beforeSend: function () {$("#loadingToast").show();},
 //            complete:function(){$("#loadingToast").hide();},
             success:function(){
-                ShowMsg("mychat",$("input[name=sa_tail]").val());
+                ShowMsg("mychat",$("input[name=sa_tail]").val(),"round");
             },
             error:function(data){
                 ShowMsg("autochat","服务器错误...");
@@ -80,18 +79,21 @@
     }
 
     //发送消息
-    function SendPoetry(){
+    function SendPoetry(type){
         var message = $("input[name=sa_tail]").val();
-        ShowMsg("mychat",message);
-        forwardMessage(message);
+        ShowMsg("mychat",message,type);
+        forwardMessage(message+"::"+type);
     }
 
-    function ShowMsg(role,message){
+    function ShowMsg(role,message,type){
         $("input[name=sa_tail]").val("");
         if(message.trim()==""){return;}
         var mychat = $("<li></li>")
         mychat.append(message);
         mychat.addClass(role);
+        if(type != undefined){
+            mychat.addClass(type);
+        }
         $("#convo").append(mychat);
         var conv = document.getElementById("convo");
         conv.scrollTop = conv.scrollHeight;
