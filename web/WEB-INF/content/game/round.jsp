@@ -10,16 +10,10 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/support/chat/style.css">
 <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
-        <div class="jumbotron" style="display: none;">
-            <div class="err-elem-container">
-                <div class="game-start"><img src="${pageContext.request.contextPath}/support/image/game-start.png" alt=""></div>
-                <div id="userNumber"></div>
-            </div>
-        </div>
-        <div id="game-content" >
+        <div id="game-content">
             <div class="chat-thread" id="convo">
                 <li class="autochat chat">左键聊天, 右键接龙</li>
-                <li class="autochat">pc端回车接龙, ↑ 箭头聊天</li>
+                <li class="autochat">pc端回车接龙, ↑键聊天</li>
             </div>
             <div class="input-group">
                 <span class="input-group-btn">
@@ -40,12 +34,10 @@
 <%--加载框--%>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadingPage.jsp"/>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
-<script src="${pageContext.request.contextPath}/support/js/jquery-onepoetry-websocket.js"></script>
-<%--<script src="${pageContext.request.contextPath}/support/js/js-onepoetry-people-numbers.js"></script>--%>
-<script>
 
+<script src="${pageContext.request.contextPath}/support/js/jquery-onepoetry-websocket.js"></script>
+<script>
     $(".game-start").click(function(){
-        startGame();
         $(".jumbotron").hide();
         $("#game-content").show();
     });
@@ -63,7 +55,6 @@
         if(e.keyCode==13){
             //发送诗词验证, 如果验证成功, 发送出去
             CheckPoetry($("input[name=sa_tail]").val());
-
         }
         if(e.keyCode == 38 ){
             //绕过诗词验证, 直接发送

@@ -27,10 +27,10 @@
   position: relative;
   clear: both;
   display: inline-block;
-  padding: 10px 16px 10px 16px;
+  padding: .5em .8em .5em .5em;
   margin: 5px 0 10px 0;
   font: 16px/20px 'Noto Sans', sans-serif;
-  border-radius: 10px;
+  border-radius: 8px;
   background-color: rgba(90, 200, 200, 0.8);
 }
 
