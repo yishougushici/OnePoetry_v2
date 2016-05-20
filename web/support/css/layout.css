@@ -10,7 +10,7 @@ body{
 img { max-width: 100%;}
 
 .sc-content{
-    background-color: rgba(211,219,156,.67);
+    background-color: rgba(211,219,156,.5);
     border-bottom: white .1em;
     min-height: 100%;
 }
@@ -175,4 +175,9 @@ a:hover{
     font-size: 1.2em;
     text-align: center;
     line-height: 120%;
+}
+
+input:-webkit-autofill, textarea:-webkit-autofill, select:-webkit-autofill {
+    background: none;
+    background-color: transparent;
 }

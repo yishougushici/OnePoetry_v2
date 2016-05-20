@@ -29,7 +29,7 @@
     var score = 0;
     function renderQuestion(){
         $.ajax({
-            url:"start",
+            url:"answer/start",
             type:"post",
             beforeSend:function(){$("#loadingToast").show()},
             complete:function(){$("#loadingToast").hide()},

@@ -49,3 +49,7 @@
 .game-start:hover{
     cursor: pointer;
 }
+
+.chat{
+    background-color: #ccc;
+}
