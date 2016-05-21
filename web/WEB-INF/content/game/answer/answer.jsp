@@ -10,6 +10,7 @@
             <div class="ans-title">
                 <div class="game-start"><img src="${pageContext.request.contextPath}/support/image/game-start.png" alt=""></div>
             </div>
+            <div class="ans-info"></div>
         </div>
     </div>
 </div>
@@ -19,6 +20,10 @@
             <input type="text" name="sa_tail" class="form-control" aria-describedby="ans_send">
             <span class="input-group-btn" id="ans_send"><button class="btn btn-success"><span class="glyphicon glyphicon-send"></span></button></span>
         </div>
+    </div>
+    <br>
+    <div id="ans-next" class="ans-next">
+        <img src="${pageContext.request.contextPath}/support/image/next.png" alt="跳过">
     </div>
 </div>
 
@@ -36,7 +41,7 @@
         $(".ans-num").show();
         renderQuestion();
     });
-
+    $("#ans-next").click(function(){renderQuestion()});
     $("#ans_send").click(function(){sendAnswer();});
     $("#ans_send").keypress(function(){sendAnswer();});
 
@@ -44,13 +49,13 @@
     function sendAnswer(){
         $("#ans_send").val("");
         $.ajax({
-            url:"answer",
+            url:"answer/submitAnswer",
             type:"post",
             data:{"sa_tail":$("input[name=sa_tail]").val()},
             beforeSend:function(){$("#loadingToast").show()},
             complete:function(){$("#loadingToast").hide()},
             success:function(data){
-                if(data=="成功"){
+                if(data=="true"){
                     $(".ans-num").val(++score);
                     renderQuestion();
                 }else{
@@ -71,7 +76,16 @@
             beforeSend:function(){$("#loadingToast").show()},
             complete:function(){$("#loadingToast").hide()},
             success:function(data){
-                $(".ans-title").text(data);
+                if(data.error!=null){
+                    $("#suggest-body").text(data.error);
+                    $("#suggest-bg").show();
+                    setTimeout(function(){
+                        $("#suggest-bg").hide();
+                        return;
+                    },3000);
+                }
+                $(".ans-title").text(data.sa_head);
+                $(".ans-info").text(data.sa_author+"  "+data.sa_title)
             },
             error: function (msg) {
                 $("#suggest-body").text(msg);
