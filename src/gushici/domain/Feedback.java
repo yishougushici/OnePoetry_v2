@@ -1,5 +1,7 @@
 package gushici.domain;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Type;
 
 import javax.persistence.*;
@@ -10,6 +12,8 @@ import java.sql.Date;
  */
 @Entity
 @Table(name = "shici_feedback")
+@DynamicUpdate
+@DynamicInsert
 public class Feedback {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -19,6 +23,8 @@ public class Feedback {
 	private Boolean sfb_public;
 	private String sfb_content;
 	private Date sfb_date;
+	@Type(type = "org.hibernate.type.CharacterType")
+	public Character sfb_pass;
 
 	public Integer getSfb_id() {
 		return sfb_id;
@@ -58,6 +64,14 @@ public class Feedback {
 
 	public void setSfb_date(Date sfb_date) {
 		this.sfb_date = sfb_date;
+	}
+
+	public Character getSfb_pass() {
+		return sfb_pass;
+	}
+
+	public void setSfb_pass(Character sfb_pass) {
+		this.sfb_pass = sfb_pass;
 	}
 
 	@Override
