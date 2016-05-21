@@ -63,17 +63,27 @@
 
     //验证诗句
     function CheckPoetry(msg){
+        if(msg.trim()==="")
+            return;
         $.ajax({
-            url: "",
-            data:{"message":msg},
+            url: "round/checkSentence",
+            data:{"role":"me","content":msg},
             type:"post",
-//            beforeSend: function () {$("#loadingToast").show();},
-//            complete:function(){$("#loadingToast").hide();},
-            success:function(){
-                ShowMsg("mychat",$("input[name=sa_tail]").val(),"round");
+            beforeSend: function () {
+                $(".weui_toast_content").text("验证中");
+                $("#loadingToast").show();
+            },
+            complete:function(){$("#loadingToast").hide();},
+            success:function(data){
+                if(data.result==true){
+                    SendPoetry("round");
+                }
+                else {
+                    ShowMsg("autochat",data.reson,"error");
+                }
             },
             error:function(data){
-                ShowMsg("autochat","服务器错误...");
+                ShowMsg("autochat","服务器错误...","error");
             }
         });
     }
@@ -81,14 +91,18 @@
     //发送消息
     function SendPoetry(type){
         var message = $("input[name=sa_tail]").val();
+        if(message.trim()==="")
+            return;
+        $("input[name=sa_tail]").val("");
         ShowMsg("mychat",message,type);
         forwardMessage(message+"::"+type);
     }
 
+    //显示消息
     function ShowMsg(role,message,type){
         $("input[name=sa_tail]").val("");
         if(message.trim()==""){return;}
-        var mychat = $("<li></li>")
+        var mychat = $("<li></li>");
         mychat.append(message);
         mychat.addClass(role);
         if(type != undefined){

@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/5/18.
  */
-var URL="ws://120.27.120.124:8080/websocket/chat/beginGame";
+var URL="ws://120.27.120.124:8090/websocket/chat/beginGame";
 var webSocket=null;
 if('WebSocket' in window) {
     webSocket=new WebSocket(URL);
@@ -35,7 +35,7 @@ function setMessageInnerHTML(sendsmessage){
         $("#convo").append(mychat);
     }
     else{
-        var mychat = $("<li></li>")
+        var mychat = $("<li></li>");
         mychat.append(type[0]);
         if(type.length>1)
         {
@@ -43,7 +43,10 @@ function setMessageInnerHTML(sendsmessage){
         }
         mychat.addClass("matchchat");
         $("#convo").append(mychat);
-
+        $.ajax({
+            url:"round/checkSentence",
+            data:{"role":"match","content":sendsmessage}
+        });
     }
     var conv = document.getElementById("convo");
     conv.scrollTop = conv.scrollHeight;

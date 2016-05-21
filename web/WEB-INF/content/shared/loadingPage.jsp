@@ -20,6 +20,6 @@
             <div class="weui_loading_leaf weui_loading_leaf_10"></div>
             <div class="weui_loading_leaf weui_loading_leaf_11"></div>
         </div>
-        <p class="weui_toast_content">加载中</p>
+        <p class="weui_toast_content" id="loading-content">加载中</p>
     </div>
 </div>

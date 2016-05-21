@@ -3,7 +3,11 @@
     font-family: "微软雅黑", "YaHei Consolas Hybrid";
     display:inline;
 }
-
+.maxcombo{
+    font-size: 1.5em;
+    font-family: "微软雅黑", "YaHei Consolas Hybrid";
+    display:inline-block;
+}
 .ans-title{
     text-align: center;
     font-family: "微软雅黑", "YaHei Consolas Hybrid";
@@ -21,6 +25,7 @@
     height: 5em;
     width: 5em;
     margin:auto;
+    text-align: center;
 }
 .game-img-btn{
     margin-top:2em;
