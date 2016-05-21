@@ -68,9 +68,36 @@ public class RoundAction extends ActionSupport {
 	public String checkSentence() throws Exception {
 		dataMap.clear();
 
+		ActionContext actionContext = ActionContext.getContext();
+		RoundDialogue roundDialogue = (RoundDialogue)actionContext.getSession().get("roundDialogue");
+
+		if(roundDialogue == null){
+			roundDialogue = new RoundDialogue();
+		}
+
+		if("match".equals(getRole())){
+			roundDialogue.add(getContent(), false);
+			actionContext.getSession().put("roundDialogue", roundDialogue);
+			return SUCCESS;
+		}
+
+		if(!roundDialogue.isMyTurn()){
+			dataMap.put("result",false);
+			dataMap.put("reason","对方未答题");
+			return SUCCESS;
+		}
+
+		if(roundDialogue.isUsed(getContent())){
+			dataMap.put("result",false);
+			dataMap.put("reason","该句已经用过");
+			return SUCCESS;
+		}
+
 		HibernateTool hibernateTool = new HibernateTool();
 		if(hibernateTool.get(Sentence.class,getContent()) != null){
 			dataMap.put("result",true);
+			roundDialogue.add(getContent(), true);
+			actionContext.getSession().put("roundDialogue", roundDialogue);
 			return SUCCESS;
 		}
 
@@ -91,6 +118,8 @@ public class RoundAction extends ActionSupport {
 			Sentence sentence = new Sentence();
 			sentence.setSsen_content(getContent());
 			hibernateTool.save(sentence);
+			roundDialogue.add(getContent(), true);
+			actionContext.getSession().put("roundDialogue", roundDialogue);
 		}
 		return SUCCESS;
 	}
