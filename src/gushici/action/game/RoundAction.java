@@ -89,10 +89,14 @@ public class RoundAction extends ActionSupport {
 			return SUCCESS;
 		}
 
-		if(!roundDialogue.empty() && roundDialogue.getLastCharacter() != getContent().toCharArray()[getContent().toCharArray().length - 1]){
-			dataMap.put("result",false);
-			dataMap.put("reason","不符合接龙要求");
-			return SUCCESS;
+		if(!roundDialogue.empty()){
+			char ch1 =  roundDialogue.getLastCharacter();
+			char ch2 = getContent().toCharArray()[0];
+			if(ch1 != ch2){
+				dataMap.put("result",false);
+				dataMap.put("reason","不符合接龙要求");
+				return SUCCESS;
+			}
 		}
 
 		if(roundDialogue.isUsed(getContent())){
