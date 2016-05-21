@@ -64,6 +64,12 @@
     text-align: center;
 }
 
+.err-num{
+    font-size: 36px;
+    font-family: "微软雅黑", "YaHei Consolas Hybrid";
+    display: inline;
+}
+
 .game-start:hover{
     cursor: pointer;
 }

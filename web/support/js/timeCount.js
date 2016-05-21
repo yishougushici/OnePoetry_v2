@@ -1,19 +1,13 @@
-/**
- * Created by zhaokuo on 2016/5/21.
- */
-$(function(){
-    var c;
-    function setDownCount(time){
-        c = time;
-        timedCount();
-    }
-    function timedCount()
-    {
-        $("#txt").text(c--);
-        if(c==0){
-            Timeout();
-            return;
+function setTimer(seconds,id,callback){
+    var ele = document.getElementById(id);
+    ele.innerText = seconds;
+    var intervalId = setInterval(function(){
+        seconds -= 1;
+        ele.innerText = seconds;
+        if(seconds == 0){
+            callback();
+            clearInterval(intervalId);
         }
-        setTimeout("timedCount()",1000)
-    }
-});
+    },1000);
+}
+
