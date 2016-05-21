@@ -71,6 +71,7 @@ public class RoundAction extends ActionSupport {
 
 		ActionContext actionContext = ActionContext.getContext();
 		RoundDialogue roundDialogue = (RoundDialogue)actionContext.getSession().get("roundDialogue");
+		User user = (User)actionContext.getSession().get("user");
 
 		if(roundDialogue == null){
 			roundDialogue = new RoundDialogue();
@@ -88,7 +89,7 @@ public class RoundAction extends ActionSupport {
 			return SUCCESS;
 		}
 
-		if(roundDialogue.getLastCharacter() != getContent().toCharArray()[getContent().toCharArray().length - 1]){
+		if(!roundDialogue.empty() && roundDialogue.getLastCharacter() != getContent().toCharArray()[getContent().toCharArray().length - 1]){
 			dataMap.put("result",false);
 			dataMap.put("reason","不符合接龙要求");
 			return SUCCESS;
@@ -105,6 +106,10 @@ public class RoundAction extends ActionSupport {
 			dataMap.put("result",true);
 			roundDialogue.add(getContent(), true);
 			actionContext.getSession().put("roundDialogue", roundDialogue);
+			user.setSuesr_sround_score(user.getSuesr_sround_score() + 1);
+			hibernateTool.update(user);
+			actionContext.getSession().put("user", user);
+			dataMap.put("score", user.getSuesr_sround_score());
 			return SUCCESS;
 		}
 
@@ -126,6 +131,10 @@ public class RoundAction extends ActionSupport {
 			sentence.setSsen_content(getContent());
 			hibernateTool.save(sentence);
 			roundDialogue.add(getContent(), true);
+			user.setSuesr_sround_score(user.getSuesr_sround_score() + 1);
+			hibernateTool.update(user);
+			actionContext.getSession().put("user", user);
+			dataMap.put("score", user.getSuesr_sround_score());
 			actionContext.getSession().put("roundDialogue", roundDialogue);
 		}
 		return SUCCESS;

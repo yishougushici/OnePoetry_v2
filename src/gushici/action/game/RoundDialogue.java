@@ -35,4 +35,8 @@ public class RoundDialogue {
 		}
 		return false;
 	}
+
+	public boolean empty(){
+		return contentStack.isEmpty();
+	}
 }
