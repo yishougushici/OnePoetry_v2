@@ -1,26 +1,34 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutHead.jsp" />
  <link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/game.css">
+
  <div class="row">
      <div class="col-xs-10 col-xs-offset-1">
+         <div class="err-num" style="display: none">0</div>
          <div class="jumbotron">
              <div class="err-elem-container">
                  <div class="game-start"><img src="${pageContext.request.contextPath}/support/image/game-start.png" alt=""></div>
              </div>
              <div class="ans-info"></div>
          </div>
+
          <div class="option" hidden="hidden">
              <button class="btn btn-block btn-success" id="submit">确定</button>
          </div>
      </div>
  </div>
+
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadingPage.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/dialogPage.jsp"/>
 
 <script>
+    var score = 0;
     $(".game-start").click(function(){
         $(this).hide();
         renderQuestion();
         $(".option").show();
+        $(".err-num").show();
         $(".err-elem").on("click",function(){
             $("#err-elem-seleted").removeAttr("id");
             var keyword = $(this).text();
@@ -28,14 +36,44 @@
         });
     });
 
+    $(".err-elem-container").on("click",".err-elem-bg .err-elem",function(){
+        $("#err-elem-seleted").removeAttr("id");
+        var keyword = $(this).text();
+        $(this).attr("id","err-elem-seleted");
+    });
+
     $("#submit").click(function(){
         var keyword = $("#err-elem-seleted").text();
-        var dataIndex = $("#err-elem-seleted").attr("data-index").val();
+        var dataIndex = $("#err-elem-seleted").attr("data-index");
         console.log(keyword+"---"+dataIndex);
-
+        submitAnswer();
 //添加游戏事件
     });
 
+    function submitAnswer(){
+        var dataIndex = $("#err-elem-seleted").attr("data-index");
+        $.ajax({
+            url:"wrong/submitAnswer",
+            type:"post",
+            data:{"serr_err_location":dataIndex},
+            beforeSend:function(){$("#loadingToast").show()},
+            complete:function(){$("#loadingToast").hide()},
+            success:function(data){
+                if(data.result==true){
+                    $(".err-num").text(++score);
+                    renderQuestion();
+                    $(".err-elem-container").children().remove(".err-elem-bg");
+                    $(".sc-score").text(data.score);
+                }else{
+                    $("#suggest-body").text(data.result);
+                    $("#suggest-bg").show();
+                    setTimeout(function(){
+                        $("#suggest-bg").hide();
+                    },3000);
+                }
+            }
+        });
+    }
 
     //渲染题目, elem是一个数组
     function renderElement(elem){
@@ -44,7 +82,7 @@
             var div = $("<div></div>");
             elembg.append(div);
             div.addClass("err-elem");
-            div.setAttribute("data-inex",i);
+            div.attr("data-index",i);
             div.append(elem[i]);
             $(".err-elem-container").append(elembg);
         }
@@ -79,6 +117,4 @@
             }
         });
     }
-
-
 </script>
