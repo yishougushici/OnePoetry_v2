@@ -89,19 +89,15 @@ public class RoundAction extends ActionSupport {
 			return SUCCESS;
 		}
 
-		if(!roundDialogue.empty()){
-			char ch1 =  roundDialogue.getLastCharacter();
-			char ch2 = getContent().toCharArray()[0];
-			if(ch1 != ch2){
-				dataMap.put("result",false);
-				dataMap.put("reason","不符合接龙要求");
-				return SUCCESS;
-			}
+		if(!roundDialogue.empty() && roundDialogue.getLastCharacter() != getContent().toCharArray()[0]){
+			dataMap.put("result",false);
+			dataMap.put("reason","不符合接龙要求，第一个汉字应为\"" + roundDialogue.getLastCharacter() + "\"");
+			return SUCCESS;
 		}
 
 		if(roundDialogue.isUsed(getContent())){
 			dataMap.put("result",false);
-			dataMap.put("reason","该句已经用过");
+			dataMap.put("reason","该句古诗词你已经用过");
 			return SUCCESS;
 		}
 
@@ -120,13 +116,13 @@ public class RoundAction extends ActionSupport {
 		dataMap.put("result",false);
 		switch (isValidPoetry(getContent())){
 			case -1:
-				dataMap.put("reason","请求出错");break;
+				dataMap.put("reason","找不到这句古诗词");break;
 			case 0:
-				dataMap.put("reason","无效诗句");break;
+				dataMap.put("reason","找不到这句古诗词");break;
 			case 1:
 				dataMap.put("result",true);break;
 			case 2:
-				dataMap.put("reason","不是完整诗句");break;
+				dataMap.put("reason","找不到这句古诗词");break;
 		}
 
 		if((Boolean)dataMap.get("result"))
@@ -141,6 +137,17 @@ public class RoundAction extends ActionSupport {
 			dataMap.put("score", user.getSuesr_sround_score());
 			actionContext.getSession().put("roundDialogue", roundDialogue);
 		}
+		return SUCCESS;
+	}
+
+	public String timeout() throws Exception{
+		dataMap.clear();
+		ActionContext actionContext = ActionContext.getContext();
+		User user = (User)actionContext.getSession().get("user");
+		user.setSuesr__serr_score(Math.max(user.getSuesr__serr_score() - 1, 0));
+		dataMap.put("score", user.getSuesr__serr_score());
+		HibernateTool hibernateTool = new HibernateTool();
+		hibernateTool.update(user);
 		return SUCCESS;
 	}
 
