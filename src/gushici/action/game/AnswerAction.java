@@ -1,4 +1,4 @@
-package gushici.action;
+package gushici.action.game;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
@@ -8,14 +8,17 @@ import gushici.domain.User;
 /**
  * 诗词游戏
  */
-public class GameAction extends ActionSupport {
+public class AnswerAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		ActionContext actionContext = ActionContext.getContext();
 		if(actionContext.getSession().get("user") == null){
 			return LOGIN;
 		}
-		actionContext.put("pageTitle", "诗词游戏");
+		User user = (User)(new HibernateTool()).get(User.class, ((User)actionContext.getSession().get("user")).getSuesr_name());
+		actionContext.getSession().put("user", user);
+		actionContext.put("score", user.getSuesr_sa_score());
+		actionContext.put("pageTitle", "诗词问答");
 		return SUCCESS;
 	}
 }
