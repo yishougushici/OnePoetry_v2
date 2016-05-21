@@ -91,7 +91,7 @@ public class RoundAction extends ActionSupport {
 
 		if(!roundDialogue.empty() && roundDialogue.getLastCharacter() != getContent().toCharArray()[0]){
 			dataMap.put("result",false);
-			dataMap.put("reason","不符合接龙要求，第一个汉字应为\"" + roundDialogue.getLastCharacter());
+			dataMap.put("reason","不符合接龙要求，第一个汉字应为\"" + roundDialogue.getLastCharacter() + "\"");
 			return SUCCESS;
 		}
 
