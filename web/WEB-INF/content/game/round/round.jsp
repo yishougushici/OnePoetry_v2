@@ -75,15 +75,17 @@
             },
             complete:function(){$("#loadingToast").hide();},
             success:function(data){
+//                console.log(data);
                 if(data.result==true){
                     SendPoetry("round");
                 }
                 else {
-                    ShowMsg("autochat",data.reson,"error");
+                    ShowMsg("autochat",data.reason,"error");
                 }
             },
             error:function(data){
-                ShowMsg("autochat","服务器错误...","error");
+                console.log(data);
+                ShowMsg("autochat","服务器错误","error");
             }
         });
     }
@@ -91,7 +93,7 @@
     //发送消息
     function SendPoetry(type){
         var message = $("input[name=sa_tail]").val();
-        if(message.trim()==="")
+        if($.trim(message)==="")
             return;
         $("input[name=sa_tail]").val("");
         ShowMsg("mychat",message,type);
@@ -100,8 +102,10 @@
 
     //显示消息
     function ShowMsg(role,message,type){
+
         $("input[name=sa_tail]").val("");
-        if(message.trim()==""){return;}
+        if($.trim(message)==="")
+            return;
         var mychat = $("<li></li>");
         mychat.append(message);
         mychat.addClass(role);
