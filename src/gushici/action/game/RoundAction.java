@@ -140,6 +140,17 @@ public class RoundAction extends ActionSupport {
 		return SUCCESS;
 	}
 
+	public String timeout() throws Exception{
+		dataMap.clear();
+		ActionContext actionContext = ActionContext.getContext();
+		User user = (User)actionContext.getSession().get("user");
+		user.setSuesr__serr_score(Math.max(user.getSuesr__serr_score() - 1, 0));
+		dataMap.put("score", user.getSuesr__serr_score());
+		HibernateTool hibernateTool = new HibernateTool();
+		hibernateTool.update(user);
+		return SUCCESS;
+	}
+
 	private int isValidPoetry(String poetry) throws UnsupportedEncodingException {
 		String urlStr = "http://www.shicimingju.com/chaxun/shiju/"+ URLEncoder.encode(poetry, "utf8");
 		try {

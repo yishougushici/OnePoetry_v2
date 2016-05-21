@@ -108,4 +108,15 @@ public class AnswerAction extends ActionSupport {
 
 		return SUCCESS;
 	}
+
+	public String timeout() throws Exception{
+		dataMap.clear();
+		ActionContext actionContext = ActionContext.getContext();
+		User user = (User)actionContext.getSession().get("user");
+		user.setSuesr_sa_score(Math.max(user.getSuesr_sa_score() - 1, 0));
+		dataMap.put("score", user.getSuesr_sa_score());
+		HibernateTool hibernateTool = new HibernateTool();
+		hibernateTool.update(user);
+		return SUCCESS;
+	}
 }
