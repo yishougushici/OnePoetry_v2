@@ -43,9 +43,9 @@
     });
 
     $("#submit").click(function(){
-        var keyword = $("#err-elem-seleted").text();
-        var dataIndex = $("#err-elem-seleted").attr("data-index");
-        console.log(keyword+"---"+dataIndex);
+//        var keyword = $("#err-elem-seleted").text();
+//        var dataIndex = $("#err-elem-seleted").attr("data-index");
+//        console.log(keyword+"---"+dataIndex);
         submitAnswer();
 //添加游戏事件
     });
@@ -65,11 +65,14 @@
                     $(".err-elem-container").children().remove(".err-elem-bg");
                     $(".sc-score").text(data.score);
                 }else{
-                    $("#suggest-body").text(data.result);
+                    $("#suggest-body").text("回答错误");
+                    $(".sc-score").text(data.score);
+                    score = 0;
+                    $(".err-num").text(score);
                     $("#suggest-bg").show();
                     setTimeout(function(){
                         $("#suggest-bg").hide();
-                    },3000);
+                    },1000);
                 }
             }
         });
