@@ -52,7 +52,7 @@
   content: '';
   width: 0;
   height: 0;
-  border-top: 15px solid #60aede;
+  border-top: 1.2em solid #60aede;
 }
 
 /*-------------------我的消息----------------------------------------*/
@@ -73,8 +73,8 @@
 }
 
 .chat-thread li.mychat:after {
-  border-right: 15px solid transparent;
-  border-top: 15px solid rgba(155, 214, 244,1);
+  border-right: 1.2em solid transparent;
+  border-top: 1.2em solid rgba(155, 214, 244,1);
   right: -15px;
 }
 /*-------------------对方消息----------------------------------------*/
@@ -95,8 +95,8 @@
 }
 
 .chat-thread li.matchchat:after {
-  border-left: 15px solid transparent;
-  border-top: 15px solid rgba(178, 233, 136, 1);
+  border-left: 1.2em solid transparent;
+  border-top: 1.2em solid rgba(178, 233, 136, 1);
   left: -15px;
 }
 /*-------------------系统消息----------------------------------------*/
@@ -116,7 +116,7 @@
 }
 
 .chat-thread li.autochat:after {
-  border-left: 15px solid transparent;
+  border-left: 1.2em solid transparent;
   left: -15px;
 }
 /*---------------------------------------*/

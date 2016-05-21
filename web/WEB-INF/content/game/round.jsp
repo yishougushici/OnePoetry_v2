@@ -33,7 +33,7 @@
 <%--加载框--%>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadingPage.jsp"/>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
-
+<script src="${pageContext.request.contextPath}/support/chat/wechat-ime.js"></script>
 <script src="${pageContext.request.contextPath}/support/js/jquery-onepoetry-websocket.js"></script>
 <script>
     $(".game-start").click(function(){

@@ -27,7 +27,6 @@ function forwardMessage(message){
 
 function setMessageInnerHTML(sendsmessage){
     var type = sendsmessage.split('::');
-    console.dir(type);
     //创建一个标签里面显示字体
     if(sendsmessage=="由您先开始游戏，请输入正确诗词开始游戏！" ||sendsmessage== "游戏开始，请等待对方输入"||sendsmessage=="正在匹配，请等待……" ||sendsmessage=="对方断开连接"){
         var mychat = $("<li></li>")
