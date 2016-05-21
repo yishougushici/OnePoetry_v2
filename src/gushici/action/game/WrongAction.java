@@ -87,10 +87,10 @@ public class WrongAction extends ActionSupport {
 		ActionContext actionContext = ActionContext.getContext();
 		Wrong wrong = (Wrong)actionContext.getSession().get("wrong");
 		User user = (User)actionContext.getSession().get("user");
+		HibernateTool hibernateTool = new HibernateTool();
 
 		if (wrong != null && wrong.getSerr_err_location().equals(getSerr_err_location())){
-			user.setSuesr__serr_score(user.getSuesr__serr_score() + 1);
-			HibernateTool hibernateTool = new HibernateTool();
+			user.setSuesr__serr_score(user.getSuesr__serr_score() + 3);
 			hibernateTool.update(user);
 			actionContext.getSession().put("user", user);
 			actionContext.getSession().remove("wrong");
@@ -99,6 +99,10 @@ public class WrongAction extends ActionSupport {
 			return SUCCESS;
 		}
 
+		user.setSuesr__serr_score(Math.max(user.getSuesr__serr_score() - 1, 0));
+		hibernateTool.update(user);
+		actionContext.getSession().put("user", user);
+		actionContext.getSession().remove("wrong");
 		dataMap.put("result", false);
 		dataMap.put("score", user.getSuesr__serr_score());
 
