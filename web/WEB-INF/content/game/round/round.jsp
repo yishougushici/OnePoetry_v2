@@ -62,10 +62,13 @@
             SendPoetry("chat");
         }
     });
-
+    var ismy = false;
     //验证诗句
     function CheckPoetry(msg){
-
+        if(!ismyfirst()) {
+            $("#convo").append("<li class='autochat'>等待对方开始, 您可以发送聊天消息</li>");
+            return;
+        }
         if(msg.trim()==="")
             return;
         $.ajax({
@@ -92,6 +95,15 @@
                 ShowMsg("autochat","服务器错误","error");
             }
         });
+    }
+
+    function ismyfirst(){
+        var lis = $("li.autochat:last");
+        if(ismy==false && lis.text() != "由您先开始游戏，请输入正确诗词开始游戏！") {
+            return false;
+        }
+        ismy = true;
+        return true;
     }
 
     //发送消息
