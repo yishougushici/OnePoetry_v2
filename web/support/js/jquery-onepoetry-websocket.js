@@ -43,6 +43,7 @@ function setMessageInnerHTML(sendsmessage){
         }
         mychat.addClass("matchchat");
         $("#convo").append(mychat);
+
     }
     var conv = document.getElementById("convo");
     conv.scrollTop = conv.scrollHeight;

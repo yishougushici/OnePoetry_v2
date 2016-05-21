@@ -43,9 +43,9 @@
     });
 
     $("#submit").click(function(){
-        var keyword = $("#err-elem-seleted").text();
-        var dataIndex = $("#err-elem-seleted").attr("data-index");
-        console.log(keyword+"---"+dataIndex);
+//        var keyword = $("#err-elem-seleted").text();
+//        var dataIndex = $("#err-elem-seleted").attr("data-index");
+//        console.log(keyword+"---"+dataIndex);
         submitAnswer();
 //添加游戏事件
     });
