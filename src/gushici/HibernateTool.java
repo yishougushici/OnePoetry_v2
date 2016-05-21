@@ -1,10 +1,8 @@
 package gushici;
 
-import org.hibernate.SQLQuery;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
+import org.hibernate.*;
 import org.hibernate.cfg.Configuration;
+import org.hibernate.criterion.Projections;
 import org.hibernate.service.ServiceRegistry;
 import org.hibernate.service.ServiceRegistryBuilder;
 
@@ -44,6 +42,12 @@ public class HibernateTool {
 		Serializable result = session.save(obj);
 		transaction.commit();
 		return  result;
+	}
+
+	public int count(Class type) {
+		Criteria criteria = session.createCriteria(type);
+		criteria.setProjection(Projections.rowCount());
+		return  Integer.parseInt(criteria.uniqueResult().toString());
 	}
 
 	@Override
