@@ -18,6 +18,7 @@ import java.util.Random;
  */
 public class AnswerAction extends ActionSupport {
 	private Map<String, Object> dataMap;
+	private String sa_tail;
 
 	public Map<String, Object> getDataMap() {
 		return dataMap;
@@ -25,6 +26,14 @@ public class AnswerAction extends ActionSupport {
 
 	public void setDataMap(Map<String, Object> dataMap) {
 		this.dataMap = dataMap;
+	}
+
+	public String getSa_tail() {
+		return sa_tail;
+	}
+
+	public void setSa_tail(String sa_tail) {
+		this.sa_tail = sa_tail;
 	}
 
 	public AnswerAction() {
@@ -71,6 +80,29 @@ public class AnswerAction extends ActionSupport {
 		dataMap.put("sa_author",answer.getSa_author());
 
 		actionContext.getSession().put("answer", answer);
+
+		return SUCCESS;
+	}
+
+	public String submitAnswer() throws Exception  {
+		dataMap.clear();
+		ActionContext actionContext = ActionContext.getContext();
+		Answer answer = (Answer)actionContext.getSession().get("answer");
+		User user = (User)actionContext.getSession().get("user");
+
+		if (answer != null && answer.getSa_tail().equals(getSa_tail())){
+			user.setSuesr_sa_score(user.getSuesr_sa_score() + 1);
+			HibernateTool hibernateTool = new HibernateTool();
+			hibernateTool.update(user);
+			actionContext.getSession().put("user", user);
+			actionContext.getSession().remove("answer");
+			dataMap.put("result", true);
+			dataMap.put("score", user.getSuesr_sa_score());
+			return SUCCESS;
+		}
+
+		dataMap.put("result", false);
+		dataMap.put("score", user.getSuesr_sa_score());
 
 		return SUCCESS;
 	}

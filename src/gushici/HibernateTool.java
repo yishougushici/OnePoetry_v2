@@ -44,6 +44,12 @@ public class HibernateTool {
 		return  result;
 	}
 
+	public void update(Object obj) {
+		Transaction transaction = session.beginTransaction();
+		session.update(obj);
+		transaction.commit();
+	}
+
 	public int count(Class type) {
 		Criteria criteria = session.createCriteria(type);
 		criteria.setProjection(Projections.rowCount());
