@@ -21,30 +21,15 @@
         </div>
     </div>
 </div>
+
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/dialogPage.jsp"/>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadingPage.jsp"/>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
 
 <script>
     var score = 0;
-    function renderQuestion(){
-        $.ajax({
-            url:"answer/start",
-            type:"post",
-            beforeSend:function(){$("#loadingToast").show()},
-            complete:function(){$("#loadingToast").hide()},
-            success:function(data){
-                $(".ans-title").text(data);
-            },
-            error: function (msg) {
-                $("#suggest-body").text(msg);
-                $("#suggest-bg").show();
-                setTimeout(function(){
-                    $("#suggest-bg").hide();
-                },3000);
-            }
-        });
-    }
+
+    //开始游戏
     $(".game-start").click(function(){
         $(this).hide();
         $("#ans-submit").show();
@@ -52,8 +37,12 @@
         renderQuestion();
     });
 
+    $("#ans_send").click(function(){sendAnswer();});
+    $("#ans_send").keypress(function(){sendAnswer();});
 
-    $("#ans_send").click(function(){
+    //发送答案
+    function sendAnswer(){
+        $("#ans_send").val("");
         $.ajax({
             url:"answer",
             type:"post",
@@ -69,9 +58,28 @@
                     $("#suggest-bg").show();
                     setTimeout(function(){
                         $("#suggest-bg").hide();
-                    },3000);
+                    },5000);
                 }
             }
         });
-    });
+    }
+    //请求问题, 无参, 返回一句诗词(上半句)
+    function renderQuestion(){
+        $.ajax({
+            url:"answer/getQuestion",
+            type:"post",
+            beforeSend:function(){$("#loadingToast").show()},
+            complete:function(){$("#loadingToast").hide()},
+            success:function(data){
+                $(".ans-title").text(data);
+            },
+            error: function (msg) {
+                $("#suggest-body").text(msg);
+                $("#suggest-bg").show();
+                setTimeout(function(){
+                    $("#suggest-bg").hide();
+                },3000);
+            }
+        });
+    }
 </script>
