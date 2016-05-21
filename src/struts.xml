@@ -116,12 +116,23 @@
     </package>
 
     <package name="gushici.action.game.RoundAction" extends="struts-default" namespace="/game/round">
+        <result-types>
+            <result-type name="json" class="org.apache.struts2.json.JSONResult"/>
+        </result-types>
+        <interceptors>
+            <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
+        </interceptors>
         <default-action-ref name="index"/>
         <action name="index" class="gushici.action.game.RoundAction" method="execute">
             <result name="success">/WEB-INF/content/game/round/round.jsp</result>
             <result name="login" type="redirectAction">
                 <param name="namespace">/</param>
                 <param name="actionName">login</param>
+            </result>
+        </action>
+        <action name="checkSentence" class="gushici.action.game.RoundAction" method="checkSentence">
+            <result type="json">
+                <param name="root">dataMap</param>
             </result>
         </action>
     </package>
