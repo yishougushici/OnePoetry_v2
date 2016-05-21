@@ -22,7 +22,9 @@
     width: 5em;
     margin:auto;
 }
-
+.game-img-btn{
+    margin-top:2em;
+}
 .ans-next:hover{
     cursor: pointer;
 }

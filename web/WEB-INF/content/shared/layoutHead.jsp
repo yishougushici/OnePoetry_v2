@@ -37,8 +37,8 @@
                 <%
                     if(true){//如果已经进入游戏状态
                 %>
-                    <div class="sc-score col-lg-offset-10 col-md-offset-10 col-sm-offset-10 col-xs-offset-10">
-                        <span class="glyphicon glyphicon-heart"><%=request.getAttribute("score")%></span>
+                    <div class="col-lg-offset-10 col-md-offset-10 col-sm-offset-10 col-xs-offset-10">
+                        <span class="glyphicon glyphicon-heart sc-score"><%=request.getAttribute("score")%></span>
                     </div>
                 <%
                     }

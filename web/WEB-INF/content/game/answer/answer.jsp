@@ -21,9 +21,8 @@
             <span class="input-group-btn" id="ans_send"><button class="btn btn-success"><span class="glyphicon glyphicon-send"></span></button></span>
         </div>
     </div>
-    <br>
     <div id="ans-next" class="ans-next">
-        <img src="${pageContext.request.contextPath}/support/image/next.png" alt="跳过">
+        <img class="game-img-btn" src="${pageContext.request.contextPath}/support/image/next.png" alt="跳过">
     </div>
 </div>
 
@@ -47,19 +46,21 @@
 
     //发送答案
     function sendAnswer(){
-        $("#ans_send").val("");
+        var scAnswer = $("input[name=sa_tail]").val();
+        $("input[name=sa_tail]").val("");
         $.ajax({
             url:"answer/submitAnswer",
             type:"post",
-            data:{"sa_tail":$("input[name=sa_tail]").val()},
+            data:{"sa_tail":scAnswer},
             beforeSend:function(){$("#loadingToast").show()},
             complete:function(){$("#loadingToast").hide()},
             success:function(data){
-                if(data=="true"){
-                    $(".ans-num").val(++score);
+                if(data.result==true){
+                    $(".ans-num").text(++score);
                     renderQuestion();
+                    $(".sc-score").text(data.score);
                 }else{
-                    $("#suggest-body").text(msg);
+                    $("#suggest-body").text(data.result);
                     $("#suggest-bg").show();
                     setTimeout(function(){
                         $("#suggest-bg").hide();
@@ -76,7 +77,7 @@
             beforeSend:function(){$("#loadingToast").show()},
             complete:function(){$("#loadingToast").hide()},
             success:function(data){
-                if(data.error!=null){
+                if(data.error!=undefined){
                     $("#suggest-body").text(data.error);
                     $("#suggest-bg").show();
                     setTimeout(function(){
