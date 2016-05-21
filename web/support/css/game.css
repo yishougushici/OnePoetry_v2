@@ -10,6 +10,22 @@
     font-size: 24px;
     display:inline
 }
+
+.ans-info{
+    font-style: italic;
+    text-align: right;
+    font-size: .8em;
+    font-family: "微软雅黑", "YaHei Consolas Hybrid";
+}
+.ans-next{
+    height: 5em;
+    width: 5em;
+    margin:auto;
+}
+
+.ans-next:hover{
+    cursor: pointer;
+}
 /*诗词找错*/
 .err-elem-bg{
     background-image: url("../image/errbg.png");
