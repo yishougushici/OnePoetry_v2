@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/support/chat/style.css">
 <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
+        剩余答题时间: <div id="timer" style="display:inline;"></div>
         <div id="game-content">
             <div class="chat-thread" id="convo">
                 <li class="autochat">左键聊天, 右键接龙. PC端回车接龙, ↑键聊天</li>
@@ -35,6 +36,7 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
 <script src="${pageContext.request.contextPath}/support/chat/wechat-ime.js"></script>
 <script src="${pageContext.request.contextPath}/support/js/jquery-onepoetry-websocket.js"></script>
+<script src="${pageContext.request.contextPath}/support/js/timeCount.js"></script>
 <script>
     $(".game-start").click(function(){
         $(".jumbotron").hide();
@@ -63,6 +65,7 @@
 
     //验证诗句
     function CheckPoetry(msg){
+
         if(msg.trim()==="")
             return;
         $.ajax({
@@ -78,6 +81,7 @@
 //                console.log(data);
                 if(data.result==true){
                     SendPoetry("round");
+                    $(".sc-score").text(data.score);
                 }
                 else {
                     ShowMsg("autochat",data.reason,"error");
