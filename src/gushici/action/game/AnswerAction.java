@@ -60,12 +60,14 @@ public class AnswerAction extends ActionSupport {
 
 		HibernateTool hibernateTool = new HibernateTool();
 		Random random = new Random();
-		int countRecord = hibernateTool.count(Answer.class);
+		//TODO:为降低难度只选取了前1000条记录
+		//int countRecord = hibernateTool.count(Answer.class);
 
 		int count = 0;
 		Answer answer = new Answer();
 		while(++count < 20){
-			answer = (Answer)hibernateTool.get(Answer.class, random.nextInt(countRecord));
+			//answer = (Answer)hibernateTool.get(Answer.class, random.nextInt(countRecord));
+			answer = (Answer)hibernateTool.get(Answer.class, random.nextInt(1000));
 			if(answer != null)
 				break;
 		}
