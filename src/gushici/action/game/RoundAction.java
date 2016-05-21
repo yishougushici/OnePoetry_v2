@@ -55,6 +55,7 @@ public class RoundAction extends ActionSupport {
 	@Override
 	public String execute() throws Exception {
 		ActionContext actionContext = ActionContext.getContext();
+		actionContext.getSession().remove("roundDialogue");
 		if(actionContext.getSession().get("user") == null){
 			return LOGIN;
 		}
@@ -84,6 +85,12 @@ public class RoundAction extends ActionSupport {
 		if(!roundDialogue.isMyTurn()){
 			dataMap.put("result",false);
 			dataMap.put("reason","对方未答题");
+			return SUCCESS;
+		}
+
+		if(roundDialogue.getLastCharacter() != getContent().toCharArray()[getContent().toCharArray().length - 1]){
+			dataMap.put("result",false);
+			dataMap.put("reason","不符合接龙要求");
 			return SUCCESS;
 		}
 
