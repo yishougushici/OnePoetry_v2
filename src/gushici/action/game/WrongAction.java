@@ -102,7 +102,6 @@ public class WrongAction extends ActionSupport {
 		user.setSuesr__serr_score(Math.max(user.getSuesr__serr_score() - 1, 0));
 		hibernateTool.update(user);
 		actionContext.getSession().put("user", user);
-		actionContext.getSession().remove("wrong");
 		dataMap.put("result", false);
 		dataMap.put("score", user.getSuesr__serr_score());
 
