@@ -45,7 +45,7 @@ function setMessageInnerHTML(sendsmessage){
         $("#convo").append(mychat);
         $.ajax({
             url:"round/checkSentence",
-            data:{"role":"match","content":sendsmessage}
+            data:{"role":"match","content":type[0]}
         });
     }
     var conv = document.getElementById("convo");
