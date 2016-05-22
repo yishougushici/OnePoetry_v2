@@ -32,9 +32,9 @@
             <label for="sc_auth" class="label_radio">
                 <input id="sc_auth" type="radio" name="sctype" value="作者">作者
             </label>
-            <label for="sc_content" class="label_radio">
-                <input id="sc_content" type="radio" name="sctype" value="内容">内容
-            </label>
+            <%--<label for="sc_content" class="label_radio">--%>
+                <%--<input id="sc_content" type="radio" name="sctype" value="内容">内容--%>
+            <%--</label>--%>
             <label for="sc_all" class="label_radio">
                 <input id="sc_all" type="radio" name="sctype" value="all" checked="checked">模糊查询
             </label>

@@ -51,7 +51,7 @@
             },
             success:function(data){
                 if(data == "成功"){
-                    $("#suggest-body").text("诗词推荐成功, 小编将选择合适的诗词推送!");
+                    $("#suggest-body").html("诗词推荐成功<br>小编将选择合适的诗词推送!");
                     $("#suggest-bg").show();
                     setTimeout(function () {
                         $("#suggest-bg").hide();

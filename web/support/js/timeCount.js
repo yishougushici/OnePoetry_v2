@@ -8,6 +8,7 @@ function setTimer(seconds,id,callback){
         if(seconds == 0){
             callback();
             clearInterval(scTimer);
+            ele.innerText("");
         }
     },1000);
 }

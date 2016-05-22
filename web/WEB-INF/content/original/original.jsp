@@ -43,7 +43,7 @@
           complete:function(){$("#loadingToast").hide();},
           success:function(data){
               if(data=="成功"){
-                  data="提交成功,小编会不定期选择原创诗词进行推送!";
+                  data="提交成功!<br>期待您的诗词被推送!";
               }
               $("#suggest-body").html(data);
               $("#suggest-bg").show();

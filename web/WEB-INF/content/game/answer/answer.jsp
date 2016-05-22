@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/game.css">
 <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
-        <div class="ans-num" style="display: none">0</div>连击&emsp;最大连击:<div class="maxcombo"></div>
+        连击:<div class="ans-num">0</div>&emsp;最大连击:<div class="maxcombo">0</div>
         <div class="jumbotron">
             <div class="ans-title">
                 <div class="game-start"><img src="${pageContext.request.contextPath}/support/image/game-start.png" alt=""></div>
@@ -42,10 +42,21 @@
         $(".ans-num").show();
         renderQuestion();
     });
-    $("#ans-next").click(function(){renderQuestion()});
-    $("#ans_send").click(function(){sendAnswer();});
-    $("#ans_send").keypress(function(){sendAnswer();});
 
+    $("#ans-next").click(function(){
+        score=0;
+        $(".ans-num").text(score);
+        renderQuestion()}
+    );
+    $("#ans_send").click(function(){sendAnswer();});
+    $("#ans_send").keypress(function(e){
+        if(e.keyCode==13)
+            sendAnswer();
+    });
+    $("input[name=sa_tail]").keypress(function(e){
+        if(e.keyCode==13)
+            sendAnswer();
+    });
     //发送答案
     function sendAnswer(){
         var scAnswer = $("input[name=sa_tail]").val();
@@ -77,6 +88,10 @@
                         score=0;
                         $(".ans-num").text(score);
                         setTimer($("#timer").text(),"timer",function(){
+                            $.ajax({
+                                url:"answer/timeout",
+                                type:post,
+                            })
                             $("#suggest-body").text("回答超时");
                             $("#suggest-bg").show();
                             setTimeout(function(){
@@ -85,6 +100,7 @@
                             },1000);
                         });
                     },2500);
+                    $("input[name=sa_tail]").focus();
                 }
             }
         });
@@ -93,12 +109,13 @@
 
     //请求问题, 无参, 返回一句诗词(上半句)
     function renderQuestion(){
+        clearTimer();
         $.ajax({
             url:"answer/getQuestion",
             type:"post",
             beforeSend:function(){
-                $("#loading-content").text("请求中")
-                $("#loadingToast").show()
+                $("#loading-content").text("请求中");
+                $("#loadingToast").show();
             },
             complete:function(){
                 $("#loadingToast").hide();
@@ -116,7 +133,9 @@
                 }
                 $(".ans-title").text(data.sa_head);
                 $(".ans-info").text(data.sa_author+"  "+data.sa_title)
-                setTimer(50,"timer",function(){
+                setTimer(100,"timer",function(){
+                    score=0;
+                    $(".ans-num").text(score);
                     $("#suggest-body").text("回答超时");
                     $("#suggest-bg").show();
                     setTimeout(function(){

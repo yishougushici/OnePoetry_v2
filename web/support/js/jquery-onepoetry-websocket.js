@@ -31,15 +31,8 @@ function forwardMessage(message){
  */
 function setMessageInnerHTML(sendsmessage){
     var receiveMsg = sendsmessage.split('&#(ds45l%');
-    //打印接收到的消息
-    //console.log(sendsmessage);
-    //console.log(receiveMsg);
     if(sendsmessage=="由您先开始游戏，请输入正确诗词开始游戏！" ||sendsmessage== "游戏开始，请等待对方输入"||sendsmessage=="正在匹配，请等待……" ||sendsmessage=="对方断开连接"){
         ShowMsg("autochat",sendsmessage);
-        //var mychat = $("<li></li>")
-        //mychat.append(type[0]);
-        //mychat.addClass("autochat");
-        //$("#convo").append(mychat);
     }
     //接收到对方消息
     else {
@@ -48,7 +41,6 @@ function setMessageInnerHTML(sendsmessage){
             setTimer(150, "timer", function () {
                 ShowMsg("autochat", "答题超时,您输了");
                 SendPoetry("autochat", "对方答题超时", "error");
-
                 $.ajax({
                     url: "round/timeout",
                     type: "post",
@@ -66,32 +58,5 @@ function setMessageInnerHTML(sendsmessage){
             });
         }
     }
-
-
-    //    var mychat = $("<li></li>");
-    //    mychat.append(type[0]);
-    //    mychat.addClass("matchchat");
-    //    if(type[1] != "undefined")
-    //    {
-    //        mychat.addClass(type[1]);
-    //    }
-    //    else {
-    //        setTimer(30,"timer",function(){
-    //            ShowMsg("autochat","答题超时,您输了");
-    //            SendPoetry("autochat","对方答题超时");
-    //            $.ajax({
-    //                url:"round/timeout",
-    //                type:"post"
-    //            });
-    //        });
-    //    }
-    //    $("#convo").append(mychat);
-    //    $.ajax({
-    //        url:"round/checkSentence",
-    //        data:{"role":"match","content":type[0]}
-    //    });
-    //}
-    //var conv = document.getElementById("convo");
-    //conv.scrollTop = conv.scrollHeight;
 }
 
