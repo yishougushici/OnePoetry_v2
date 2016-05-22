@@ -28,6 +28,8 @@ function forwardMessage(message){
 function setMessageInnerHTML(sendsmessage){
     var type = sendsmessage.split('::');
     //创建一个标签里面显示字体
+    console.log(sendsmessage);
+    console.log(type);
     if(sendsmessage=="由您先开始游戏，请输入正确诗词开始游戏！" ||sendsmessage== "游戏开始，请等待对方输入"||sendsmessage=="正在匹配，请等待……" ||sendsmessage=="对方断开连接"){
         var mychat = $("<li></li>")
         mychat.append(type[0]);
@@ -37,11 +39,21 @@ function setMessageInnerHTML(sendsmessage){
     else{
         var mychat = $("<li></li>");
         mychat.append(type[0]);
-        if(type.length>1)
+        mychat.addClass("matchchat");
+        if(type[1] != "undefined")
         {
             mychat.addClass(type[1]);
         }
-        mychat.addClass("matchchat");
+        else {
+            setTimer(30,"timer",function(){
+                ShowMsg("autochat","答题超时,您输了");
+                SendPoetry("autochat","对方答题超时");
+                $.ajax({
+                    url:"round/timeout",
+                    type:"post"
+                });
+            });
+        }
         $("#convo").append(mychat);
         $.ajax({
             url:"round/checkSentence",

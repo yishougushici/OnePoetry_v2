@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/support/chat/style.css">
 <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
-        剩余答题时间: <div id="timer" style="display:inline;"></div>
+        剩余答题时间: <div id="timer" style="display:inline;">30</div>
         <div id="game-content">
             <div class="chat-thread" id="convo">
                 <li class="autochat">左键聊天, 右键接龙. PC端回车接龙, ↑键聊天</li>
@@ -71,6 +71,7 @@
         }
         if(msg.trim()==="")
             return;
+        clearTimer();
         $.ajax({
             url: "round/checkSentence",
             data:{"role":"me","content":msg},
@@ -83,10 +84,18 @@
             success:function(data){
 //                console.log(data);
                 if(data.result==true){
-                    SendPoetry("round");
+                    SendPoetry();
                     $(".sc-score").text(data.score);
                 }
                 else {
+                    setTimer($("#timer").text(),"timer",function(){
+                       ShowMsg("autochat","答题超时,您输了");
+                        SendPoetry("autochat","对方答题超时")
+                        $.ajax({
+                            url:"round/timeout",
+                            type:"post"
+                        });
+                    });
                     ShowMsg("autochat",data.reason,"error");
                 }
             },
@@ -106,9 +115,11 @@
         return true;
     }
 
+
     //发送消息
-    function SendPoetry(type){
-        var message = $("input[name=sa_tail]").val();
+    function SendPoetry(type,message){
+        if(message==undefined)
+            message = $("input[name=sa_tail]").val();
         if($.trim(message)==="")
             return;
         $("input[name=sa_tail]").val("");
