@@ -47,22 +47,31 @@
 
     //点击发送按钮
     $("#round_send").click(function(){
-        CheckPoetry($("input[name=sa_tail]").val());
+        var message = $("input[name=sa_tail]").val();
+        if($.trim(message)==="")
+            return;
+        CheckPoetry(message);
     });
 
     //点击聊天按钮
     $("#chat-send").click(function(){
-        SendPoetry("chat");
+        var message = $("input[name=sa_tail]").val();
+        if($.trim(message)==="")
+            return;
+        ShowMsg("mychat",message,"chat");
+        SendPoetry("matchchat",message.val(),"chat");
     });
 
     $("input[name=sa_tail]").keyup(function(e){
-        if(e.keyCode==13){
-            //发送诗词验证, 如果验证成功, 发送出去
-            CheckPoetry($("input[name=sa_tail]").val());
+        var message = $("input[name=sa_tail]").val();
+        if($.trim(message)==="")
+            return;
+        if(e.keyCode==13){//发送诗词验证, 如果验证成功, 发送出去
+            CheckPoetry(message);
         }
-        if(e.keyCode == 38 ){
-            //绕过诗词验证, 直接发送
-            SendPoetry("chat");
+        if(e.keyCode == 38 ){//绕过诗词验证, 直接发送
+            ShowMsg("mychat",message,"chat");
+            SendPoetry("matchchat",message,"chat");
         }
     });
 
@@ -119,13 +128,15 @@
      * 是否轮到我答题
      */
     function ismyfirst(){
-        var lis = $("li:last");
-        if(ismy==true || lis.hasClass("round") || lis.text() == "由您先开始游戏，请输入正确诗词开始游戏！")
+        if(ismy==true)
+            return true;
+        var roundlis = $("li.round");
+        var autolis = $("li.autochat:last")
+        if(roundlis.length>0 || autolis.text() == "由您先开始游戏，请输入正确诗词开始游戏！")
         {
             ismy = true;
             return true;
         }
-
         return false;
     }
 
@@ -150,8 +161,6 @@
      * @constructor
      */
     function ShowMsg(role,message,type){
-        if($.trim(message)==="")
-            return;
         $("input[name=sa_tail]").val("");
 
         var chatMsg = $("<li></li>");
