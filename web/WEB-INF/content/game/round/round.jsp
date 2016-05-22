@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/support/chat/style.css">
 <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
-        剩余答题时间: <div id="timer" style="display:inline;">30</div>
+        剩余答题时间: <div id="timer" style="display:inline;">150</div>
         <div id="game-content">
             <div class="chat-thread" id="convo">
                 <li class="autochat">左键聊天, 右键接龙. PC端回车接龙, ↑键聊天</li>
@@ -38,6 +38,8 @@
 <script src="${pageContext.request.contextPath}/support/js/jquery-onepoetry-websocket.js"></script>
 <script src="${pageContext.request.contextPath}/support/js/timeCount.js"></script>
 <script>
+    var ismy = false; //是否轮到我答题
+
     $(".game-start").click(function(){
         $(".jumbotron").hide();
         $("#game-content").show();
@@ -47,6 +49,7 @@
     $("#round_send").click(function(){
         CheckPoetry($("input[name=sa_tail]").val());
     });
+
     //点击聊天按钮
     $("#chat-send").click(function(){
         SendPoetry("chat");
@@ -62,8 +65,11 @@
             SendPoetry("chat");
         }
     });
-    var ismy = false;
-    //验证诗句
+
+
+    /**
+     * 验证诗句
+     */
     function CheckPoetry(msg){
         if(!ismyfirst()) {
             $("#convo").append("<li class='autochat'>等待对方开始, 您可以发送聊天消息</li>");
@@ -80,23 +86,25 @@
                 $(".weui_toast_content").text("验证中");
                 $("#loadingToast").show();
             },
-            complete:function(){$("#loadingToast").hide();},
+            complete:function(){
+                $("#loadingToast").hide();
+            },
             success:function(data){
-//                console.log(data);
                 if(data.result==true){
-                    SendPoetry();
+                    SendPoetry("matchchat",msg,"round");
+                    ShowMsg("mychat",msg,"round");
                     $(".sc-score").text(data.score);
                 }
                 else {
+                    ShowMsg("autochat",data.reason,"error");
                     setTimer($("#timer").text(),"timer",function(){
-                       ShowMsg("autochat","答题超时,您输了");
+                        ShowMsg("autochat","答题超时,您输了");
                         SendPoetry("autochat","对方答题超时")
                         $.ajax({
                             url:"round/timeout",
                             type:"post"
                         });
                     });
-                    ShowMsg("autochat",data.reason,"error");
                 }
             },
             error:function(data){
@@ -106,40 +114,54 @@
         });
     }
 
+
+    /**
+     * 是否轮到我答题
+     */
     function ismyfirst(){
-        var lis = $("li.autochat:last");
-        if(ismy==false && lis.text() != "由您先开始游戏，请输入正确诗词开始游戏！") {
-            return false;
+        var lis = $("li:last");
+        if(ismy==true || lis.hasClass("round") || lis.text() == "由您先开始游戏，请输入正确诗词开始游戏！")
+        {
+            ismy = true;
+            return true;
         }
-        ismy = true;
-        return true;
+
+        return false;
     }
 
 
-    //发送消息
-    function SendPoetry(type,message){
-        if(message==undefined)
-            message = $("input[name=sa_tail]").val();
-        if($.trim(message)==="")
-            return;
+    /**
+     * 发送消息
+     * @param role 角色 mychat:我, matchchat:对方, autochat: 机器人
+     * @param message 消息内容
+     * @param type 类型: chat代表聊天消息
+     * @constructor
+     */
+    function SendPoetry(role,message,type){
         $("input[name=sa_tail]").val("");
-        ShowMsg("mychat",message,type);
-        forwardMessage(message+"::"+type);
+        forwardMessage(role+"&#(ds45l%"+message+"&#(ds45l%"+type);
     }
 
-    //显示消息
+    /**
+     *显示消息
+     * @param role 角色 mychat:我, matchchat:对方, autochat: 机器人
+     * @param message 消息内容
+     * @param type 类型: chat代表聊天消息
+     * @constructor
+     */
     function ShowMsg(role,message,type){
-
-        $("input[name=sa_tail]").val("");
         if($.trim(message)==="")
             return;
-        var mychat = $("<li></li>");
-        mychat.append(message);
-        mychat.addClass(role);
-        if(type != undefined){
-            mychat.addClass(type);
+        $("input[name=sa_tail]").val("");
+
+        var chatMsg = $("<li></li>");
+        chatMsg.append(message);
+        chatMsg.addClass(role);
+        if(type != undefined && type != "undefined"){
+            chatMsg.addClass(type);
         }
-        $("#convo").append(mychat);
+        $("#convo").append(chatMsg);
+        //将窗口滚动到最底部
         var conv = document.getElementById("convo");
         conv.scrollTop = conv.scrollHeight;
     }
