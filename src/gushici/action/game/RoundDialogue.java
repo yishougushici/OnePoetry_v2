@@ -20,6 +20,11 @@ public class RoundDialogue {
 		isMineStack.push(isMine);
 	}
 
+	public void clear(){
+		contentStack.clear();
+		isMineStack.clear();
+	}
+
 	public boolean isMyTurn(){
 		return isMineStack.empty() || !isMineStack.peek();
 	}

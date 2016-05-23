@@ -151,6 +151,16 @@ public class RoundAction extends ActionSupport {
 		return SUCCESS;
 	}
 
+	public String restart() throws Exception{
+		dataMap.clear();
+		ActionContext actionContext = ActionContext.getContext();
+		RoundDialogue roundDialogue = (RoundDialogue)actionContext.getSession().get("roundDialogue");
+		roundDialogue.clear();
+		actionContext.getSession().put("roundDialogue", roundDialogue);
+		dataMap.put("result",true);
+		return SUCCESS;
+	}
+
 	private int isValidPoetry(String poetry) throws UnsupportedEncodingException {
 		String urlStr = "http://www.shicimingju.com/chaxun/shiju/"+ URLEncoder.encode(poetry, "utf8");
 		try {

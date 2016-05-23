@@ -145,6 +145,11 @@
                 <param name="root">dataMap</param>
             </result>
         </action>
+        <action name="restart" class="gushici.action.game.RoundAction" method="restart">
+            <result type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
     </package>
 
     <package name="gushici.action.game.WrongAction" extends="struts-default" namespace="/game/wrong">
