@@ -31,9 +31,9 @@ $(function(){
                     bod.height(winH+300);
                     bod.animate({scrollTop: tTop-100 + 'px'}, 200);
                 });
-                t.on('blur',function(e){
-                    bod.height(winH);
-                });
+                //t.on('blur',function(e){
+                //    bod.height(winH);
+                //});
             }
         });
     }

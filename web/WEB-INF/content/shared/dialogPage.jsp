@@ -2,7 +2,7 @@
 消息提示框
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<div class="weui_dialog_alert" hidden="hidden" id="suggest-bg">
+<div class="weui_dialog_alert" style="display: none" id="suggest-bg">
     <div class="weui_mask"></div>
     <div class="weui_dialog">
         <div class="weui_dialog_hd"><strong class="weui_dialog_title" id="suggest-header">提示</strong></div>

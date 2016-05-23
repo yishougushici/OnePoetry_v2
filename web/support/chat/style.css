@@ -233,3 +233,16 @@
 .chat-thread li.chat:after{
   border-top: 15px solid #ccc;
 }
+
+
+
+.round-next{
+  height: 5em;
+  width: 5em;
+  margin:auto;
+  text-align: center;
+}
+.round-img-btn{
+  margin-top:2em;
+  display: block;
+}

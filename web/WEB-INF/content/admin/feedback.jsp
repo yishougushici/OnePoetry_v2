@@ -40,7 +40,7 @@
         //设置为已处理
         $("#setYes").click(function(){
             $.ajax({
-               url:"admin/feedback/set",
+               url:"admin/setFeedback",
                 data:{"item":currentItem},
                 type:"post",
                 success: function (data) {
@@ -61,7 +61,7 @@
         //以item为索引获取反馈内容
         function requestItem(item){
             $.ajax({
-                url:"admin/feedback/getItem",
+                url:"admin/getFeedback",
                 data:{"item":item},
                 type:"post",
                 success:function(data){

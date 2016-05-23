@@ -48,7 +48,7 @@
         if($.trim(scnum)==""||$.trim(sctitle)==""||$.trim(scauto)==""||$.trim(scdate)==""||$.trim(sccontent)=="")
             return;
         $.ajax({
-            url:"admin/update/submit",
+            url:"admin/submitUpdate",
             type:"post",
             data:{
                 "期号":scnum,

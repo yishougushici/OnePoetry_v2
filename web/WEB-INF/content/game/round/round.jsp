@@ -38,6 +38,11 @@
 <script src="${pageContext.request.contextPath}/support/js/jquery-onepoetry-websocket.js"></script>
 <script src="${pageContext.request.contextPath}/support/js/timeCount.js"></script>
 <script>
+    /**
+     * 上帝顺序, 用于处理特殊情况 为true时 可以接龙(最高优先级)
+     */
+    //var GodOrder = false;
+
     $(".game-start").click(function(){
         $(".jumbotron").hide();
         $("#game-content").show();
@@ -79,7 +84,7 @@
      */
     function CheckPoetry(msg){
         if(!ismyfirst()) {
-            $("#convo").append("<li class='autochat'>等待对方开始, 您可以发送聊天消息</li>");
+            $("#convo").append("<li class='autochat'>现在是对方接龙, 您可以发送聊天消息</li>");
             return;
         }
         if(msg.trim()==="")
@@ -105,10 +110,14 @@
                 else {
                     ShowMsg("autochat",data.reason,"error");
                     setTimer($("#timer").text(),"timer",function(){
-                        ShowMsg("autochat","答题超时,您输了");
-                        SendPoetry("autochat","对方答题超时")
+                        ShowMsg("autochat","答题超时,您输了!新回合开始, 由您出题");
+                        SendPoetry("autochat","对方答题超时! 新回合开始, 等待对方出题.");
                         $.ajax({
                             url:"round/timeout",
+                            type:"post"
+                        });
+                        $.ajax({
+                            url:"round/restart",
                             type:"post"
                         });
                     });
