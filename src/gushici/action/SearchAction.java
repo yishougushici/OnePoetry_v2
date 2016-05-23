@@ -54,7 +54,7 @@ public class SearchAction extends ActionSupport {
 		try{
 			//期号，诗词，作者，内容
 			if(getS_type().equals("all"))
-				resultList = hibernateTool.query(PushRecord.class,"select * from `shiciall` WHERE `诗词` like '%" + getS_data() + "%' or `作者` like '%" + getS_data() + "%' or `作者` like '%" + getS_data() + "%'");
+				resultList = hibernateTool.query(PushRecord.class,"select * from `shiciall` WHERE `诗词` like '%" + getS_data() + "%' or `作者` like '%" + getS_data() + "%' or `内容` like '%" + getS_data() + "%'");
 			if(getS_type().equals("期号"))
 				resultList = hibernateTool.query(PushRecord.class,"select * from `shiciall` WHERE `期号` = '" + getS_data() + "'");
 			if(getS_type().equals("诗词"))

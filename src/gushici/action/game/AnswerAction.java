@@ -103,6 +103,7 @@ public class AnswerAction extends ActionSupport {
 			return SUCCESS;
 		}
 
+		user.setSuesr_sa_score(Math.max(user.getSuesr_sa_score() - 1, 0));
 		dataMap.put("result", false);
 		dataMap.put("score", user.getSuesr_sa_score());
 
