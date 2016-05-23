@@ -191,3 +191,9 @@ a:hover{
     text-align: center;
     font-weight:bold;
 }
+
+.admin-listlab{
+    text-align: right;
+    font-weight:bold;
+    padding-right: 0;
+}

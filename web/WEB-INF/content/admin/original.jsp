@@ -29,13 +29,13 @@
             </div>
             <div class="btn-group btn-group-justified" role="group" aria-label="...">
                 <div class="btn-group" role="group">
-                    <a href="#"><button type="button" class="btn btn-default">上一条</button></a>
+                    <button type="button" id="preItem" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
                 </div>
                 <div class="btn-group" role="group">
-                    <a href="#"><button type="button" class="btn btn-default">通过</button></a>
+                    <button type="button" id="setYes" class="btn btn-default"><span class="glyphicon glyphicon-eye-close"></span></button>
                 </div>
                 <div class="btn-group" role="group">
-                    <a href="#"><button type="button" class="btn btn-default">下一条</button></a>
+                    <button type="button" id="nextItem" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
                 </div>
             </div>
         </div>

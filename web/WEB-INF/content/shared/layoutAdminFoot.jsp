@@ -7,10 +7,8 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="sc-footer">
-                        <div class="sc-copyright">
-                            &copy;一首古诗词 2015-2016
-                        </div>
+                    <div class="sc-copyright">
+                        &copy;一首古诗词 2015-2016
                     </div>
                 </div>
             </div>

@@ -6,7 +6,6 @@
     <div class="weui_mask_transparent"></div>
     <div class="weui_toast">
         <div class="weui_loading">
-            <!-- :) -->
             <div class="weui_loading_leaf weui_loading_leaf_0"></div>
             <div class="weui_loading_leaf weui_loading_leaf_1"></div>
             <div class="weui_loading_leaf weui_loading_leaf_2"></div>

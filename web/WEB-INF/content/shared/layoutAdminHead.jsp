@@ -5,13 +5,14 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="IE=dege">
-    <meta name="viewport" content="width-device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title><%=request.getAttribute("pageTitle")%></title>
     <link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/bootstrap.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/layout.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/weui.min.css">
     <script src="${pageContext.request.contextPath}/support/js/jquery-2.2.3.js"></script>
     <script src="${pageContext.request.contextPath}/support/js/bootstrap.min.js"></script>
+    <script src="${pageContext.request.contextPath}/support/js/jquery.validate.min.js"></script>
 </head>
 <body>
 <div class="container">
