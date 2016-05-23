@@ -24,6 +24,8 @@ public class AdminAction  extends ActionSupport {
 	private String scauto;
 	private String scdate;
 	private String sccontent;
+	private String id;
+	private String pass;
 
 	public String getAdmin() {
 		return admin;
@@ -89,6 +91,22 @@ public class AdminAction  extends ActionSupport {
 		this.dataMap = dataMap;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
 	public AdminAction(){
 		this.dataMap = new HashMap<>();
 	}
@@ -133,6 +151,22 @@ public class AdminAction  extends ActionSupport {
 	}
 
 	public String setFeedback() throws Exception{
+		dataMap.clear();
+		HibernateTool hibernateTool = new HibernateTool();
+		Feedback feedback = (Feedback)hibernateTool.get(Feedback.class, Integer.parseInt(getId()));
+		if(feedback == null)
+			dataMap.put("result", false);
+		else{
+			if("Y".equals(getPass())){
+				feedback.setSfb_pass('Y');
+				hibernateTool.update(feedback);
+			}
+			if("I".equals(getPass())){
+				feedback.setSfb_pass('I');
+				hibernateTool.update(feedback);
+			}
+			dataMap.put("result", true);
+		}
 		return SUCCESS;
 	}
 
@@ -150,6 +184,22 @@ public class AdminAction  extends ActionSupport {
 	}
 
 	public String setRecommend() throws Exception{
+		dataMap.clear();
+		HibernateTool hibernateTool = new HibernateTool();
+		Recommend recommend = (Recommend)hibernateTool.get(Recommend.class, Integer.parseInt(getId()));
+		if(recommend == null)
+			dataMap.put("result", false);
+		else{
+			if("Y".equals(getPass())){
+				recommend.setSrec_pass('Y');
+				hibernateTool.update(recommend);
+			}
+			if("I".equals(getPass())){
+				recommend.setSrec_pass('I');
+				hibernateTool.update(recommend);
+			}
+			dataMap.put("result", true);
+		}
 		return SUCCESS;
 	}
 
@@ -167,6 +217,22 @@ public class AdminAction  extends ActionSupport {
 	}
 
 	public String setOriginal() throws Exception{
+		dataMap.clear();
+		HibernateTool hibernateTool = new HibernateTool();
+		Original original = (Original)hibernateTool.get(Original.class, Integer.parseInt(getId()));
+		if(original == null)
+			dataMap.put("result", false);
+		else{
+			if("Y".equals(getPass())){
+				original.setSorin_pass('Y');
+				hibernateTool.update(original);
+			}
+			if("I".equals(getPass())){
+				original.setSorin_pass('I');
+				hibernateTool.update(original);
+			}
+			dataMap.put("result", true);
+		}
 		return SUCCESS;
 	}
 
