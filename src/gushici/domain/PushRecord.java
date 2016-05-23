@@ -1,12 +1,11 @@
 package gushici.domain;
 
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.Type;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.sql.Date;
 
 /**
@@ -14,8 +13,11 @@ import java.sql.Date;
  */
 @Entity
 @Table(name = "shiciall")
+@DynamicUpdate
+@DynamicInsert
 public class PushRecord {
 	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int idNum;
 	private int 期号;
 	private String 诗词;

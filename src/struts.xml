@@ -175,6 +175,12 @@
     </package>
 
     <package name="gushici.action.AdminAction" extends="struts-default" namespace="/admin">
+        <result-types>
+            <result-type name="json" class="org.apache.struts2.json.JSONResult"/>
+        </result-types>
+        <interceptors>
+            <interceptor name="json" class="org.apache.struts2.json.JSONInterceptor"/>
+        </interceptors>
         <default-action-ref name="index"/>
         <action name="index" class="gushici.action.AdminAction" method="execute">
             <result name="success">/WEB-INF/content/admin/admin.jsp</result>
@@ -209,6 +215,41 @@
             <result name="login" type="redirectAction">
                 <param name="namespace">/</param>
                 <param name="actionName">login</param>
+            </result>
+        </action>
+        <action name="setFeedback" class="gushici.action.AdminAction" method="setFeedback">
+            <result type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="setRecommend" class="gushici.action.AdminAction" method="setRecommend">
+            <result type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="setOriginal" class="gushici.action.AdminAction" method="setOriginal">
+            <result type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getFeedback" class="gushici.action.AdminAction" method="getFeedback">
+            <result type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getRecommend" class="gushici.action.AdminAction" method="getRecommend">
+            <result type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getOriginal" class="gushici.action.AdminAction" method="getOriginal">
+            <result type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="submitUpdate" class="gushici.action.AdminAction" method="submitUpdate">
+            <result type="json">
+                <param name="root">dataMap</param>
             </result>
         </action>
     </package>

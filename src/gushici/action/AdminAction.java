@@ -2,13 +2,25 @@ package gushici.action;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
+import gushici.HibernateTool;
+import gushici.domain.PushRecord;
+
+import java.sql.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * 管理员模式
  */
 public class AdminAction  extends ActionSupport {
+	private Map<String, Object> dataMap;
 	private String admin;
 	private String password;
+	private String scnum;
+	private String sctitle;
+	private String scauto;
+	private String scdate;
+	private String sccontent;
 
 	public String getAdmin() {
 		return admin;
@@ -24,6 +36,58 @@ public class AdminAction  extends ActionSupport {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+
+	public String getScnum() {
+		return scnum;
+	}
+
+	public void setScnum(String scnum) {
+		this.scnum = scnum;
+	}
+
+	public String getSctitle() {
+		return sctitle;
+	}
+
+	public void setSctitle(String sctitle) {
+		this.sctitle = sctitle;
+	}
+
+	public String getScauto() {
+		return scauto;
+	}
+
+	public void setScauto(String scauto) {
+		this.scauto = scauto;
+	}
+
+	public String getScdate() {
+		return scdate;
+	}
+
+	public void setScdate(String scdate) {
+		this.scdate = scdate;
+	}
+
+	public String getSccontent() {
+		return sccontent;
+	}
+
+	public void setSccontent(String sccontent) {
+		this.sccontent = sccontent;
+	}
+
+	public Map<String, Object> getDataMap() {
+		return dataMap;
+	}
+
+	public void setDataMap(Map<String, Object> dataMap) {
+		this.dataMap = dataMap;
+	}
+
+	public AdminAction(){
+		this.dataMap = new HashMap<>();
 	}
 
 	@Override
@@ -64,4 +128,45 @@ public class AdminAction  extends ActionSupport {
 		actionContext.put("pageTitle", "录入诗词");
 		return SUCCESS;
 	}
+
+	public String setFeedback() throws Exception{
+		return SUCCESS;
+	}
+
+	public String getFeedback() throws Exception{
+		return SUCCESS;
+	}
+
+	public String setRecommend() throws Exception{
+		return SUCCESS;
+	}
+
+	public String getRecommend() throws Exception{
+		return SUCCESS;
+	}
+
+	public String setOriginal() throws Exception{
+		return SUCCESS;
+	}
+
+	public String getOriginal() throws Exception{
+		return SUCCESS;
+	}
+
+	public String submitUpdate() throws Exception{
+		//TODO:赶工，没有对参数二次验证
+		dataMap.clear();
+		PushRecord newPushRecord = new PushRecord();
+		newPushRecord.set期号(Integer.parseInt(getScnum()));
+		newPushRecord.set诗词(getSctitle());
+		newPushRecord.set作者(getScauto());
+		newPushRecord.set内容(getSccontent());
+		newPushRecord.set日期(java.sql.Date.valueOf((getScdate())));
+		HibernateTool hibernateTool = new HibernateTool();
+		hibernateTool.save(newPushRecord);
+		dataMap.put("result", true);
+		return SUCCESS;
+	}
+
+
 }
