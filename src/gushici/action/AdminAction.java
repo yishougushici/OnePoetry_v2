@@ -3,7 +3,10 @@ package gushici.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import gushici.HibernateTool;
+import gushici.domain.Feedback;
+import gushici.domain.Original;
 import gushici.domain.PushRecord;
+import gushici.domain.Recommend;
 
 import java.sql.Date;
 import java.util.HashMap;
@@ -21,6 +24,8 @@ public class AdminAction  extends ActionSupport {
 	private String scauto;
 	private String scdate;
 	private String sccontent;
+	private String id;
+	private String pass;
 
 	public String getAdmin() {
 		return admin;
@@ -86,6 +91,22 @@ public class AdminAction  extends ActionSupport {
 		this.dataMap = dataMap;
 	}
 
+	public String getId() {
+		return id;
+	}
+
+	public void setId(String id) {
+		this.id = id;
+	}
+
+	public String getPass() {
+		return pass;
+	}
+
+	public void setPass(String pass) {
+		this.pass = pass;
+	}
+
 	public AdminAction(){
 		this.dataMap = new HashMap<>();
 	}
@@ -130,26 +151,101 @@ public class AdminAction  extends ActionSupport {
 	}
 
 	public String setFeedback() throws Exception{
+		dataMap.clear();
+		HibernateTool hibernateTool = new HibernateTool();
+		Feedback feedback = (Feedback)hibernateTool.get(Feedback.class, Integer.parseInt(getId()));
+		if(feedback == null)
+			dataMap.put("result", false);
+		else{
+			if("Y".equals(getPass())){
+				feedback.setSfb_pass('Y');
+				hibernateTool.update(feedback);
+			}
+			if("I".equals(getPass())){
+				feedback.setSfb_pass('I');
+				hibernateTool.update(feedback);
+			}
+			dataMap.put("result", true);
+		}
 		return SUCCESS;
 	}
 
 	public String getFeedback() throws Exception{
+		dataMap.clear();
+		HibernateTool hibernateTool = new HibernateTool();
+		Feedback feedback = (Feedback)hibernateTool.getOne(Feedback.class, "SELECT * FROM `shici_feedback` WHERE `sfb_pass` = 'N'");
+		if(feedback == null)
+			dataMap.put("result", false);
+		else{
+			dataMap.put("result", true);
+			dataMap.put("data", feedback);
+		}
 		return SUCCESS;
 	}
 
 	public String setRecommend() throws Exception{
+		dataMap.clear();
+		HibernateTool hibernateTool = new HibernateTool();
+		Recommend recommend = (Recommend)hibernateTool.get(Recommend.class, Integer.parseInt(getId()));
+		if(recommend == null)
+			dataMap.put("result", false);
+		else{
+			if("Y".equals(getPass())){
+				recommend.setSrec_pass('Y');
+				hibernateTool.update(recommend);
+			}
+			if("I".equals(getPass())){
+				recommend.setSrec_pass('I');
+				hibernateTool.update(recommend);
+			}
+			dataMap.put("result", true);
+		}
 		return SUCCESS;
 	}
 
 	public String getRecommend() throws Exception{
+		dataMap.clear();
+		HibernateTool hibernateTool = new HibernateTool();
+		Recommend recommend = (Recommend)hibernateTool.getOne(Recommend.class, "SELECT * FROM `shici_recommend` WHERE `srec_pass` = 'N'");
+		if(recommend == null)
+			dataMap.put("result", false);
+		else{
+			dataMap.put("result", true);
+			dataMap.put("data", recommend);
+		}
 		return SUCCESS;
 	}
 
 	public String setOriginal() throws Exception{
+		dataMap.clear();
+		HibernateTool hibernateTool = new HibernateTool();
+		Original original = (Original)hibernateTool.get(Original.class, Integer.parseInt(getId()));
+		if(original == null)
+			dataMap.put("result", false);
+		else{
+			if("Y".equals(getPass())){
+				original.setSorin_pass('Y');
+				hibernateTool.update(original);
+			}
+			if("I".equals(getPass())){
+				original.setSorin_pass('I');
+				hibernateTool.update(original);
+			}
+			dataMap.put("result", true);
+		}
 		return SUCCESS;
 	}
 
 	public String getOriginal() throws Exception{
+		dataMap.clear();
+		HibernateTool hibernateTool = new HibernateTool();
+		Original original = (Original)hibernateTool.getOne(Original.class, "SELECT * FROM `shici_original` WHERE `sorin_pass` = 'N'");
+		if(original == null)
+			dataMap.put("result", false);
+		else{
+			dataMap.put("result", true);
+			dataMap.put("data", original);
+		}
 		return SUCCESS;
 	}
 

@@ -29,6 +29,14 @@ public class HibernateTool {
 		return sqlQuery.list();
 	}
 
+	public Object getOne(Class type, String queryString) {
+		SQLQuery sqlQuery = session.createSQLQuery(queryString).addEntity(type);
+		List result = sqlQuery.list();
+		if(result.isEmpty())
+			return null;
+		return result.get(0);
+	}
+
 	public Object get(Class type, Object id) throws Exception {
 		if(id instanceof Integer)
 			return session.get(type, (Integer)id);
