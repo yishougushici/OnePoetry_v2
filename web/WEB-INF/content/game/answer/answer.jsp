@@ -73,13 +73,13 @@
                 $("#loadingToast").hide()
             },
             success:function(data){
+                $(".sc-score").text(data.score);
                 if(data.result==true){
                     $("input[name=sa_tail]").val("");
                     $(".ans-num").text(++score);
                     maxscore = (maxscore>score) ? maxscore : score;
                     $(".maxcombo").text(maxscore);
                     renderQuestion();
-                    $(".sc-score").text(data.score);
                 }else{
                     $("#suggest-body").text("回答错误, 您可以继续答题");
                     $("#suggest-bg").show();

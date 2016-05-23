@@ -38,8 +38,6 @@
 <script src="${pageContext.request.contextPath}/support/js/jquery-onepoetry-websocket.js"></script>
 <script src="${pageContext.request.contextPath}/support/js/timeCount.js"></script>
 <script>
-    var ismy = false; //是否轮到我答题
-
     $(".game-start").click(function(){
         $(".jumbotron").hide();
         $("#game-content").show();
@@ -128,13 +126,11 @@
      * 是否轮到我答题
      */
     function ismyfirst(){
-        if(ismy==true)
-            return true;
-        var roundlis = $("li.round");
+        var roundlis = $("li.round:last");
         var autolis = $("li.autochat:last")
-        if(roundlis.length>0 || autolis.text() == "由您先开始游戏，请输入正确诗词开始游戏！")
+        console.log(roundlis);
+        if(roundlis.hasClass("matchchat") || autolis.text() == "由您先开始游戏，请输入正确诗词开始游戏！")
         {
-            ismy = true;
             return true;
         }
         return false;
