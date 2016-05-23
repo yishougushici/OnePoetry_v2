@@ -104,6 +104,8 @@ public class AnswerAction extends ActionSupport {
 		}
 
 		user.setSuesr_sa_score(Math.max(user.getSuesr_sa_score() - 1, 0));
+		HibernateTool hibernateTool = new HibernateTool();
+		hibernateTool.update(user);
 		dataMap.put("result", false);
 		dataMap.put("score", user.getSuesr_sa_score());
 
