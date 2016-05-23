@@ -3,7 +3,10 @@ package gushici.action;
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import gushici.HibernateTool;
+import gushici.domain.Feedback;
+import gushici.domain.Original;
 import gushici.domain.PushRecord;
+import gushici.domain.Recommend;
 
 import java.sql.Date;
 import java.util.HashMap;
@@ -134,6 +137,15 @@ public class AdminAction  extends ActionSupport {
 	}
 
 	public String getFeedback() throws Exception{
+		dataMap.clear();
+		HibernateTool hibernateTool = new HibernateTool();
+		Feedback feedback = (Feedback)hibernateTool.getOne(Feedback.class, "SELECT * FROM `shici_feedback` WHERE `sfb_pass` = 'N'");
+		if(feedback == null)
+			dataMap.put("result", false);
+		else{
+			dataMap.put("result", true);
+			dataMap.put("date", feedback);
+		}
 		return SUCCESS;
 	}
 
@@ -142,6 +154,15 @@ public class AdminAction  extends ActionSupport {
 	}
 
 	public String getRecommend() throws Exception{
+		dataMap.clear();
+		HibernateTool hibernateTool = new HibernateTool();
+		Recommend recommend = (Recommend)hibernateTool.getOne(Recommend.class, "SELECT * FROM `shici_recommend` WHERE `srec_pass` = 'N'");
+		if(recommend == null)
+			dataMap.put("result", false);
+		else{
+			dataMap.put("result", true);
+			dataMap.put("date", recommend);
+		}
 		return SUCCESS;
 	}
 
@@ -150,6 +171,15 @@ public class AdminAction  extends ActionSupport {
 	}
 
 	public String getOriginal() throws Exception{
+		dataMap.clear();
+		HibernateTool hibernateTool = new HibernateTool();
+		Original original = (Original)hibernateTool.getOne(Original.class, "SELECT * FROM `shici_original` WHERE `sorin_pass` = 'N'");
+		if(original == null)
+			dataMap.put("result", false);
+		else{
+			dataMap.put("result", true);
+			dataMap.put("date", original);
+		}
 		return SUCCESS;
 	}
 
