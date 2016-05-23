@@ -178,7 +178,7 @@ public class AdminAction  extends ActionSupport {
 			dataMap.put("result", false);
 		else{
 			dataMap.put("result", true);
-			dataMap.put("date", feedback);
+			dataMap.put("data", feedback);
 		}
 		return SUCCESS;
 	}
@@ -211,7 +211,7 @@ public class AdminAction  extends ActionSupport {
 			dataMap.put("result", false);
 		else{
 			dataMap.put("result", true);
-			dataMap.put("date", recommend);
+			dataMap.put("data", recommend);
 		}
 		return SUCCESS;
 	}
@@ -244,7 +244,7 @@ public class AdminAction  extends ActionSupport {
 			dataMap.put("result", false);
 		else{
 			dataMap.put("result", true);
-			dataMap.put("date", original);
+			dataMap.put("data", original);
 		}
 		return SUCCESS;
 	}
