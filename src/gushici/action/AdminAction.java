@@ -9,6 +9,7 @@ import gushici.domain.PushRecord;
 import gushici.domain.Recommend;
 
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -193,7 +194,14 @@ public class AdminAction  extends ActionSupport {
 			dataMap.put("result", false);
 		else{
 			dataMap.put("result", true);
-			dataMap.put("data", feedback);
+			HashMap<String ,Object> temp = new HashMap<>();
+			temp.put("sfb_id", feedback.getSfb_id());
+			temp.put("sfb_content", feedback.getSfb_content());
+			temp.put("sfb_date", new SimpleDateFormat("yyyy年MM月dd日").format(feedback.getSfb_date()));
+			temp.put("sfb_pass", feedback.getSfb_pass());
+			temp.put("sfb_public", feedback.getSfb_public());
+			temp.put("sfb_user", feedback.getSfb_user());
+			dataMap.put("data", temp);
 		}
 		return SUCCESS;
 	}
@@ -232,7 +240,16 @@ public class AdminAction  extends ActionSupport {
 			dataMap.put("result", false);
 		else{
 			dataMap.put("result", true);
-			dataMap.put("data", recommend);
+			HashMap<String ,Object> temp = new HashMap<>();
+			temp.put("srec_auth", recommend.getSrec_auth());
+			temp.put("srec_content", recommend.getSrec_content());
+			temp.put("srec_time", new SimpleDateFormat("yyyy年MM月dd日").format(recommend.getSrec_time().getTime()));
+			temp.put("srec_pass", recommend.getSrec_pass());
+			temp.put("srec_reson", recommend.getSrec_reson());
+			temp.put("srec_id", recommend.getSrec_id());
+			temp.put("srec_title", recommend.getSrec_title());
+			temp.put("srec_suser", recommend.getSrec_suser());
+			dataMap.put("data", temp);
 		}
 		return SUCCESS;
 	}
@@ -271,7 +288,14 @@ public class AdminAction  extends ActionSupport {
 			dataMap.put("result", false);
 		else{
 			dataMap.put("result", true);
-			dataMap.put("data", original);
+			HashMap<String ,Object> temp = new HashMap<>();
+			temp.put("sorin_auth", original.getSorin_auth());
+			temp.put("sorin_content", original.getSorin_content());
+			temp.put("sorin_time", new SimpleDateFormat("yyyy年MM月dd日").format(original.getSorin_time().getTime()));
+			temp.put("sorin_pass", original.getSorin_pass());
+			temp.put("sorin_id", original.getSorin_id());
+			temp.put("sorin_title", original.getSorin_title());
+			dataMap.put("data", temp);
 		}
 		return SUCCESS;
 	}
