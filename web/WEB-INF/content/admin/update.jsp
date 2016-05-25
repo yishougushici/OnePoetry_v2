@@ -71,7 +71,7 @@
                     $("#toast").show();
                     setTimeout(function(){
                         $("#toast").hide();
-                    },1000);
+                    },700);
                 }
                 else{
                     $("#suggest-body").text(data.reason);

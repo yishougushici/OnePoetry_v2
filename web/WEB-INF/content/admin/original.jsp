@@ -86,15 +86,13 @@
                 $("#loading-content").text("正在提交")
                 $("#loadingToast").show()
             },
-            complete:function(){
-                $("#loadingToast").hide()
-            },
             success:function(data){
+                $("#loadingToast").hide();
                 if(data.result==true){
                     $("#toast").show();
                     setTimeout(function(){
                         $("#toast").hide();
-                    },1000);
+                    },500);
                 }
                 else{
                     $("#suggest-body").text(data.reason);
@@ -106,6 +104,7 @@
                 getData("next");
             },
             error:function(msg){
+                $("#loadingToast").hide();
                 console.log(msg);
                 $("#suggest-body").text("服务器错误. 稍后重试或联系开发者");
                 $("#suggest-bg").show();
