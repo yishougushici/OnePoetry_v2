@@ -182,7 +182,13 @@ public class AdminAction  extends ActionSupport {
 	public String getFeedback() throws Exception{
 		dataMap.clear();
 		HibernateTool hibernateTool = new HibernateTool();
-		Feedback feedback = (Feedback)hibernateTool.getOne(Feedback.class, "SELECT * FROM `shici_feedback` WHERE `sfb_pass` = 'N'");
+		Feedback feedback = null;
+		if("previous".equals(getMode())){
+			feedback = (Feedback)hibernateTool.getOne(Feedback.class, "SELECT * FROM `shici_feedback` WHERE `sfb_pass` = 'N' AND `sfb_id` < " + Integer.parseInt(getId()));
+		}
+		if("next".equals(getMode())){
+			feedback = (Feedback)hibernateTool.getOne(Feedback.class, "SELECT * FROM `shici_feedback` WHERE `sfb_pass` = 'N' AND `sfb_id` > " + Integer.parseInt(getId()));
+		}
 		if(feedback == null)
 			dataMap.put("result", false);
 		else{
@@ -215,7 +221,13 @@ public class AdminAction  extends ActionSupport {
 	public String getRecommend() throws Exception{
 		dataMap.clear();
 		HibernateTool hibernateTool = new HibernateTool();
-		Recommend recommend = (Recommend)hibernateTool.getOne(Recommend.class, "SELECT * FROM `shici_recommend` WHERE `srec_pass` = 'N'");
+		Recommend recommend = null;
+		if("previous".equals(getMode())){
+			recommend = (Recommend)hibernateTool.getOne(Recommend.class, "SELECT * FROM `shici_recommend` WHERE `srec_pass` = 'N' AND `srec_id` < " + Integer.parseInt(getId()));
+		}
+		if("next".equals(getMode())){
+			recommend = (Recommend)hibernateTool.getOne(Recommend.class, "SELECT * FROM `shici_recommend` WHERE `srec_pass` = 'N' AND `srec_id` > " + Integer.parseInt(getId()));
+		}
 		if(recommend == null)
 			dataMap.put("result", false);
 		else{
