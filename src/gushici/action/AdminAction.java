@@ -25,7 +25,8 @@ public class AdminAction  extends ActionSupport {
 	private String scdate;
 	private String sccontent;
 	private String id;
-	private String pass;
+	private String mode;
+	private String option;
 
 	public String getAdmin() {
 		return admin;
@@ -99,12 +100,20 @@ public class AdminAction  extends ActionSupport {
 		this.id = id;
 	}
 
-	public String getPass() {
-		return pass;
+	public String getMode() {
+		return mode;
 	}
 
-	public void setPass(String pass) {
-		this.pass = pass;
+	public void setMode(String mode) {
+		this.mode = mode;
+	}
+
+	public String getOption() {
+		return option;
+	}
+
+	public void setOption(String option) {
+		this.option = option;
 	}
 
 	public AdminAction(){
@@ -157,11 +166,11 @@ public class AdminAction  extends ActionSupport {
 		if(feedback == null)
 			dataMap.put("result", false);
 		else{
-			if("Y".equals(getPass())){
+			if("Y".equals(getOption())){
 				feedback.setSfb_pass('Y');
 				hibernateTool.update(feedback);
 			}
-			if("I".equals(getPass())){
+			if("I".equals(getOption())){
 				feedback.setSfb_pass('I');
 				hibernateTool.update(feedback);
 			}
@@ -190,11 +199,11 @@ public class AdminAction  extends ActionSupport {
 		if(recommend == null)
 			dataMap.put("result", false);
 		else{
-			if("Y".equals(getPass())){
+			if("Y".equals(getOption())){
 				recommend.setSrec_pass('Y');
 				hibernateTool.update(recommend);
 			}
-			if("I".equals(getPass())){
+			if("I".equals(getOption())){
 				recommend.setSrec_pass('I');
 				hibernateTool.update(recommend);
 			}
@@ -223,11 +232,11 @@ public class AdminAction  extends ActionSupport {
 		if(original == null)
 			dataMap.put("result", false);
 		else{
-			if("Y".equals(getPass())){
+			if("Y".equals(getOption())){
 				original.setSorin_pass('Y');
 				hibernateTool.update(original);
 			}
-			if("I".equals(getPass())){
+			if("I".equals(getOption())){
 				original.setSorin_pass('I');
 				hibernateTool.update(original);
 			}
@@ -239,7 +248,13 @@ public class AdminAction  extends ActionSupport {
 	public String getOriginal() throws Exception{
 		dataMap.clear();
 		HibernateTool hibernateTool = new HibernateTool();
-		Original original = (Original)hibernateTool.getOne(Original.class, "SELECT * FROM `shici_original` WHERE `sorin_pass` = 'N'");
+		Original original = null;
+		if("previous".equals(getMode())){
+			original = (Original)hibernateTool.getOne(Original.class, "SELECT * FROM `shici_original` WHERE `sorin_pass` = 'N' AND `sorin_id` < " + Integer.parseInt(getId()));
+		}
+		if("next".equals(getMode())){
+			original = (Original)hibernateTool.getOne(Original.class, "SELECT * FROM `shici_original` WHERE `sorin_pass` = 'N' AND `sorin_id` > " + Integer.parseInt(getId()));
+		}
 		if(original == null)
 			dataMap.put("result", false);
 		else{
