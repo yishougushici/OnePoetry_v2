@@ -35,7 +35,9 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/dialogPage.jsp"/>
 <script>
 
-    //$("#submit").click(submitHis());
+    $("#submit").click(function(){
+        submitHis();
+    });
 
     function submitHis(){
         var scnum = $("input[name=期号]").val();
@@ -44,7 +46,7 @@
         var scdate = $("input[name=日期]").val();
         var sccontent = $("textarea[name=内容]").val();
         $("input[type=reset]").click();
-        //console.log(scauto+"--"+sccontent+"--"+scdate+"--"+scnum+"--"+sctitle);
+        console.log(scauto+"--"+sccontent+"--"+scdate+"--"+scnum+"--"+sctitle);
         if($.trim(scnum)==""||$.trim(sctitle)==""||$.trim(scauto)==""||$.trim(scdate)==""||$.trim(sccontent)=="")
             return;
         $.ajax({

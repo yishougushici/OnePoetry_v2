@@ -29,34 +29,55 @@
                     </div>
                 </div>
             </div>
-            <div class="btn-group btn-group-justified" role="group" aria-label="...">
-                <div class="btn-group" role="group">
-                    <button type="button" id="Pass" class="btn btn-primary">通过</button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" id="Denied" class="btn btn-danger">不通过</button>
-                </div>
-                <div class="btn-group" role="group">
-                    <button type="button" id="Next" class="btn btn-default">下一条</button>
-                </div>
+        </div>
+    <div class="col-xs-12">
+        <div class="btn-group btn-group-justified" role="group" aria-label="...">
+            <div class="btn-group" role="group">
+                <button type="button" id="Previous" class="btn btn-lg btn-default">
+                    <span class="glyphicon glyphicon-menu-left"></span>
+                </button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" id="Pass" class="btn btn-success">通过</button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" id="Denied" class="btn btn-danger">不通过</button>
+            </div>
+            <div class="btn-group" role="group">
+                <button type="button" id="Next" class="btn btn-lg btn-default">
+                    <span class="glyphicon glyphicon-menu-right"></span>
+                </button>
             </div>
         </div>
+    </div>
     </div>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutAdminFoot.jsp"/>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadingPage.jsp"/>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadedPage.jsp"/>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/dialogPage.jsp"/>
 <script>
-    getData();
-    $("#Pass").click(function(){Option("pass")});//通过
-    $("#Denied").click(function(){Option("denied")});//不通过
-    $("#Next").click(getData());//下一条
+    var itemId = -1;
+    getData("next");
+    $("#Previous").click(function(){
+        getData("previous");
+    })
+    $("#Pass").click(function(){
+        Option("Y")
+    });//通过
+    $("#Denied").click(function(){
+        Option("I")
+    });//不通过
+    $("#Next").click(function(){
+        getData("next");
+    });//下一条
 
     function Option(opt){
+        if(itemId==-1)
+            return;
         $.ajax({
             url:"admin/setOriginal",
             type:"post",
-            data:{"option":opt},//setOriginal所执行的操作
+            data:{"id":itemId,"option":opt},//setOriginal所执行的操作
             beforeSend:function(){
                 $("#loading-content").text("正在提交")
                 $("#loadingToast").show()
@@ -78,7 +99,7 @@
                         $("#suggest-bg").hide();
                     },2000);
                 }
-                getData();
+                getData("next");
             },
             error:function(msg){
                 console.log(msg);
@@ -91,15 +112,27 @@
         });
     }
 
-    function getData(){
+    function getData(mode){
         $.ajax({
             url:"admin/getOriginal",
             type:"post",
+            data:{"id":itemId, "mode":mode},
             success: function (data) {
-                $(".sc-title").text(data.sorin_title);
-                $(".sc-author").text(data.sorin_auth);
-                $(".sc-body").text(data.sorin_content);
-                $(".sc-date").text(data.sorin_time);
+                if(data.result == true){
+                    itemId = data.sorin_id;
+                    $(".sc-title").text(data.sorin_title);
+                    $(".sc-author").text(data.sorin_auth);
+                    $(".sc-body").text(data.sorin_content);
+                    $(".sc-date").text(data.sorin_time);
+                }
+                else{
+                    var info = (mode=="next") ? "已经是第一条" : "已经到最后一条";
+                    $("#suggest-body").text(info);
+                    $("#suggest-bg").show();
+                    setTimeout(function() {
+                        $("#suggest-bg").hide();
+                    },2000);
+                }
             },
             error: function (msg) {
                 console.error(msg);
