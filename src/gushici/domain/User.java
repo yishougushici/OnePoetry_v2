@@ -1,5 +1,8 @@
 package gushici.domain;
 
+import org.hibernate.annotations.DynamicInsert;
+import org.hibernate.annotations.DynamicUpdate;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -9,6 +12,8 @@ import javax.persistence.Table;
  */
 @Entity
 @Table(name = "shici_user")
+@DynamicUpdate
+@DynamicInsert
 public class User {
 	@Id
 	private String suesr_name;
