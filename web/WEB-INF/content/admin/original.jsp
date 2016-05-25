@@ -112,6 +112,13 @@
             url:"admin/getOriginal",
             type:"post",
             data:{"id":itemId, "mode":mode},
+            beforeSend:function(){
+                $("#loading-content").text("获取中")
+                $("#loadingToast").show()
+            },
+            complete:function(){
+                $("#loadingToast").hide()
+            },
             success: function (message) {
                 if(message.result == true){
                     itemId = message.data.sorin_id;

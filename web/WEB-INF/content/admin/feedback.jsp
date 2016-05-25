@@ -11,8 +11,8 @@
             <div id="admin-fb-content"></div>
         </div>
         <div class="panel-footer">
-            允许公开:<div id="admin-fb-public"></div>
-            <div id="admin-fb-time"></div>
+            允许公开:<span id="admin-fb-public"></span>
+            <span id="admin-fb-time"></span>
         </div>
     </div>
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -26,9 +26,10 @@
             <button type="button" id="nextItem" class="btn btn-default">下一条<span class="glyphicon glyphicon-chevron-right"></span></button>
         </div>
     </div>
-<%--<script src="${pageContext.request.contextPath}/support/js/jqPaginator.min.js"></script>--%>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/dialogPage.jsp" />
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutAdminFoot.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadingPage.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadedPage.jsp"/>
+<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/dialogPage.jsp"/>
 <script>
     var itemId = -1;
     getData("next");
@@ -85,16 +86,24 @@
 
     function getData(mode){
         $.ajax({
-            url:"admin/getOriginal",
+            url:"admin/getFeedback",
             type:"post",
             data:{"id":itemId, "mode":mode},
+            beforeSend:function(){
+                $("#loading-content").text("获取中")
+                $("#loadingToast").show()
+            },
+            complete:function(){
+                $("#loadingToast").hide()
+            },
             success: function (message) {
+                console.log(message);
                 if(message.result == true){
                     var canPublix = (message.data.sfb_pass=="Y") ? "是" : "否";
-                    itemId = message.data.sorin_id;
+                    itemId = message.data.sfb_id;
                     $("#admin-fb-user").text(message.data.sfb_user);
                     $("#admin-fb-content").text(message.data.sfb_content);
-                    $("#admin-fb-time").text(message.data.sfb_public);
+                    $("#admin-fb-time").text(message.data.sfb_date);
                     $("#admin-fb-public").text(canPublix);
                 }
                 else{
