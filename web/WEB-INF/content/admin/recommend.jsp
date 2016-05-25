@@ -126,7 +126,7 @@
             data:{"id":itemId, "mode":mode},
             success: function (message) {
                 if(message.result == true){
-                    itemId = message.sorin_id;
+                    itemId = message.data.srec_id;
                     $(".sc-title").text(message.data.srec_title);
                     $(".sc-author").text(message.data.srec_auth);
                     $(".sc-body").text(message.data.srec_content);

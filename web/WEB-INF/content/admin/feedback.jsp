@@ -10,6 +10,10 @@
         <div class="panel-body">
             <div id="admin-fb-content"></div>
         </div>
+        <div class="panel-footer">
+            允许公开:<div id="admin-fb-public"></div>
+            <div id="admin-fb-time"></div>
+        </div>
     </div>
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
         <div class="btn-group" role="group">
@@ -26,49 +30,85 @@
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/dialogPage.jsp" />
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutAdminFoot.jsp"/>
 <script>
-    $(document).ready(function () {
-        var currentItem = 1;
-        //上一条
-        $("#preItem").click(function(){
-            if(currentItem==1)
-                return;
-            currentItem--;
-            requestItem(currentItem);
-        });
-        //下一条
-        $("#nextItem").click(requestItem((++currentItem)));
-        //设置为已处理
-        $("#setYes").click(function(){
-            $.ajax({
-               url:"admin/setFeedback",
-                data:{"item":currentItem},
-                type:"post",
-                success: function (data) {
-                    if(data=="true"){
-                        requestItem(++currentItem);
-                    }
-                },
-                error:function(msg){
-                    $("#suggest-body").text("服务器错误");
+    var itemId = -1;
+    getData("next");
+    $("#preItem").click(function(){
+       getData("previous");
+    });
+    $("#nextItem").click(function(){
+        getData("next");
+    });
+    $("#setYes").click(function(){
+        Option("Y");
+    });
+
+    function Option(opt){
+        if(itemId==-1)
+            return;
+        $.ajax({
+            url:"admin/setFeedback",
+            type:"post",
+            data:{"id":itemId,"option":opt},//setOriginal所执行的操作
+            beforeSend:function(){
+                $("#loading-content").text("正在提交")
+                $("#loadingToast").show()
+            },
+            complete:function(){
+                $("#loadingToast").hide()
+            },
+            success:function(data){
+                if(data.result==true){
+                    $("#toast").show();
+                    setTimeout(function(){
+                        $("#toast").hide();
+                    },1000);
+                }
+                else{
+                    $("#suggest-body").text(data.reason);
                     $("#suggest-bg").show();
-                    console.error(msg);
-                    setTimeout(function () {
+                    setTimeout(function() {
                         $("#suggest-bg").hide();
-                    },3000);
+                    },2000);
                 }
-            });
+                getData("next");
+            },
+            error:function(msg){
+                console.log(msg);
+                $("#suggest-body").text("服务器错误. 稍后重试或联系开发者");
+                $("#suggest-bg").show();
+                setTimeout(function() {
+                    $("#suggest-bg").hide();
+                },2000);
+            }
         });
-        //以item为索引获取反馈内容
-        function requestItem(item){
-            $.ajax({
-                url:"admin/getFeedback",
-                data:{"item":item},
-                type:"post",
-                success:function(data){
-                    $("#admin-fb-user").text(data.user);
-                    $("#admin-fb-content").text(data.content);
+    }
+
+    function getData(mode){
+        $.ajax({
+            url:"admin/getOriginal",
+            type:"post",
+            data:{"id":itemId, "mode":mode},
+            success: function (message) {
+                if(message.result == true){
+                    var canPublix = (message.data.sfb_pass=="Y") ? "是" : "否";
+                    itemId = message.data.sorin_id;
+                    $("#admin-fb-user").text(message.data.sfb_user);
+                    $("#admin-fb-content").text(message.data.sfb_content);
+                    $("#admin-fb-time").text(message.data.sfb_public);
+                    $("#admin-fb-public").text(canPublix);
                 }
-            });
-        }
-    })
+                else{
+                    var info = (mode=="next") ? "已经到最后一条" : "已经是第一条";
+                    $("#suggest-body").text(info);
+                    $("#suggest-bg").show();
+                    setTimeout(function() {
+                        $("#suggest-bg").hide();
+                    },1000);
+                }
+            },
+            error: function (msg) {
+                console.error(msg);
+            }
+        });
+    }
 </script>
