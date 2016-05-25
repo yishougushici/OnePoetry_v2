@@ -2,7 +2,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutAdminHead.jsp" />
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/admin.css">
     <div class="panel panel-success">
         <div class="panel-heading">
             <b>用户: <span id="admin-fb-user"></span></b>
@@ -11,8 +11,12 @@
             <div id="admin-fb-content"></div>
         </div>
         <div class="panel-footer">
-            允许公开:<span id="admin-fb-public"></span>
-            <span id="admin-fb-time"></span>
+            <div class="row">
+                <div class="col-xs-6 fb-public">
+                    允许公开: <span id="admin-fb-public"></span>
+                </div>
+                <div class="col-xs-6" id="admin-fb-time"></div>
+            </div>
         </div>
     </div>
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -54,10 +58,8 @@
                 $("#loading-content").text("正在提交")
                 $("#loadingToast").show()
             },
-            complete:function(){
-                $("#loadingToast").hide()
-            },
             success:function(data){
+                $("#loadingToast").hide();
                 if(data.result==true){
                     $("#toast").show();
                     setTimeout(function(){
@@ -74,6 +76,7 @@
                 getData("next");
             },
             error:function(msg){
+                $("#loadingToast").hide();
                 console.log(msg);
                 $("#suggest-body").text("服务器错误. 稍后重试或联系开发者");
                 $("#suggest-bg").show();

@@ -2,25 +2,34 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutAdminHead.jsp" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/admin.css">
 <div class="row">
         <div class="col-xs-10 col-xs-offset-1">
             <div class="panel panel-success">
                 <div class="panel-heading">
-                    <div class = "sc-heading">
-                        <div class="sc-title">
+                    <div class = "admin-sc-heading">
+                        <div class="admin-sc-title">
                             题目
                         </div>
-                        <div class="sc-author">
+                        <div class="admin-sc-author" style="font-size: 1rem">
                             作者
                         </div>
                     </div>
                 </div>
                 <div class="panel-body">
-                    <div class="sc-body">
-                        正文
+                    <div class="col-xs-12">
+                        <div class="admin-sc-body">
+                            正文
+                        </div>
                     </div>
-                    <div class="sc-date">
-                        日期
+                </div>
+                <div class="panel-footer">
+                    <div class="row">
+                        <div class="col-xs-12" style="font-size: 1rem; text-align: right;">
+                            <div class="admin-sc-date">
+                                日期
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -77,15 +86,13 @@
                 $("#loading-content").text("正在提交")
                 $("#loadingToast").show()
             },
-            complete:function(){
-                $("#loadingToast").hide()
-            },
             success:function(data){
+                $("#loadingToast").hide();
                 if(data.result==true){
                     $("#toast").show();
                     setTimeout(function(){
                         $("#toast").hide();
-                    },1000);
+                    },500);
                 }
                 else{
                     $("#suggest-body").text(data.reason);
@@ -97,6 +104,7 @@
                 getData("next");
             },
             error:function(msg){
+                $("#loadingToast").hide();
                 console.log(msg);
                 $("#suggest-body").text("服务器错误. 稍后重试或联系开发者");
                 $("#suggest-bg").show();
@@ -122,10 +130,10 @@
             success: function (message) {
                 if(message.result == true){
                     itemId = message.data.sorin_id;
-                    $(".sc-title").text(message.data.sorin_title);
-                    $(".sc-author").text(message.data.sorin_auth);
-                    $(".sc-body").text(message.data.sorin_content);
-                    $(".sc-date").text(message.data.sorin_time);
+                    $(".admin-sc-title").text(message.data.sorin_title);
+                    $(".admin-sc-author").text(message.data.sorin_auth);
+                    $(".admin-sc-body").text(message.data.sorin_content);
+                    $(".admin-sc-date").text(message.data.sorin_time);
                 }
                 else{
                     var info = (mode=="next") ? "已经到最后一条" : "已经是第一条";

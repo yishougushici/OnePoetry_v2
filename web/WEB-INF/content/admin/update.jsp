@@ -6,16 +6,16 @@
     <div class="row">
         <div class="row">
                 <div class="col-xs-12">
-                <div class="col-xs-3 admin-listlab">期号:</div>
-                <div class="col-xs-9"><input type="number" class="form-control" name="期号"></div>
-                <div class="col-xs-3 admin-listlab">题目:</div>
-                <div class="col-xs-9"><input type="text" class="form-control" name="诗词"></div>
-                <div class="col-xs-3 admin-listlab">作者:</div>
-                <div class="col-xs-9"><input type="text" class="form-control" name="作者"></div>
-                <div class="col-xs-3 admin-listlab">日期:</div>
-                <div class="col-xs-9"><input type="date" class="form-control" name="日期"></div>
-                <div class="col-xs-3 admin-listlab">正文:</div>
-                <div class="col-xs-9"><textarea name="内容" class="weui_textarea" rows="4"></textarea></div>
+                <div class="col-xs-3 admin-listlab" style="margin-top: 1em;">期号:</div>
+                <div class="col-xs-9" style="margin-top: 1em;"><input type="number" class="form-control" name="期号"></div>
+                <div class="col-xs-3 admin-listlab" style="margin-top: 1em;">题目:</div>
+                <div class="col-xs-9" style="margin-top: 1em;"><input type="text" class="form-control" name="诗词"></div>
+                <div class="col-xs-3 admin-listlab" style="margin-top: 1em;">作者:</div>
+                <div class="col-xs-9" style="margin-top: 1em;"><input type="text" class="form-control" name="作者"></div>
+                <div class="col-xs-3 admin-listlab" style="margin-top: 1em;">日期:</div>
+                <div class="col-xs-9" style="margin-top: 1em;"><input type="date" class="form-control" name="日期"></div>
+                <div class="col-xs-3 admin-listlab" style="margin-top: 1em;">正文:</div>
+                <div class="col-xs-9" style="margin-top: 1em;"><textarea name="内容" class="weui_textarea" rows="4"></textarea></div>
             </div>
         </div>
         <br>
@@ -71,7 +71,7 @@
                     $("#toast").show();
                     setTimeout(function(){
                         $("#toast").hide();
-                    },1000);
+                    },700);
                 }
                 else{
                     $("#suggest-body").text(data.reason);

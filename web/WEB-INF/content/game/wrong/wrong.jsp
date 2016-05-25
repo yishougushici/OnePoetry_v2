@@ -57,8 +57,8 @@
             type:"post",
             data:{"serr_err_location":dataIndex},
             beforeSend:function(){$("#loadingToast").show()},
-            complete:function(){$("#loadingToast").hide()},
             success:function(data){
+                $("#loadingToast").hide();
                 if(data.result==true){
                     $(".err-num").text(++score);
                     renderQuestion();

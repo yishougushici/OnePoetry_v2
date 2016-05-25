@@ -84,7 +84,7 @@
      */
     function CheckPoetry(msg){
         if(!ismyfirst()) {
-            $("#convo").append("<li class='autochat'>现在是对方接龙, 您可以发送聊天消息</li>");
+            ShowMsg("autochat","现在是对方接龙, 您可以发送聊天消息");
             return;
         }
         if(msg.trim()==="")
@@ -134,12 +134,14 @@
     /**
      * 是否轮到我答题
      */
+    var theFirstRound = true;
     function ismyfirst(){
         var roundlis = $("li.round:last");
         var autolis = $("li.autochat:last")
         console.log(roundlis);
-        if(roundlis.hasClass("matchchat") || autolis.text() == "由您先开始游戏，请输入正确诗词开始游戏！")
+        if(roundlis.hasClass("matchchat") || (theFirstRound && autolis.text() == "由您先开始游戏，请输入正确诗词开始游戏！"))
         {
+            theFirstRound = false;
             return true;
         }
         return false;

@@ -69,10 +69,8 @@
                 $("#loading-content").text("正在提交")
                 $("#loadingToast").show()
             },
-            complete:function(){
-                $("#loadingToast").hide()
-            },
             success:function(data){
+                $("#loadingToast").hide();
                 $(".sc-score").text(data.score);
                 if(data.result==true){
                     $("input[name=sa_tail]").val("");
