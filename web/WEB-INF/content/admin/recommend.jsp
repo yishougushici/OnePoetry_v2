@@ -35,17 +35,6 @@
                 </div>
             </div>
         </div>
-        <div class="btn-group btn-group-justified" role="group" aria-label="...">
-            <div class="btn-group" role="group">
-                <button type="button" id="preItem" class="btn btn-default"><span class="glyphicon glyphicon-chevron-left"></span></button>
-            </div>
-            <div class="btn-group" role="group">
-                <button type="button" id="setYes" class="btn btn-default"><span class="glyphicon glyphicon-eye-close"></span></button>
-            </div>
-            <div class="btn-group" role="group">
-                <button type="button" id="nextItem" class="btn btn-default"><span class="glyphicon glyphicon-chevron-right"></span></button>
-            </div>
-        </div>
     </div>
     <div class="col-xs-12">
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -137,7 +126,7 @@
             data:{"id":itemId, "mode":mode},
             success: function (message) {
                 if(message.result == true){
-                    itemId = data.sorin_id;
+                    itemId = message.sorin_id;
                     $(".sc-title").text(message.data.srec_title);
                     $(".sc-author").text(message.data.srec_auth);
                     $(".sc-body").text(message.data.srec_content);
