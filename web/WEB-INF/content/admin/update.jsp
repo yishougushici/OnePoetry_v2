@@ -46,18 +46,18 @@
         var scdate = $("input[name=日期]").val();
         var sccontent = $("textarea[name=内容]").val();
         $("input[type=reset]").click();
-        console.log(scauto+"--"+sccontent+"--"+scdate+"--"+scnum+"--"+sctitle);
+        //console.log(scauto+"--"+sccontent+"--"+scdate+"--"+scnum+"--"+sctitle);
         if($.trim(scnum)==""||$.trim(sctitle)==""||$.trim(scauto)==""||$.trim(scdate)==""||$.trim(sccontent)=="")
             return;
         $.ajax({
             url:"admin/submitUpdate",
             type:"post",
             data:{
-                "期号":scnum,
-                "诗词":sctitle,
-                "作者":scauto,
-                "日期":scdate,
-                "内容":sccontent
+                "scnum":scnum,
+                "sctitle":sctitle,
+                "scauto":scauto,
+                "scdate":scdate,
+                "sccontent":sccontent
             },
             beforeSend:function(){
                 $("#loading-content").text("正在提交")
