@@ -2,36 +2,42 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutAdminHead.jsp" />
+<link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/admin.css">
 <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
         <div class="panel panel-success">
             <div class="panel-heading">
-                <div class = "sc-heading">
-                    <div class="sc-title">
+                <div class = "admin-sc-heading">
+                    <div class="admin-sc-title">
                         题目
                     </div>
-                    <div class="sc-author">
+                    <div class="admin-sc-author" style="font-size: 1rem;">
                         作者
                     </div>
                 </div>
             </div>
             <div class="panel-body">
-                <div class="sc-body">
+                <div class="admin-sc-body">
                     正文
-                </div>
-                <div class="panelfooter">
-                    <div class="sc-date">
-                        日期
-                    </div>
-
                 </div>
             </div>
             <div class="panel-footer">
-                <div class="sc-reason">
-                    赏析
-                </div>
-                <div class="sc-suser">
-                    推荐用户
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="admin-sc-reason">
+                            赏析
+                        </div>
+                    </div>
+                    <div class="col-xs-6" style="text-align: left; font-size: .8em">
+                        <div class="admin-sc-date">
+                            日期
+                        </div>
+                    </div>
+                    <div class="col-xs-6" style="text-align: right;font-size: .8em">
+                        <div class="admin-sc-suser">
+                            推荐用户
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -134,12 +140,12 @@
             success: function (message) {
                 if(message.result == true){
                     itemId = message.data.srec_id;
-                    $(".sc-title").text(message.data.srec_title);
-                    $(".sc-author").text(message.data.srec_auth);
-                    $(".sc-body").text(message.data.srec_content);
-                    $(".sc-date").text(message.data.srec_time);
-                    $(".sc-reason").text(message.data.srec_reson);
-                    $(".sc-suser").text(message.data.srec_suser);
+                    $(".admin-sc-title").text(message.data.srec_title);
+                    $(".admin-sc-author").text(message.data.srec_auth);
+                    $(".admin-sc-body").text(message.data.srec_content);
+                    $(".admin-sc-date").text(message.data.srec_time);
+                    $(".admin-sc-reason").text(message.data.srec_reson);
+                    $(".admin-sc-suser").text(message.data.srec_suser);
                 }
                 else{
                     var info = (mode=="next") ? "已经到最后一条" : "已经是第一条";

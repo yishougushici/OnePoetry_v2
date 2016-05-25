@@ -2,7 +2,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutAdminHead.jsp" />
-
+<link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/admin.css">
     <div class="panel panel-success">
         <div class="panel-heading">
             <b>用户: <span id="admin-fb-user"></span></b>
@@ -11,8 +11,12 @@
             <div id="admin-fb-content"></div>
         </div>
         <div class="panel-footer">
-            允许公开:<span id="admin-fb-public"></span>
-            <span id="admin-fb-time"></span>
+            <div class="row">
+                <div class="col-xs-6 fb-public">
+                    允许公开: <span id="admin-fb-public"></span>
+                </div>
+                <div class="col-xs-6" id="admin-fb-time"></div>
+            </div>
         </div>
     </div>
     <div class="btn-group btn-group-justified" role="group" aria-label="...">
