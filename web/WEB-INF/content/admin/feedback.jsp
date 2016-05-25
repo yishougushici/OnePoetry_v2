@@ -1,7 +1,7 @@
 <%--查看用户反馈--%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutAdminHead.jsp" />
+<jsp:include page="/WEB-INF/content/shared/layoutAdminHead.jsp" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/admin.css">
     <div class="panel panel-success">
         <div class="panel-heading">
@@ -30,10 +30,10 @@
             <button type="button" id="nextItem" class="btn btn-default">下一条<span class="glyphicon glyphicon-chevron-right"></span></button>
         </div>
     </div>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutAdminFoot.jsp"/>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadingPage.jsp"/>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadedPage.jsp"/>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/dialogPage.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/layoutAdminFoot.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/loadingPage.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/loadedPage.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/dialogPage.jsp"/>
 <script>
     var itemId = -1;
     getData("next");

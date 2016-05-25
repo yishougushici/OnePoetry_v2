@@ -1,7 +1,7 @@
 <%--诗词问答--%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutHead.jsp" />
+<jsp:include page="/WEB-INF/content/shared/layoutHead.jsp" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/game.css">
 <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
@@ -28,9 +28,9 @@
     </div>
 </div>
 
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/dialogPage.jsp"/>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadingPage.jsp"/>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/dialogPage.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/loadingPage.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/layoutFoot.jsp"/>
 <script src="${pageContext.request.contextPath}/support/js/timeCount.js"></script>
 <script>
     var score = 0;

@@ -1,6 +1,6 @@
 <%--登录页--%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutHead.jsp" />
+<jsp:include page="/WEB-INF/content/shared/layoutHead.jsp" />
 <%
   if(request.getAttribute("error_message")!=null){
 %>
@@ -40,7 +40,7 @@
     <a href="register.action">新用户?点击注册</a>
   </div>
 </div>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/layoutFoot.jsp"/>
 <script>
   $("form").validate({
     errorElement: "span",

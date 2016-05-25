@@ -1,7 +1,7 @@
 <%--管理员首页首页--%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutAdminHead.jsp" />
+<jsp:include page="/WEB-INF/content/shared/layoutAdminHead.jsp" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/admin.css">
 <div class="row">
     <div class="col-xs-8 col-xs-offset-2 admin-btn">
@@ -12,4 +12,4 @@
     </div>
 </div>
 
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutAdminFoot.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/layoutAdminFoot.jsp"/>

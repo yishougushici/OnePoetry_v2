@@ -46,7 +46,7 @@
             </div><!--row-->
             <div class="row">
                 <div class="sc-logo">
-                    <img src="/support/image/logo.png" alt="一首古诗词">
+                    <img src="${pageContext.request.contextPath}/support/image/logo.png" alt="一首古诗词">
                 </div>
             </div>
             <div class="row">

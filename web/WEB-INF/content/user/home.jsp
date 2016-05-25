@@ -1,7 +1,7 @@
 <%--首页--%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutHead.jsp" />
+<jsp:include page="/WEB-INF/content/shared/layoutHead.jsp" />
 <script>
     $(".sc-title").remove();
 </script>
@@ -39,4 +39,4 @@
 </div>
 <div class="row" style="text-align: center">公众号二维码</div>
 
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/layoutFoot.jsp"/>

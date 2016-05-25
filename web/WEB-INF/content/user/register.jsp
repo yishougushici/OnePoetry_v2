@@ -1,7 +1,7 @@
 <%--用户注册--%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutHead.jsp" />
+<jsp:include page="/WEB-INF/content/shared/layoutHead.jsp" />
 <%
     if(request.getAttribute("error_message")!=null){
 %>
@@ -50,7 +50,7 @@
 		</div>
 	</div>
 </form>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/layoutFoot.jsp"/>
 
 <script>
     $(function(){

@@ -1,7 +1,7 @@
 <%--游戏首页--%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutHead.jsp" />
+<jsp:include page="/WEB-INF/content/shared/layoutHead.jsp" />
 
 <div class="row">
     <div class="col-xs-8 col-xs-offset-2">
@@ -12,7 +12,7 @@
     </div>
 </div>
 
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/layoutFoot.jsp"/>
 <script src="${pageContext.request.contextPath}/support/js/js-onepoetry-people-numbers.js"></script>
 
 <script>

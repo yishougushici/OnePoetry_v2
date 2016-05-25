@@ -6,7 +6,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutHead.jsp" />
+<jsp:include page="/WEB-INF/content/shared/layoutHead.jsp" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/support/chat/style.css">
 <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
@@ -32,8 +32,8 @@
     </div>
 </div>
 <%--加载框--%>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadingPage.jsp"/>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/loadingPage.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/layoutFoot.jsp"/>
 <script src="${pageContext.request.contextPath}/support/chat/wechat-ime.js"></script>
 <script src="${pageContext.request.contextPath}/support/js/jquery-onepoetry-websocket.js"></script>
 <script src="${pageContext.request.contextPath}/support/js/timeCount.js"></script>

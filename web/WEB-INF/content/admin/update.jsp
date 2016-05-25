@@ -1,7 +1,7 @@
 <%--录入诗词:更新数据--%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutAdminHead.jsp" />
+<jsp:include page="/WEB-INF/content/shared/layoutAdminHead.jsp" />
 <form action="javascript:submitHis();" method="post">
     <div class="row">
         <div class="row">
@@ -29,10 +29,10 @@
         </div>
     </div>
 </form>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutAdminFoot.jsp"/>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadingPage.jsp"/>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadedPage.jsp"/>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/dialogPage.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/layoutAdminFoot.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/loadingPage.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/loadedPage.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/dialogPage.jsp"/>
 <script>
 
     $("#submit").click(function(){

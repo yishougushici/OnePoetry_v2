@@ -1,7 +1,7 @@
 <%--处理原创诗词--%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutAdminHead.jsp" />
+<jsp:include page="/WEB-INF/content/shared/layoutAdminHead.jsp" />
 <link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/admin.css">
 <div class="row">
         <div class="col-xs-10 col-xs-offset-1">
@@ -55,10 +55,10 @@
         </div>
     </div>
     </div>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutAdminFoot.jsp"/>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadingPage.jsp"/>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadedPage.jsp"/>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/dialogPage.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/layoutAdminFoot.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/loadingPage.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/loadedPage.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/dialogPage.jsp"/>
 <script>
     var itemId = -1;
     getData("next");

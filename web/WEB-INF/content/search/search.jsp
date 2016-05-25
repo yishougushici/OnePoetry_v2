@@ -2,11 +2,11 @@
 <%
     response.setHeader("Access-Control-Allow-Origin", "*");
 %>
-<link rel="stylesheet" href="/support/css/search.css">
-<link rel="stylesheet" href="/support/select/demo.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/search.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/support/select/demo.css">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutHead.jsp" />
+<jsp:include page="/WEB-INF/content/shared/layoutHead.jsp" />
 
 <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
@@ -63,8 +63,8 @@
         <div class="showShici"></div>
     </div>
 </div>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
-<script src="/support/select/select.js"></script>
+<jsp:include page="/WEB-INF/content/shared/layoutFoot.jsp"/>
+<script src="${pageContext.request.contextPath}/support/select/select.js"></script>
 <script>
     $("#sc-search-bar").click(function(){
         $(".showShici").children().remove();

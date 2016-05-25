@@ -1,7 +1,7 @@
 <%--诗词推荐--%>
 
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutHead.jsp" />
+<jsp:include page="/WEB-INF/content/shared/layoutHead.jsp" />
 
 <div class="row">
     <form action="javascript:sendRecomend();">
@@ -28,10 +28,10 @@
     </form>
 </div>
 <%--提示框--%>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/dialogPage.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/dialogPage.jsp"/>
 <%--加载框--%>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/loadingPage.jsp"/>
-<jsp:include page="${pageContext.request.contextPath}/WEB-INF/content/shared/layoutFoot.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/loadingPage.jsp"/>
+<jsp:include page="/WEB-INF/content/shared/layoutFoot.jsp"/>
 <script>
     function sendRecomend(){
         $.ajax({

@@ -68,7 +68,7 @@
 
 .chat-thread li.mychat:before {
   right: -80px;
-  background-image: url("/support/image/mychatl.png");
+  background-image: url("../image/mychatl.png");
   background-size: contain;
 }
 
@@ -90,7 +90,7 @@
 
 .chat-thread li.matchchat:before {
   left: -80px;
-  background-image: url("/support/image/matchchat.png");
+  background-image: url("../image/matchchat.png");
   background-size: contain;
 }
 
@@ -111,7 +111,7 @@
 
 .chat-thread li.autochat:before {
   left: -80px;
-  background-image: url("/support/image/autochat.png");
+  background-image: url("../image/autochat.png");
   background-size: contain;
 }
 
