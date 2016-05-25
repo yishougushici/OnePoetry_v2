@@ -23,11 +23,6 @@
                         日期
                     </div>
                 </div>
-                <div class="panel-footer">
-                    <div class="sc-reason">
-                        赏析
-                    </div>
-                </div>
             </div>
         </div>
     <div class="col-xs-12">
@@ -117,13 +112,13 @@
             url:"admin/getOriginal",
             type:"post",
             data:{"id":itemId, "mode":mode},
-            success: function (data) {
-                if(data.result == true){
-                    itemId = data.sorin_id;
-                    $(".sc-title").text(data.sorin_title);
-                    $(".sc-author").text(data.sorin_auth);
-                    $(".sc-body").text(data.sorin_content);
-                    $(".sc-date").text(data.sorin_time);
+            success: function (message) {
+                if(message.result == true){
+                    itemId = message.data.sorin_id;
+                    $(".sc-title").text(message.data.sorin_title);
+                    $(".sc-author").text(message.data.sorin_auth);
+                    $(".sc-body").text(message.data.sorin_content);
+                    $(".sc-date").text(message.data.sorin_time);
                 }
                 else{
                     var info = (mode=="next") ? "已经是第一条" : "已经到最后一条";
@@ -131,7 +126,7 @@
                     $("#suggest-bg").show();
                     setTimeout(function() {
                         $("#suggest-bg").hide();
-                    },2000);
+                    },1000);
                 }
             },
             error: function (msg) {

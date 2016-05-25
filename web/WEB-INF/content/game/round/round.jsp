@@ -62,7 +62,7 @@
         if($.trim(message)==="")
             return;
         ShowMsg("mychat",message,"chat");
-        SendPoetry("matchchat",message.val(),"chat");
+        SendPoetry("matchchat",message,"chat");
     });
 
     $("input[name=sa_tail]").keyup(function(e){
