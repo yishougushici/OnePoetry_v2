@@ -121,7 +121,7 @@
                     $(".sc-date").text(message.data.sorin_time);
                 }
                 else{
-                    var info = (mode=="next") ? "已经是第一条" : "已经到最后一条";
+                    var info = (mode=="next") ? "已经到最后一条" : "已经是第一条";
                     $("#suggest-body").text(info);
                     $("#suggest-bg").show();
                     setTimeout(function() {

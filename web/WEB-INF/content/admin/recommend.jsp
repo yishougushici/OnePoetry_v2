@@ -20,12 +20,19 @@
                     正文
                 </div>
                 <div class="panelfooter">
+                    <div class="sc-date">
+                        日期
+                    </div>
 
-                    日期
                 </div>
             </div>
             <div class="panel-footer">
-                赏析
+                <div class="sc-reason">
+                    赏析
+                </div>
+                <div class="sc-suser">
+                    推荐用户
+                </div>
             </div>
         </div>
         <div class="btn-group btn-group-justified" role="group" aria-label="...">
@@ -101,7 +108,7 @@
                     $("#toast").show();
                     setTimeout(function(){
                         $("#toast").hide();
-                    },1000);
+                    },600);
                 }
                 else{
                     $("#suggest-body").text(data.reason);
@@ -128,16 +135,18 @@
             url:"admin/getRecommend",
             type:"post",
             data:{"id":itemId, "mode":mode},
-            success: function (data) {
-                if(data.result == true){
+            success: function (message) {
+                if(message.result == true){
                     itemId = data.sorin_id;
-                    $(".sc-title").text(data.srec_title);
-                    $(".sc-author").text(data.srec_auth);
-                    $(".sc-body").text(data.srec_content);
-                    $(".sc-date").text(data.srec_time);
+                    $(".sc-title").text(message.data.srec_title);
+                    $(".sc-author").text(message.data.srec_auth);
+                    $(".sc-body").text(message.data.srec_content);
+                    $(".sc-date").text(message.data.srec_time);
+                    $(".sc-reason").text(message.data.srec_reson);
+                    $(".sc-suser").text(message.data.srec_suser);
                 }
                 else{
-                    var info = (mode=="next") ? "已经是第一条" : "已经到最后一条";
+                    var info = (mode=="next") ? "已经到最后一条" : "已经是第一条";
                     $("#suggest-body").text(info);
                     $("#suggest-bg").show();
                     setTimeout(function() {
