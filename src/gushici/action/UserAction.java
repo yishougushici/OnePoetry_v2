@@ -65,7 +65,7 @@ public class UserAction extends ActionSupport {
 			return ERROR;
 		}
 
-		if("admin".equals(getSuser_name()) && "admin".equals(getSuser_password())) {
+		if("ysgscTest".equals(getSuser_name()) && "@Gushici".equals(getSuser_password())) {
 			actionContext.getSession().put("admin", "admin");
 			return "admin";
 		}
