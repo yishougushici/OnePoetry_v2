@@ -50,6 +50,7 @@ public class AnswerAction extends ActionSupport {
 		actionContext.getSession().put("user", user);
 		actionContext.put("score", user.getSuesr_sa_score());
 		actionContext.put("pageTitle", "诗词问答");
+		actionContext.put("isGame", true);
 		return SUCCESS;
 	}
 

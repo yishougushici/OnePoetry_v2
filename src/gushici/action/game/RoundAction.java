@@ -63,6 +63,7 @@ public class RoundAction extends ActionSupport {
 		actionContext.getSession().put("user", user);
 		actionContext.put("score", user.getSuesr_sround_score());
 		actionContext.put("pageTitle", "诗词接龙");
+		actionContext.put("isGame", true);
 		return SUCCESS;
 	}
 
