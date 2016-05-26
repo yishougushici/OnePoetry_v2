@@ -196,3 +196,7 @@ a:hover{
     font-weight:bold;
     padding-right: 0;
 }
+
+input{
+    background-color:transparent;
+}
