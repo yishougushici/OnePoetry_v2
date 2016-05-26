@@ -34,12 +34,60 @@
 <jsp:include page="/WEB-INF/content/shared/loadedPage.jsp"/>
 <jsp:include page="/WEB-INF/content/shared/dialogPage.jsp"/>
 <script>
-
-    $("#submit").click(function(){
-        submitHis();
+    var maxid = 1;
+    var scid;
+    var currentId;
+    $.ajax({
+        url:"admin/getMaxId",
+        success:function(data){
+            if(data.result==true){
+                maxid = data.maxid;
+            }
+        }
     });
 
-    function submitHis(){
+    $("input[name=期号]").blur(function(){
+        currentId = $("input[name=期号]").val();
+        if(currentId>maxid){
+            return;
+        }else{
+            getRecordById(currentId);
+        }
+    });
+
+    $("#submit").click(function(){
+        if(currentId>maxid){
+            submitHis("insert");
+        }else{
+            submitHis("update");
+        }
+    });
+
+    function getRecordById(id){
+        $.ajax({
+            url:"admin/getRecordById",
+            data:{"id":id},
+            asyn:true,
+            success:function(data){
+                if(data.result==true){
+                    scid = data.scid;
+                    $("input[name=期号]").val(data.scnum);
+                    $("input[name=诗词]").val(data.sctitle);
+                    $("input[name=作者]").val(data.scauto);
+                    $("input[name=日期]").val(data.scdate);
+                    $("textarea[name=内容]").val(data.sccontent);
+                }
+                else{
+                    console.info(data);
+                }
+            },
+            error:function(msg){
+                console.error("zhaokuo:服务器错误"+msg);
+            }
+        });
+    }
+
+    function submitHis(option){
         var scnum = $("input[name=期号]").val();
         var sctitle = $("input[name=诗词]").val();
         var scauto = $("input[name=作者]").val();
@@ -53,6 +101,8 @@
             url:"admin/submitUpdate",
             type:"post",
             data:{
+                "option":option,
+                "id":scid,
                 "scnum":scnum,
                 "sctitle":sctitle,
                 "scauto":scauto,
