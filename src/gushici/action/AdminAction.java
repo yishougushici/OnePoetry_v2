@@ -310,8 +310,44 @@ public class AdminAction  extends ActionSupport {
 		newPushRecord.set内容(getSccontent());
 		newPushRecord.set日期(java.sql.Date.valueOf((getScdate())));
 		HibernateTool hibernateTool = new HibernateTool();
-		hibernateTool.save(newPushRecord);
+		if("update".equals(getOption())){
+			newPushRecord.setIdNum(Integer.parseInt(getId()));
+			hibernateTool.update(newPushRecord);
+		} else {
+			hibernateTool.save(newPushRecord);
+		}
 		dataMap.put("result", true);
+		return SUCCESS;
+	}
+
+	public String getMaxId(){
+		dataMap.clear();
+		HibernateTool hibernateTool = new HibernateTool();
+		PushRecord pushRecord = (PushRecord)hibernateTool.getOne(PushRecord.class, "SELECT * FROM `shiciall` WHERE `期号` = (SELECT MAX(`期号`) FROM `shiciall`)");
+		if(pushRecord == null)
+			dataMap.put("id", 1);
+		else
+			dataMap.put("id", pushRecord.get期号());
+		return SUCCESS;
+	}
+
+	public String getRecordById(){
+		dataMap.clear();
+		HibernateTool hibernateTool = new HibernateTool();
+		PushRecord pushRecord = (PushRecord)hibernateTool.getOne(PushRecord.class, "SELECT * FROM `shiciall` WHERE `期号` = " + getId());
+		if(pushRecord == null){
+			dataMap.put("result", false);
+			return SUCCESS;
+		}
+		dataMap.put("result", true);
+		HashMap<String ,Object> temp = new HashMap<>();
+		temp.put("scnum", pushRecord.get期号());
+		temp.put("scid", pushRecord.getIdNum());
+		temp.put("scdate", new SimpleDateFormat("yyyy-MM-dd").format(pushRecord.get日期()));
+		temp.put("sccontent", pushRecord.get内容());
+		temp.put("scauto", pushRecord.get作者());
+		temp.put("sctitle", pushRecord.get诗词());
+		dataMap.put("data", temp);
 		return SUCCESS;
 	}
 

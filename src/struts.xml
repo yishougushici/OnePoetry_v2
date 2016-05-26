@@ -257,5 +257,15 @@
                 <param name="root">dataMap</param>
             </result>
         </action>
+        <action name="getMaxId" class="gushici.action.AdminAction" method="getMaxId">
+            <result type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
+        <action name="getRecordById" class="gushici.action.AdminAction" method="getRecordById">
+            <result type="json">
+                <param name="root">dataMap</param>
+            </result>
+        </action>
     </package>
 </struts>
