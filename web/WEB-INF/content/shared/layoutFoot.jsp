@@ -16,3 +16,27 @@
     </div>
 </body>
 </html>
+<!--Countly script-->
+<script type='text/javascript' src='http://wolfogre-public.oss-cn-hangzhou.aliyuncs.com/countly.min.js'></script>
+<script type='text/javascript'>
+    //使用参数启动 countly
+    Countly.init({
+        app_key: "eb64f5ea785c950ab57557235f71c12842ea604a",
+        url: "http://countly.wolfogre.com", //或者对于默认 countly cloud 来说不包含此项
+        debug:true
+    });
+    //在每个页面视图上启动会话
+    Countly.begin_session();
+    //添加您需要的任何事件，如 pageView
+    Countly.add_event({
+        "key": "pageView",
+        "segmentation": {
+            "url": window.location.pathname
+        }
+    });
+    //在离开页面上结束会话
+    window.onunload = function(){
+        Countly.end_session();
+    };
+</script>
+

@@ -42,7 +42,7 @@
      * 上帝顺序, 用于处理特殊情况 为true时 可以接龙(最高优先级)
      */
     //var GodOrder = false;
-
+    var answerTime = 150;
     $(".game-start").click(function(){
         $(".jumbotron").hide();
         $("#game-content").show();

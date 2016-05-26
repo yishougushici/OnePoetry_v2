@@ -16,16 +16,15 @@ img { max-width: 100%;}
 }
 
 .sc-username{
-    display: inline;
-    left: .2em;
-    top:.1em;
 }
 
 .sc-score{
-    right:.2em;
-    top:.1em;
     display: inline;
-    text-align: right;
+}
+
+.sc-score::before{
+    display: inline;
+    color:red;
 }
 
 .sc-logo{
