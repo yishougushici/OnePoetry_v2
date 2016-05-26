@@ -4,6 +4,7 @@
 <jsp:include page="/WEB-INF/content/shared/layoutAdminHead.jsp" />
 <form action="javascript:submitHis();" method="post">
     <div class="row">
+        <div class="error" style="text-align: center;">提示: 所有字段都是必须的.</div>
         <div class="row">
                 <div class="col-xs-12">
                 <div class="col-xs-3 admin-listlab" style="margin-top: 1em;">期号:</div>
@@ -40,14 +41,13 @@
     $.ajax({
         url:"admin/getMaxId",
         success:function(data){
-            if(data.result==true){
-                maxid = data.maxid;
-            }
+                maxid = data.id;
         }
     });
 
     $("input[name=期号]").blur(function(){
         currentId = $("input[name=期号]").val();
+        console.log(currentId+"---"+maxid);
         if(currentId>maxid){
             return;
         }else{
@@ -67,18 +67,18 @@
         $.ajax({
             url:"admin/getRecordById",
             data:{"id":id},
-            asyn:true,
-            success:function(data){
-                if(data.result==true){
-                    scid = data.scid;
-                    $("input[name=期号]").val(data.scnum);
-                    $("input[name=诗词]").val(data.sctitle);
-                    $("input[name=作者]").val(data.scauto);
-                    $("input[name=日期]").val(data.scdate);
-                    $("textarea[name=内容]").val(data.sccontent);
+            //asyn:true,
+            success:function(res){
+                if(res.result==true){
+                    scid = res.data.scid;
+                    $("input[name=期号]").val(res.data.scnum);
+                    $("input[name=诗词]").val(res.data.sctitle);
+                    $("input[name=作者]").val(res.data.scauto);
+                    $("input[name=日期]").val(res.data.scdate);
+                    $("textarea[name=内容]").val(res.data.sccontent);
                 }
                 else{
-                    console.info(data);
+                    console.info(res);
                 }
             },
             error:function(msg){
@@ -145,18 +145,18 @@
 
     $("form").validate({
         rules:{
-            期号:{required:true, min:0},
-            日期:{required:true},
-            作者:{required:true},
-            诗词:{required:true},
-            内容:{required:true}
+            期号:{min:0},
+//            日期:{required:true},
+//            作者:{required:true},
+//            诗词:{required:true},
+//            内容:{required:true}
         },
         messages:{
-            期号:{required:"请输入期号",min:"请输入正确的期号"},
-            日期:{required:"请输入日期"},
-            作者:{required:"请输入作者"},
-            诗词:{required:"请输入题目"},
-            内容:{required:"请输入内容"}
+            期号:{min:"请输入正确的期号"},
+//            日期:{required:"请输入日期"},
+//            作者:{required:"请输入作者"},
+//            诗词:{required:"请输入题目"},
+//            内容:{required:"请输入内容"}
         }
     });
 </script>
