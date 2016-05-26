@@ -61,7 +61,7 @@ public class RoundAction extends ActionSupport {
 		}
 		User user = (User)(new HibernateTool()).get(User.class, ((User)actionContext.getSession().get("user")).getSuesr_name());
 		actionContext.getSession().put("user", user);
-		actionContext.put("score", user.getSuesr_sround_score());
+		actionContext.getSession().put("score", user.getSuesr_sround_score());
 		actionContext.put("pageTitle", "诗词接龙");
 		actionContext.put("isGame", true);
 		return SUCCESS;

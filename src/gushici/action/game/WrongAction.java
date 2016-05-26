@@ -46,7 +46,7 @@ public class WrongAction extends ActionSupport {
 		}
 		User user = (User)(new HibernateTool()).get(User.class, ((User)actionContext.getSession().get("user")).getSuesr_name());
 		actionContext.getSession().put("user", user);
-		actionContext.put("score", user.getSuesr__serr_score());
+		actionContext.getSession().put("score", user.getSuesr__serr_score());
 		actionContext.put("pageTitle", "诗词找错");
 		actionContext.put("isGame", true);
 		return SUCCESS;
