@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/layout.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/weui.min.css">
     <link rel="stylesheet" href="${pageContext.request.contextPath}/support/css/component.css">
+    <link rel="icon" href="${pageContext.request.contextPath}/support/image/logoICO.ico">
     <script src="${pageContext.request.contextPath}/support/js/jquery-2.2.3.js"></script>
     <script src="${pageContext.request.contextPath}/support/js/bootstrap.min.js"></script>
     <script src="${pageContext.request.contextPath}/support/js/jquery.validate.min.js"></script>
@@ -32,13 +33,23 @@
         <div class="sc-content col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3">
             <div class="row">
                 <div class="sc-username">
-                    <span class="sc-info-icon glyphicon glyphicon-user"><%=session.getAttribute("username")%></span>
+                    <span class="sc-info-icon glyphicon glyphicon-user">
+                        <%
+                            if(session.getAttribute("username") != null)
+                                out.print(session.getAttribute("username"));
+                        %>
+                    </span>
                 </div>
                 <%
-                    if(true){//如果已经进入游戏状态
+                    if(request.getAttribute("isGame")!=null){//如果已经进入游戏状态
                 %>
                     <div class="col-lg-offset-10 col-md-offset-10 col-sm-offset-10 col-xs-offset-10">
-                        <span class="glyphicon glyphicon-heart sc-score"><%=request.getAttribute("score")%></span>
+                        <span class="glyphicon glyphicon-heart sc-score">
+                            <%
+                                if(session.getAttribute("score") != null)
+                                    out.print(session.getAttribute("score"));
+                            %>
+                        </span>
                     </div>
                 <%
                     }
