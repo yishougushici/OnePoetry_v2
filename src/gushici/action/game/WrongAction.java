@@ -48,6 +48,7 @@ public class WrongAction extends ActionSupport {
 		actionContext.getSession().put("user", user);
 		actionContext.put("score", user.getSuesr__serr_score());
 		actionContext.put("pageTitle", "诗词找错");
+		actionContext.put("isGame", true);
 		return SUCCESS;
 	}
 

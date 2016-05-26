@@ -43,7 +43,7 @@ public class UserAction extends ActionSupport {
 	public String login(){
 		ActionContext actionContext = ActionContext.getContext();
 		actionContext.getSession().clear();
-		actionContext.put("pageTitle", "用户登录");
+		actionContext.put("pageTitle", "一首古诗词");
 		return SUCCESS;
 	}
 
@@ -89,7 +89,7 @@ public class UserAction extends ActionSupport {
 		if(actionContext.getSession().get("user") == null){
 			return LOGIN;
 		}
-		actionContext.put("pageTitle", "功能首页");
+		actionContext.put("pageTitle", "导航");
 		return SUCCESS;
 	}
 
