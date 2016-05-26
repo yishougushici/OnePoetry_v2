@@ -17,7 +17,7 @@
             </div>
             <span for="sorin_auth"></span>
             <br>
-            <textarea name="sorin_content" id="sorin_content" placeholder="诗词正文" class="weui_textarea" rows="4"></textarea>
+            <textarea name="sorin_content" id="sorin_content" placeholder="诗词正文" class="weui_textarea" style="overflow:scroll; overflow-x:hidden;" rows="4"></textarea>
             <span for="sorin_content"></span>
             <br>
             <input type="submit" class="btn btn-primary btn-block" value="提交推荐">

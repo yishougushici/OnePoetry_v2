@@ -35,6 +35,9 @@
 <script>
     var score = 0;
     var maxscore=0;
+    var answerTime = 100;
+
+    $("#timer").text(answerTime);
     //开始游戏
     $(".game-start").click(function(){
         $(this).hide();
@@ -131,7 +134,7 @@
                 }
                 $(".ans-title").text(data.sa_head);
                 $(".ans-info").text(data.sa_author+"  "+data.sa_title)
-                setTimer(100,"timer",function(){
+                setTimer(answerTime,"timer",function(){
                     score=0;
                     $(".ans-num").text(score);
                     $("#suggest-body").text("回答超时");

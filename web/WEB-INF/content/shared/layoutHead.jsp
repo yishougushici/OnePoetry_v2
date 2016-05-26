@@ -31,29 +31,30 @@
 <div class="container">
     <div class="row">
         <div class="sc-content col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-3 col-md-offset-3">
-            <div class="row">
-                <div class="sc-username">
-                    <span class="sc-info-icon glyphicon glyphicon-user">
+            <div class="row" style="margin-top:.5em;">
+                <div class="col-xs-6" style="text-align: left">
+                    <div class="sc-username">
                         <%
-                            if(session.getAttribute("username") != null)
-                                out.print(session.getAttribute("username"));
+                            if(session.getAttribute("username") != null){
                         %>
-                    </span>
-                </div>
-                <%
-                    if(request.getAttribute("isGame")!=null){//如果已经进入游戏状态
-                %>
-                    <div class="col-lg-offset-10 col-md-offset-10 col-sm-offset-10 col-xs-offset-10">
-                        <span class="glyphicon glyphicon-heart sc-score">
-                            <%
-                                if(session.getAttribute("score") != null)
-                                    out.print(session.getAttribute("score"));
-                            %>
+                        <span class="sc-info-icon glyphicon glyphicon-user">
+                            <%=(session.getAttribute("username"))%>
                         </span>
+                        <%}%>
+
                     </div>
-                <%
-                    }
-                %>
+                </div>
+                <div class="col-xs-6" style="text-align: right">
+                    <%
+                        if(request.getAttribute("isGame")!=null){//如果已经进入游戏状态
+                    %>
+                    <span class="glyphicon glyphicon-heart sc-score">
+                        <%=session.getAttribute("score")%>
+                    </span>
+                    <%
+                        }
+                    %>
+                </div>
             </div><!--row-->
             <div class="row">
                 <div class="sc-logo">

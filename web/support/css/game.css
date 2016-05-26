@@ -9,6 +9,7 @@
     display:inline-block;
 }
 .ans-title{
+    margin-left: 1em;
     text-align: center;
     font-family: "微软雅黑", "YaHei Consolas Hybrid";
     font-size: 24px;
