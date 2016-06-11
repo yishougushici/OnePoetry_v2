@@ -39,7 +39,7 @@ function setMessageInnerHTML(sendsmessage){
         ShowMsg(receiveMsg[0], receiveMsg[1], receiveMsg[2]);
         if (receiveMsg[2] == "round") {
             setTimer(answerTime, "timer", function () {
-
+                GodOrder = true;
                 ShowMsg("autochat","答题超时,您输了!新回合开始, 由您出题");
                 SendPoetry("autochat","对方答题超时! 新回合开始, 等待对方出题.");
                 $.ajax({

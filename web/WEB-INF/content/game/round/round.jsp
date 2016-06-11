@@ -41,7 +41,7 @@
     /**
      * 上帝顺序, 用于处理特殊情况 为true时 可以接龙(最高优先级)
      */
-    //var GodOrder = false;
+    var GodOrder = false;
     var answerTime = 150;
     $(".game-start").click(function(){
         $(".jumbotron").hide();
@@ -90,6 +90,7 @@
         if(msg.trim()==="")
             return;
         clearTimer();
+        GodOrder = false;
         $.ajax({
             url: "round/checkSentence",
             data:{"role":"me","content":msg},
@@ -110,6 +111,7 @@
                 else {
                     ShowMsg("autochat",data.reason,"error");
                     setTimer($("#timer").text(),"timer",function(){
+                        GodOrder = true;
                         ShowMsg("autochat","答题超时,您输了!新回合开始, 由您出题");
                         SendPoetry("autochat","对方答题超时! 新回合开始, 等待对方出题.");
                         $.ajax({
@@ -136,6 +138,8 @@
      */
     var theFirstRound = true;
     function ismyfirst(){
+        if(GodOrder==true)
+            return true;
         var roundlis = $("li.round:last");
         var autolis = $("li.autochat:last")
         console.log(roundlis);
