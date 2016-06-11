@@ -13,19 +13,10 @@
 <div class="row">
   <div class="col-xs-10 col-lg-10 col-md-10 col-sm-10 col-lg-offset-1 col-sm-offset-1 col-md-offset-1 col-xs-offset-1">
     <form action="loginCheck.action"><!--TODO:这里被我改了-->
-     <span class="input input--hoshi">
-                <input class="input__field input__field--hoshi" type="text" name="suser_name" id="suser_name" />
-                <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="suser_name">
-                  <span class="input__label-content input__label-content--hoshi">用户名 <span for="suser_name"></span></span>
-                </label>
-            </span>
-            <span class="input input--hoshi">
-                <input class="input__field input__field--hoshi" type="password" name="suser_password" id="suser_password" />
-                <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="suser_password">
-                  <span class="input__label-content input__label-content--hoshi">密码 <span for="suser_password"></span></span>
-                </label>
-            </span>
-      <input type="submit" class="btn btn-block btn-success" value="登录">
+        <span class="input-title">用户名: </span><input  name="suser_name" id="suser_name" type="text" class="line_input"/>
+        <span class="input-title">密码: </span><input  name="suser_password" id="suser_password" type="password" class="line_input"/>
+
+        <input type="submit" class="btn btn-block btn-success" value="登录">
     </form>
   </div>
 </div>
