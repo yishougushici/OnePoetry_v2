@@ -1,4 +1,4 @@
-var URL="ws://120.27.120.124:8090/websocket/chat/index";
+var URL="ws://cake.wolfogre.com:8090/websocket/chat/index";
 var statusSocket=null;
 if('WebSocket' in window) {
     statusSocket = new WebSocket(URL);

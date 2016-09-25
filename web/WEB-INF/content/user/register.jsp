@@ -22,18 +22,21 @@
 	                <span class="input__label-content input__label-content--hoshi">用户名 <span for="suser_name"></span></span>
                 </label>
             </span>
+
             <span class="input input--hoshi">
                 <input class="input__field input__field--hoshi" type="password" name="suser_password" id="suser_password" />
                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="suser_password">
 	                <span class="input__label-content input__label-content--hoshi">密码 <span for="suser_password"></span></span>
                 </label>
             </span>
+
             <span class="input input--hoshi">
                 <input class="input__field input__field--hoshi" type="password" name="check_password" id="check_password" />
                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="check_password">
                     <span class="input__label-content input__label-content--hoshi">确认密码 <span for="check_password"></span></span>
                 </label>
             </span>
+
             <span class="input input--hoshi">
                 <input class="input__field input__field--hoshi" type="text" name="suser_email" id="suser_eamil" /><!--TODO:这里被我改了,原来是suser_eamil-->
                 <label class="input__label input__label--hoshi input__label--hoshi-color-1" for="suser_eamil">

@@ -1,6 +1,7 @@
 body{
-    background-image: url("../image/bg-full.jpg");
+    background-color: #d0e9c6;
     background-repeat:repeat-y;
+    background-size: cover;
 }
 
 .container{
@@ -199,4 +200,10 @@ a:hover{
 
 input{
     background-color:transparent;
+}
+
+@media (min-width: 720px) {
+    body {
+        background-image: url("../image/bg-full.jpg");
+    }
 }

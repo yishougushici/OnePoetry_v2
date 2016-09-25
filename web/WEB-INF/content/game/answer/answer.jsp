@@ -6,7 +6,7 @@
 <div class="row">
     <div class="col-xs-10 col-xs-offset-1">
         连击:<div class="ans-num">0</div>&emsp;最大连击:<div class="maxcombo">0</div>
-        <div class="jumbotron">
+        <div class="well">
             <div class="ans-title">
                 <div class="game-start"><img src="${pageContext.request.contextPath}/support/image/game-start.png" alt=""></div>
             </div>
@@ -22,20 +22,19 @@
             <span class="input-group-btn" id="ans_send"><button class="btn btn-success"><span class="glyphicon glyphicon-send"></span></button></span>
         </div>
     </div>
-    <div id="ans-next" class="ans-next">
+    <div id="ans-next" class="ans-next" >
         <img class="game-img-btn" src="${pageContext.request.contextPath}/support/image/next.png" alt="跳过">
         下一题
     </div>
 </div>
-
+<jsp:include page="/WEB-INF/content/shared/layoutFoot.jsp"/>
 <jsp:include page="/WEB-INF/content/shared/dialogPage.jsp"/>
 <jsp:include page="/WEB-INF/content/shared/loadingPage.jsp"/>
-<jsp:include page="/WEB-INF/content/shared/layoutFoot.jsp"/>
 <script src="${pageContext.request.contextPath}/support/js/timeCount.js"></script>
 <script>
     var score = 0;
     var maxscore=0;
-    var answerTime = 100;
+    var answerTime = 75;
 
     $("#timer").text(answerTime);
     //开始游戏
@@ -150,7 +149,7 @@
                 $("#suggest-bg").show();
                 setTimeout(function(){
                     $("#suggest-bg").hide();
-                },3000);
+                },5000);
             }
         });
     }

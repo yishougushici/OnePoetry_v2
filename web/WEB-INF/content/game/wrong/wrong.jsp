@@ -4,8 +4,13 @@
 
  <div class="row">
      <div class="col-xs-10 col-xs-offset-1">
-         <div class="err-num" style="display: none">0</div>
-         <div class="jumbotron">
+         连击:<div class="err-num">0</div>&emsp;最大连击:<div class="maxcombo">0</div>
+         <div class="row">
+             <div class="col-xs-6">
+                 <hr></div>
+         </div>
+
+         <div class="alert alert-dismissible">
              <div class="err-elem-container">
                  <div class="game-start"><img src="${pageContext.request.contextPath}/support/image/game-start.png" alt=""></div>
              </div>
@@ -24,10 +29,11 @@
 
 <script>
     var score = 0;
+    var maxscore = 0;
     $(".game-start").click(function(){
         $(this).hide();
         renderQuestion();
-        $(".option").show();
+        //  $(".option").show();
         $(".err-num").show();
         $(".err-elem").on("click",function(){
             $("#err-elem-seleted").removeAttr("id");
@@ -40,6 +46,7 @@
         $("#err-elem-seleted").removeAttr("id");
         var keyword = $(this).text();
         $(this).attr("id","err-elem-seleted");
+        $("#submit").click();
     });
 
     $("#submit").click(function(){
@@ -61,6 +68,8 @@
                 $("#loadingToast").hide();
                 if(data.result==true){
                     $(".err-num").text(++score);
+                    maxscore = Math.max(score,maxscore);
+                    $(".maxcombo").text(maxscore);
                     renderQuestion();
                     $(".err-elem-container").children().remove(".err-elem-bg");
                     $(".sc-score").text(data.score);

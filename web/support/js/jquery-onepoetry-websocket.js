@@ -1,7 +1,7 @@
 /**
  * Created by Administrator on 2016/5/18.
  */
-var URL="ws://120.27.120.124:8090/websocket/chat/beginGame";
+var URL="ws://cake.wolfogre.com:8090/websocket/chat/beginGame";
 var webSocket=null;
 if('WebSocket' in window) {
     webSocket=new WebSocket(URL);
